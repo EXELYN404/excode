@@ -5,6 +5,15 @@ EXCODE is a Linux desktop code editor designed to keep everyday development in o
 Open a project, work across files, use the integrated terminal, and access developer tools without constantly switching applications.
 
 
+
 ## Preview
 
-![EXCODE Preview](docs/screenshots/Ai-provider-setup.png)
+![Ai-provider-setup.png](./Ai-provider-setup.png)
+
+![Welcome-screen.png](./Welcome-screen.png)
+
+![Workspace.png](./Workspace.png)
+
+![agent ai.png](./agent ai.png)
+
+![settings.png](./settings.png)
