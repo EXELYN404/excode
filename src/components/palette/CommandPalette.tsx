@@ -2,12 +2,11 @@ import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import {
   Search, File, Terminal, FolderOpen, FilePlus, PanelLeft,
-  FileInput, GripHorizontal, Sun, Moon, Settings, Loader, AlignLeft,
+  FileInput, GripHorizontal, Settings, Loader, AlignLeft,
 } from 'lucide-react';
 import { readDir, type FsEntry } from '../../lib/fs';
 import { fileColor } from '../../lib/fileColors';
 import { searchInFiles, type SearchMatch } from '../../lib/search';
-import { useTheme } from '../../themes/ThemeContext';
 import { useWorkspace } from '../../context/WorkspaceContext';
 import type { Tab } from '../editor/TabBar';
 
@@ -58,7 +57,7 @@ function HighlightMatch({ text, query }: { text: string; query: string }) {
   if (idx !== -1) return (
     <>
       {text.slice(0, idx)}
-      <span style={{ color: 'var(--origin-accent-blue)', fontWeight: 600 }}>
+      <span style={{ color: 'var(--excode-accent-blue)', fontWeight: 600 }}>
         {text.slice(idx, idx + ql.length)}
       </span>
       {text.slice(idx + ql.length)}
@@ -68,7 +67,7 @@ function HighlightMatch({ text, query }: { text: string; query: string }) {
   let qi = 0;
   for (let i = 0; i < text.length; i++) {
     if (qi < ql.length && tl[i] === ql[qi]) {
-      nodes.push(<span key={i} style={{ color: 'var(--origin-accent-blue)', fontWeight: 600 }}>{text[i]}</span>);
+      nodes.push(<span key={i} style={{ color: 'var(--excode-accent-blue)', fontWeight: 600 }}>{text[i]}</span>);
       qi++;
     } else { nodes.push(text[i]); }
   }
@@ -112,7 +111,7 @@ export default function CommandPalette({
   terminalOpen, sidebarOpen,
 }: CommandPaletteProps) {
   const { folderPath } = useWorkspace();
-  const { theme, themes, setTheme } = useTheme();
+
   const [query, setQuery] = useState('');
   const [selected, setSelected] = useState(0);
   const [wsFiles, setWsFiles] = useState<WorkspaceFile[]>([]);
@@ -217,7 +216,7 @@ export default function CommandPalette({
       result.push({
         id: `open:${tab.path}`, kind: 'open-file', label: tab.name, detail: rel,
         icon: <File size={14} style={{ color: fileColor(tab.name), flexShrink: 0 }} />,
-        badge: <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--origin-accent-blue)', flexShrink: 0 }} />,
+        badge: <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--excode-accent-blue)', flexShrink: 0 }} />,
         score: score - 20000,
         action: () => { onFileOpen(tab.path); onClose(); },
       });
@@ -251,7 +250,7 @@ export default function CommandPalette({
       result.push({
         id: `open:${tab.path}`, kind: 'open-file', label: tab.name, detail: rel,
         icon: <File size={14} style={{ color: fileColor(tab.name), flexShrink: 0 }} />,
-        badge: <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--origin-accent-blue)', flexShrink: 0 }} />,
+        badge: <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--excode-accent-blue)', flexShrink: 0 }} />,
         score: score - 20000,
         action: () => { onFileOpen(tab.path); onClose(); },
       });
@@ -274,22 +273,12 @@ export default function CommandPalette({
 
     // Commands
     const cmds = [
-      { label: 'New File',            tokens: 'new create untitled',        detail: 'Create a new untitled file',          icon: <FilePlus  size={14} style={{ flexShrink: 0, color: 'var(--origin-fg-muted)' }} />, shortcut: 'Ctrl+N',   action: () => { onNewFile();       onClose(); } },
-      { label: 'Open Folder…',        tokens: 'open folder workspace',       detail: 'Open a project folder',               icon: <FolderOpen size={14} style={{ flexShrink: 0, color: 'var(--origin-fg-muted)' }} />, shortcut: 'Ctrl+K O', action: () => { onOpenFolder();    onClose(); } },
-      { label: 'Open File…',          tokens: 'open file browse disk',       detail: 'Open a file from disk',               icon: <FileInput  size={14} style={{ flexShrink: 0, color: 'var(--origin-fg-muted)' }} />, shortcut: 'Ctrl+O',   action: () => { onOpenFile();      onClose(); } },
-      { label: 'Open Settings',       tokens: 'settings preferences config', detail: 'Manage API keys, themes and more',    icon: <Settings   size={14} style={{ flexShrink: 0, color: 'var(--origin-fg-muted)' }} />, shortcut: 'Ctrl+,',   action: () => { onOpenSettings();  onClose(); } },
-      { label: terminalOpen ? 'Hide Terminal' : 'Show Terminal', tokens: 'terminal toggle panel', detail: terminalOpen ? 'Close the terminal panel' : 'Open the terminal panel', icon: <Terminal size={14} style={{ flexShrink: 0, color: 'var(--origin-fg-muted)' }} />, shortcut: 'Ctrl+`', action: () => { onToggleTerminal(); onClose(); } },
-      { label: sidebarOpen  ? 'Hide Sidebar'  : 'Show Sidebar',  tokens: 'sidebar toggle explorer', detail: sidebarOpen ? 'Close the file explorer' : 'Open the file explorer', icon: <PanelLeft size={14} style={{ flexShrink: 0, color: 'var(--origin-fg-muted)' }} />, shortcut: undefined, action: () => { onToggleSidebar(); onClose(); } },
-      ...themes.filter(t => t.name !== theme.name).map(t => ({
-        label: `Switch to ${t.name}`,
-        tokens: `theme color ${t.type} appearance`,
-        detail: `Change the IDE color theme`,
-        icon: t.type === 'dark'
-          ? <Moon size={14} style={{ flexShrink: 0, color: 'var(--origin-fg-muted)' }} />
-          : <Sun  size={14} style={{ flexShrink: 0, color: 'var(--origin-fg-muted)' }} />,
-        shortcut: undefined as string | undefined,
-        action: () => { setTheme(t); onClose(); },
-      })),
+      { label: 'New File',            tokens: 'new create untitled',        detail: 'Create a new untitled file',          icon: <FilePlus  size={14} style={{ flexShrink: 0, color: 'var(--excode-fg-muted)' }} />, shortcut: 'Ctrl+N',   action: () => { onNewFile();       onClose(); } },
+      { label: 'Open Folder…',        tokens: 'open folder workspace',       detail: 'Open a project folder',               icon: <FolderOpen size={14} style={{ flexShrink: 0, color: 'var(--excode-fg-muted)' }} />, shortcut: 'Ctrl+K O', action: () => { onOpenFolder();    onClose(); } },
+      { label: 'Open File…',          tokens: 'open file browse disk',       detail: 'Open a file from disk',               icon: <FileInput  size={14} style={{ flexShrink: 0, color: 'var(--excode-fg-muted)' }} />, shortcut: 'Ctrl+O',   action: () => { onOpenFile();      onClose(); } },
+      { label: 'Open Settings',       tokens: 'settings preferences config', detail: 'Manage API keys, themes and more',    icon: <Settings   size={14} style={{ flexShrink: 0, color: 'var(--excode-fg-muted)' }} />, shortcut: 'Ctrl+,',   action: () => { onOpenSettings();  onClose(); } },
+      { label: terminalOpen ? 'Hide Terminal' : 'Show Terminal', tokens: 'terminal toggle panel', detail: terminalOpen ? 'Close the terminal panel' : 'Open the terminal panel', icon: <Terminal size={14} style={{ flexShrink: 0, color: 'var(--excode-fg-muted)' }} />, shortcut: 'Ctrl+`', action: () => { onToggleTerminal(); onClose(); } },
+      { label: sidebarOpen  ? 'Hide Sidebar'  : 'Show Sidebar',  tokens: 'sidebar toggle explorer', detail: sidebarOpen ? 'Close the file explorer' : 'Open the file explorer', icon: <PanelLeft size={14} style={{ flexShrink: 0, color: 'var(--excode-fg-muted)' }} />, shortcut: undefined, action: () => { onToggleSidebar(); onClose(); } },
     ];
     for (const cmd of cmds) {
       const score = fuzzyScore(q, cmd.label + ' ' + cmd.tokens);
@@ -299,7 +288,7 @@ export default function CommandPalette({
 
     result.sort((a, b) => a.score - b.score);
     return result.slice(0, 60);
-  }, [isTextMode, isFileMode, q, tabs, wsFiles, folderPath, terminalOpen, sidebarOpen, theme, themes, setTheme,
+  }, [isTextMode, isFileMode, q, tabs, wsFiles, folderPath, terminalOpen, sidebarOpen,
       onFileOpen, onClose, onNewFile, onOpenFolder, onOpenFile, onToggleSidebar, onToggleTerminal, onOpenSettings]);
 
   const textItems = useMemo<PaletteItem[]>(() =>
@@ -310,7 +299,7 @@ export default function CommandPalette({
         kind: 'text-match' as ItemKind,
         label: r.text,
         detail: `${fileName} · Line ${r.line}`,
-        icon: <AlignLeft size={14} style={{ color: 'var(--origin-fg-muted)', flexShrink: 0 }} />,
+        icon: <AlignLeft size={14} style={{ color: 'var(--excode-fg-muted)', flexShrink: 0 }} />,
         score: 0,
         action: () => { onFileOpenAtLine(r.path, r.line); onClose(); },
       };
@@ -359,8 +348,8 @@ export default function CommandPalette({
         top: pos.y,
         width: PALETTE_W,
         zIndex: 10000,
-        background: 'var(--origin-bg-base)',
-        border: '1px solid var(--origin-border-subtle)',
+        background: 'var(--excode-bg-base)',
+        border: '1px solid var(--excode-border-subtle)',
         borderRadius: '12px',
         boxShadow: '0 20px 60px rgba(0,0,0,0.55), 0 4px 16px rgba(0,0,0,0.3)',
         overflow: 'hidden',
@@ -377,20 +366,20 @@ export default function CommandPalette({
           justifyContent: 'center',
           height: 22,
           cursor: 'grab',
-          background: 'var(--origin-bg-titlebar)',
-          borderBottom: '1px solid var(--origin-border-default)',
+          background: 'var(--excode-bg-titlebar)',
+          borderBottom: '1px solid var(--excode-border-default)',
         }}
       >
-        <GripHorizontal size={13} style={{ color: 'var(--origin-fg-subtle)', pointerEvents: 'none' }} />
+        <GripHorizontal size={13} style={{ color: 'var(--excode-fg-subtle)', pointerEvents: 'none' }} />
       </div>
 
       {/* Search input */}
       <div style={{
         display: 'flex', alignItems: 'center', gap: '10px',
         padding: '11px 14px',
-        borderBottom: flat.length > 0 || isLoading || (isTextMode && query.length > 1) || (isFileMode && query.length > 1) ? '1px solid var(--origin-border-default)' : 'none',
+        borderBottom: flat.length > 0 || isLoading || (isTextMode && query.length > 1) || (isFileMode && query.length > 1) ? '1px solid var(--excode-border-default)' : 'none',
       }}>
-        <Search size={14} style={{ color: 'var(--origin-fg-muted)', flexShrink: 0 }} />
+        <Search size={14} style={{ color: 'var(--excode-fg-muted)', flexShrink: 0 }} />
         <input
           ref={inputRef}
           value={query}
@@ -399,15 +388,15 @@ export default function CommandPalette({
           style={{
             flex: 1, background: 'transparent', border: 'none', outline: 'none',
             fontSize: '14px', lineHeight: '1.4',
-            color: 'var(--origin-fg-default)', fontFamily: 'var(--font-sans)',
+            color: 'var(--excode-fg-default)', fontFamily: 'var(--font-sans)',
           }}
         />
         <kbd
           onClick={onClose}
           style={{
-            background: 'var(--origin-bg-hover)', border: '1px solid var(--origin-border-default)',
+            background: 'var(--excode-bg-hover)', border: '1px solid var(--excode-border-default)',
             borderRadius: '4px', padding: '1px 6px', fontSize: '10px',
-            color: 'var(--origin-fg-subtle)', fontFamily: 'var(--font-mono)',
+            color: 'var(--excode-fg-subtle)', fontFamily: 'var(--font-mono)',
             flexShrink: 0, cursor: 'pointer',
           }}
         >
@@ -417,7 +406,7 @@ export default function CommandPalette({
 
       {/* Mode hints */}
       {isTextMode && query === '%' && (
-        <div style={{ padding: '20px 14px', textAlign: 'center', color: 'var(--origin-fg-subtle)', fontSize: '13px' }}>
+        <div style={{ padding: '20px 14px', textAlign: 'center', color: 'var(--excode-fg-subtle)', fontSize: '13px' }}>
           Type to search for text across all files
         </div>
       )}
@@ -425,7 +414,7 @@ export default function CommandPalette({
       {/* Loading spinner */}
       {isLoading && (
         <div style={{ padding: '24px 14px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <Loader size={18} style={{ color: 'var(--origin-fg-muted)', animation: 'spin 0.8s linear infinite' }} />
+          <Loader size={18} style={{ color: 'var(--excode-fg-muted)', animation: 'spin 0.8s linear infinite' }} />
         </div>
       )}
 
@@ -457,7 +446,7 @@ export default function CommandPalette({
 
       {/* No results */}
       {flat.length === 0 && !isLoading && activeQuery.length > 0 && (
-        <div style={{ padding: '24px 14px', textAlign: 'center', color: 'var(--origin-fg-subtle)', fontSize: '13px' }}>
+        <div style={{ padding: '24px 14px', textAlign: 'center', color: 'var(--excode-fg-subtle)', fontSize: '13px' }}>
           No results for "{activeQuery}"
         </div>
       )}
@@ -473,7 +462,7 @@ function GroupLabel({ text }: { text: string }) {
     <div style={{
       padding: '7px 9px 2px', fontSize: '10px', fontWeight: 600,
       letterSpacing: '0.7px', textTransform: 'uppercase',
-      color: 'var(--origin-fg-subtle)', userSelect: 'none',
+      color: 'var(--excode-fg-subtle)', userSelect: 'none',
     }}>
       {text}
     </div>
@@ -490,23 +479,23 @@ function Row({ item, active, query, onHover }: {
       style={{
         display: 'flex', alignItems: 'center', gap: '9px',
         padding: '6px 9px', borderRadius: '7px', cursor: 'pointer',
-        background: active ? 'var(--origin-bg-hover)' : 'transparent',
+        background: active ? 'var(--excode-bg-hover)' : 'transparent',
         transition: 'background 0.07s',
       }}
     >
       {item.icon}
       <span style={{ flex: 1, minWidth: 0 }}>
-        <span style={{ display: 'block', fontSize: '13px', color: 'var(--origin-fg-default)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+        <span style={{ display: 'block', fontSize: '13px', color: 'var(--excode-fg-default)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           <HighlightMatch text={item.label} query={query} />
         </span>
         {item.detail && (
-          <span style={{ display: 'block', fontSize: '11px', color: 'var(--origin-fg-subtle)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', marginTop: '1px' }}>
+          <span style={{ display: 'block', fontSize: '11px', color: 'var(--excode-fg-subtle)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', marginTop: '1px' }}>
             {item.detail}
           </span>
         )}
       </span>
       {item.shortcut && (
-        <kbd style={{ fontSize: '10px', color: 'var(--origin-fg-subtle)', fontFamily: 'var(--font-mono)', flexShrink: 0, background: 'var(--origin-bg-hover)', border: '1px solid var(--origin-border-default)', borderRadius: '4px', padding: '1px 5px' }}>
+        <kbd style={{ fontSize: '10px', color: 'var(--excode-fg-subtle)', fontFamily: 'var(--font-mono)', flexShrink: 0, background: 'var(--excode-bg-hover)', border: '1px solid var(--excode-border-default)', borderRadius: '4px', padding: '1px 5px' }}>
           {item.shortcut}
         </kbd>
       )}

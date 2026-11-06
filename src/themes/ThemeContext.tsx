@@ -1,57 +1,52 @@
 /* eslint-disable react-refresh/only-export-components -- exports the useTheme hook alongside the provider component */
 import { createContext, useContext, useState } from "react";
-import type { OriginTheme } from "./types";
+import type { ExcodeTheme } from "./types";
 import { applyTheme } from "./applyTheme";
 
-const themeModules = import.meta.glob<{ default: OriginTheme }>(
-  "./**/theme.json",
+const themeModules = import.meta.glob<{ default: ExcodeTheme }>(
+  "./excode-dark/theme.json",
   { eager: true }
 );
 
-export const builtinThemes: OriginTheme[] = Object.values(themeModules).map(
+export const builtinThemes: ExcodeTheme[] = Object.values(themeModules).map(
   (m) => m.default
 );
 
-function resolveDefaultTheme(): OriginTheme {
-  // 1. Respect saved preference
-  const saved = localStorage.getItem("origin-theme");
-  if (saved) {
-    const match = builtinThemes.find((t) => t.name === saved);
-    if (match) return match;
-  }
-  // 2. Fall back to OS preference
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const fallbackName = prefersDark ? "Origin Dark" : "Origin Light";
-  return builtinThemes.find((t) => t.name === fallbackName) ?? builtinThemes[0];
+function resolveDefaultTheme(): ExcodeTheme {
+  const dark = builtinThemes.find((t) => t.name === "ExCode Dark") ?? builtinThemes[0];
+  if (dark) localStorage.setItem("excode-theme", dark.name);
+  if (!dark) throw new Error("ExCode Dark theme is missing");
+  return dark;
 }
 
 interface ThemeContextValue {
-  theme: OriginTheme;
-  themes: OriginTheme[];
-  setTheme: (theme: OriginTheme) => void;
+  theme: ExcodeTheme;
+  themes: ExcodeTheme[];
+  setTheme: (theme: ExcodeTheme) => void;
   loadThemeFromJson: (json: string) => void;
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<OriginTheme>(() => {
+  const [theme, setThemeState] = useState<ExcodeTheme>(() => {
     const t = resolveDefaultTheme();
     applyTheme(t); // apply synchronously so CSS vars are set before any child effect reads them
     return t;
   });
 
-  function setTheme(t: OriginTheme) {
-    setThemeState(t);
-    applyTheme(t);
-    localStorage.setItem("origin-theme", t.name);
+  function setTheme(t: ExcodeTheme) {
+    const darkTheme: ExcodeTheme = { ...t, type: "dark" };
+    setThemeState(darkTheme);
+    applyTheme(darkTheme);
+    localStorage.setItem("excode-theme", darkTheme.name);
   }
 
   function loadThemeFromJson(json: string) {
     try {
-      const parsed = JSON.parse(json) as OriginTheme;
+      const parsed = JSON.parse(json) as ExcodeTheme;
       if (!parsed.name || !parsed.colors) throw new Error("Invalid theme file");
-      setTheme(parsed);
+      setTheme({ ...parsed, type: "dark" });
     } catch (e) {
       console.error("Failed to load theme:", e);
     }

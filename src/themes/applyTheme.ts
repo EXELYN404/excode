@@ -1,11 +1,11 @@
-import type { OriginTheme } from "./types";
+import type { ExcodeTheme } from "./types";
 
-// "bg.editor" → "--origin-bg-editor"
+// "bg.editor" → "--excode-bg-editor"
 function tokenToCssVar(token: string): string {
-  return "--origin-" + token.replace(/\./g, "-");
+  return "--excode-" + token.replace(/\./g, "-");
 }
 
-export function applyTheme(theme: OriginTheme): void {
+export function applyTheme(theme: ExcodeTheme): void {
   const root = document.documentElement;
   for (const [token, value] of Object.entries(theme.colors)) {
     root.style.setProperty(tokenToCssVar(token), value);

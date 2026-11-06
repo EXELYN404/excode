@@ -32,7 +32,7 @@ class BreakpointMarker extends GutterMarker {
       'width:8px',
       'height:8px',
       'border-radius:50%',
-      'background:var(--origin-semantic-error)',
+      'background:var(--excode-semantic-error)',
       'margin:auto',
       'cursor:pointer',
       'flex-shrink:0',
@@ -113,7 +113,7 @@ const dapTheme = EditorView.baseTheme({
     alignItems: 'center',
   },
   '.cm-dap-paused-line': {
-    backgroundColor: 'color-mix(in srgb, var(--origin-accent-yellow) 18%, transparent)',
+    backgroundColor: 'color-mix(in srgb, var(--excode-accent-yellow) 18%, transparent)',
   },
 });
 

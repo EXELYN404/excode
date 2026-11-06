@@ -17,15 +17,15 @@ export default function PlanCard({ plan, onApprove, onReject, status = "pending"
   const isDone = status !== "pending";
   const [expanded, setExpanded] = useState(!isDone);
 
-  const statusColor = status === "approved" ? "var(--origin-semantic-success)" : "var(--origin-fg-subtle)";
+  const statusColor = status === "approved" ? "var(--excode-semantic-success)" : "var(--excode-fg-subtle)";
   const statusLabel = status === "approved" ? "approved" : "rejected";
 
   return (
     <div style={{
       margin: "8px 0 4px",
       borderRadius: "8px",
-      border: "1px solid var(--origin-border-default)",
-      backgroundColor: "var(--origin-bg-editor)",
+      border: "1px solid var(--excode-border-default)",
+      backgroundColor: "var(--excode-bg-editor)",
       overflow: "hidden",
       flexShrink: 0,
     }}>
@@ -33,24 +33,24 @@ export default function PlanCard({ plan, onApprove, onReject, status = "pending"
         onClick={isDone ? () => setExpanded(e => !e) : undefined}
         style={{
           padding: "8px 12px",
-          borderBottom: expanded ? "1px solid var(--origin-border-default)" : "none",
+          borderBottom: expanded ? "1px solid var(--excode-border-default)" : "none",
           display: "flex",
           alignItems: "center",
           gap: "8px",
           cursor: isDone ? "pointer" : "default",
         }}
-        onMouseEnter={isDone ? e => { (e.currentTarget as HTMLElement).style.backgroundColor = "var(--origin-bg-hover)"; } : undefined}
+        onMouseEnter={isDone ? e => { (e.currentTarget as HTMLElement).style.backgroundColor = "var(--excode-bg-hover)"; } : undefined}
         onMouseLeave={isDone ? e => { (e.currentTarget as HTMLElement).style.backgroundColor = "transparent"; } : undefined}
       >
         {isDone && (
-          <span style={{ color: "var(--origin-fg-subtle)", flexShrink: 0, display: "flex" }}>
+          <span style={{ color: "var(--excode-fg-subtle)", flexShrink: 0, display: "flex" }}>
             {expanded ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
           </span>
         )}
-        <span style={{ fontSize: "11px", fontWeight: 600, color: "var(--origin-fg-muted)", textTransform: "uppercase", letterSpacing: "0.05em", flexShrink: 0 }}>
+        <span style={{ fontSize: "11px", fontWeight: 600, color: "var(--excode-fg-muted)", textTransform: "uppercase", letterSpacing: "0.05em", flexShrink: 0 }}>
           Plan
         </span>
-        <span style={{ fontSize: "12px", color: "var(--origin-fg-default)", flex: 1, fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+        <span style={{ fontSize: "12px", color: "var(--excode-fg-default)", flex: 1, fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
           {plan.title}
         </span>
         {isDone && (
@@ -80,10 +80,10 @@ export default function PlanCard({ plan, onApprove, onReject, status = "pending"
                   {cfg.label}
                 </div>
                 <div>
-                  <div style={{ fontSize: "11px", fontFamily: "var(--font-mono)", color: "var(--origin-fg-muted)", marginBottom: "2px", wordBreak: "break-all" }}>
+                  <div style={{ fontSize: "11px", fontFamily: "var(--font-mono)", color: "var(--excode-fg-muted)", marginBottom: "2px", wordBreak: "break-all" }}>
                     {step.file}
                   </div>
-                  <div style={{ fontSize: "12px", color: "var(--origin-fg-default)", lineHeight: 1.45 }}>
+                  <div style={{ fontSize: "12px", color: "var(--excode-fg-default)", lineHeight: 1.45 }}>
                     {step.description}
                   </div>
                 </div>
@@ -99,7 +99,7 @@ export default function PlanCard({ plan, onApprove, onReject, status = "pending"
           display: "flex",
           gap: "8px",
           justifyContent: "flex-end",
-          borderTop: "1px solid var(--origin-border-default)",
+          borderTop: "1px solid var(--excode-border-default)",
         }}>
           <button
             onClick={onReject}
@@ -109,12 +109,12 @@ export default function PlanCard({ plan, onApprove, onReject, status = "pending"
               fontSize: "12px",
               fontWeight: 500,
               cursor: "pointer",
-              background: "var(--origin-bg-active)",
-              border: "1px solid var(--origin-border-default)",
-              color: "var(--origin-fg-muted)",
+              background: "var(--excode-bg-active)",
+              border: "1px solid var(--excode-border-default)",
+              color: "var(--excode-fg-muted)",
             }}
-            onMouseEnter={e => { e.currentTarget.style.background = "var(--origin-bg-hover)"; e.currentTarget.style.color = "var(--origin-fg-default)"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "var(--origin-bg-active)"; e.currentTarget.style.color = "var(--origin-fg-muted)"; }}
+            onMouseEnter={e => { e.currentTarget.style.background = "var(--excode-bg-hover)"; e.currentTarget.style.color = "var(--excode-fg-default)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "var(--excode-bg-active)"; e.currentTarget.style.color = "var(--excode-fg-muted)"; }}
           >
             Reject
           </button>
@@ -126,9 +126,9 @@ export default function PlanCard({ plan, onApprove, onReject, status = "pending"
               fontSize: "12px",
               fontWeight: 500,
               cursor: "pointer",
-              background: "var(--origin-fg-default)",
+              background: "var(--excode-fg-default)",
               border: "1px solid transparent",
-              color: "var(--origin-bg-base)",
+              color: "var(--excode-bg-base)",
             }}
             onMouseEnter={e => { e.currentTarget.style.opacity = "0.85"; }}
             onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}

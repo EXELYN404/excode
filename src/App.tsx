@@ -36,7 +36,7 @@ import { useGlobalKeybindings } from "./hooks/useGlobalKeybindings";
 function App() {
   const { folderPath, setFolderPath } = useWorkspace();
   const [onboardingDone, setOnboardingDone] = useState(
-    () => localStorage.getItem('origin-onboarding') === 'true'
+    () => localStorage.getItem('excode-onboarding') === 'true'
   );
 
   const {
@@ -88,11 +88,22 @@ function App() {
   const { showToast } = useToast();
   const editorRef      = useRef<EditorHandle>(null);
   const terminalRef    = useRef<TerminalPanelHandle>(null);
+  const [focusedEditorPath, setFocusedEditorPath] = useState<string | null>(null);
   const pendingDiffRef = useRef<{ code: string; targetPath: string } | null>(null);
   const [pendingDiffTick, setPendingDiffTick] = useState(0);
   const [_zoom,          setZoom]          = useState(1.0);
   const [pinnedContext,  setPinnedContext]  = useState<EditorContext | null>(null);
   const [cursorPositions, setCursorPositions] = useState<Record<string, { line: number; col: number }>>({});
+
+  const openWorkspaceFile = (path: string) => {
+    openTab(path);
+    setFocusedEditorPath(path);
+  };
+
+  const openWorkspaceFileAtLine = (path: string, line: number, col: number) => {
+    openTabAtLine(path, line, col);
+    setFocusedEditorPath(path);
+  };
   const [gitBranch,      setGitBranch]     = useState<string | null>(null);
   const [paletteOpen,    setPaletteOpen]   = useState(false);
   const [settingsOpen,   setSettingsOpen]  = useState(false);
@@ -102,9 +113,9 @@ function App() {
   // Reads localStorage at call time so model/provider/enabled changes take effect immediately.
   const getAiCompletion = useMemo<AiCompletionFn>(() => {
     return async function* (prefix, suffix, signal) {
-      if (localStorage.getItem('origin-editor-ai-autocomplete') === 'false') return;
-      const providerId = localStorage.getItem('origin-ai-provider') ?? 'anthropic';
-      const modelId    = localStorage.getItem('origin-ai-model')    ?? 'claude-haiku-4-5-20251001';
+      if (localStorage.getItem('excode-editor-ai-autocomplete') === 'false') return;
+      const providerId = localStorage.getItem('excode-ai-provider') ?? 'anthropic';
+      const modelId    = localStorage.getItem('excode-ai-model')    ?? 'claude-haiku-4-5-20251001';
       const apiKey = await loadApiKey(providerId);
       const LOCAL_IDS = ['ollama', 'lmstudio', 'vllm'];
       if (!apiKey && !LOCAL_IDS.includes(providerId)) return;
@@ -212,7 +223,7 @@ function App() {
   }, [activeTab, debugCtx.session.breakpoints, debugCtx.session.stackFrames]);
 
   const { isFullscreen, toggleFullscreen } = useGlobalKeybindings({
-    saveActive:        () => { if (activeTab) handleSave(activeTab); },
+    saveActive:        () => { const p = focusedEditorPath || activeTab; if (p) handleSave(p); },
     toggleTerminal:    () => setTerminalOpen(v => !v),
     togglePalette:     () => setPaletteOpen(v => !v),
     toggleSettings:    () => setSettingsOpen(v => !v),
@@ -223,7 +234,7 @@ function App() {
     zoomIn:            () => handleZoomIn(),
     zoomOut:           () => handleZoomOut(),
     zoomReset:         () => handleZoomReset(),
-    startDebug:        () => { setSidebarOpen(true); debugCtx.startSession?.(); },
+    startDebug:        () => { setSidebarOpen(true); },
     stopDebug:         () => debugCtx.stopSession(),
     stepOver:          () => debugCtx.stepOver?.(),
     stepInto:          () => debugCtx.stepIn?.(),
@@ -231,7 +242,7 @@ function App() {
   });
 
   async function completeOnboarding() {
-    localStorage.setItem('origin-onboarding', 'true');
+    localStorage.setItem('excode-onboarding', 'true');
     setOnboardingDone(true);
     await setSetting('onboarding.done', true);
   }
@@ -271,9 +282,9 @@ function App() {
   }
 
   function handleNewWindow() {
-    new WebviewWindow(`origin-${Date.now()}`, {
+    new WebviewWindow(`excode-${Date.now()}`, {
       url: '/',
-      title: 'Origin IDE',
+      title: 'ExCode',
       width: 1280,
       height: 800,
       decorations: false,
@@ -338,7 +349,7 @@ function App() {
     dirtyCount: tabs.filter(t => t.isDirty).length,
     hasActiveTab: !!activeTab && !activeTab.startsWith('__diff__'),
     hasFolderOpen: !!folderPath,
-    onSave: () => { if (activeTab) handleSave(activeTab); },
+    onSave: () => { const p = focusedEditorPath || activeTab; if (p) handleSave(p); },
     onSaveAs: handleSaveAs,
     onSaveAll: handleSaveAll,
     onCloseEditor: () => { if (activeTab) closeTab(activeTab); },
@@ -368,7 +379,7 @@ function App() {
     <CommandContext.Provider value={commands}>
     <div
       className="h-full w-full flex flex-col"
-      style={{ backgroundColor: "var(--origin-bg-base)", color: "var(--origin-fg-default)" }}
+      style={{ backgroundColor: "var(--excode-bg-base)", color: "var(--excode-fg-default)" }}
     >
       {onboardingDone && <TitleBar />}
       {!onboardingDone ? (
@@ -376,22 +387,26 @@ function App() {
       ) : (
         <>
           <div className="flex flex-1 overflow-hidden">
-            {sidebarOpen && <Sidebar onFileOpen={openTab} onFileOpenAtLine={openTabAtLine} fileTreeKey={fileTreeVersion} />}
+            {sidebarOpen && <Sidebar onFileOpen={openTab} onFileOpenAtLine={openWorkspaceFileAtLine} fileTreeKey={fileTreeVersion} />}
             <div className="flex flex-1 overflow-hidden">
               <div className="flex-1 flex flex-col overflow-hidden">
+                <div style={{ display: "flex", minWidth: 0, flexShrink: 0 }}>
+                <div style={{ flex: 1, minWidth: 0, overflow: "hidden" }}>
                 <TabBar
                   tabs={tabs}
                   activeTab={activeTab}
-                  onSelect={setActiveTab}
+                  onSelect={path => setActiveTab(path)}
                   onClose={(path) => {
-                    if (path === '__preview__') localStorage.removeItem('origin-preview-url');
+                    if (path === '__preview__') localStorage.removeItem('excode-preview-url');
                     closeTab(path);
                   }}
                   onNewFile={handleNewFile}
                   onOpenFile={handleOpenFile}
                   onOpenPreview={openPreviewTab}
                 />
-                <main className="flex-1 flex overflow-hidden" style={{ backgroundColor: "var(--origin-bg-editor)", position: "relative" }}>
+                </div>
+                </div>
+                <main className="flex-1 flex overflow-hidden" style={{ backgroundColor: "var(--excode-bg-editor)", position: "relative" }}>
                   {debugCtx.session.status !== 'idle' && debugCtx.session.status !== 'terminated' && (
                     <DebugToolbar
                       status={debugCtx.session.status}
@@ -418,38 +433,42 @@ function App() {
                   ) : activeTab === '__preview__' ? (
                     <WebPreviewPane />
                   ) : activeTab && fileContents[activeTab] !== undefined ? (
-                    <Editor
-                      ref={editorRef}
-                      path={activeTab}
-                      content={fileContents[activeTab]}
-                      onChange={v => handleEditorChange(activeTab, v)}
-                      onCursorChange={(line, col) =>
-                        setCursorPositions(prev => ({ ...prev, [activeTab]: { line, col } }))
-                      }
-                      initialCursor={cursorPositions[activeTab]}
-                      jumpTo={jumpRequest?.path === activeTab ? jumpRequest : undefined}
-                      onAddToAiContext={ctx => { setPinnedContext(ctx); setAiPanelOpen(true); }}
-                      onAcceptDiff={() => handleSave(activeTab)}
-                      rootPath={folderPath}
-                      onDefinitionJump={(fp, line, col) => openTabAtLine(fp, line, col)}
-                      onMissingServer={handleMissingServer}
-                      getAiCompletion={getAiCompletion}
-                      onToggleBreakpoint={(fp, line) => debugCtx.toggleBreakpoint(fp, line)}
-                    />
+                    <div style={{ flex: 1, minWidth: 0, minHeight: 0, display: 'flex', overflow: 'hidden' }}>
+                      <Editor
+                        ref={editorRef}
+                        path={activeTab}
+                        content={fileContents[activeTab]}
+                        onChange={v => handleEditorChange(activeTab, v)}
+                        onCursorChange={(line, col) =>
+                          setCursorPositions(prev => ({ ...prev, [activeTab]: { line, col } }))
+                        }
+                        initialCursor={cursorPositions[activeTab]}
+                        jumpTo={jumpRequest?.path === activeTab ? jumpRequest : undefined}
+                        onAddToAiContext={ctx => { setPinnedContext(ctx); setAiPanelOpen(true); }}
+                        onAcceptDiff={() => handleSave(activeTab)}
+                        onFocus={() => setFocusedEditorPath(activeTab)}
+                        autoFocus={true}
+                        rootPath={folderPath}
+                        onDefinitionJump={(fp, line, col) => openTabAtLine(fp, line, col)}
+                        onMissingServer={handleMissingServer}
+                        getAiCompletion={getAiCompletion}
+                        onToggleBreakpoint={(fp, line) => debugCtx.toggleBreakpoint(fp, line)}
+                      />
+                    </div>
                   ) : activeTab && fileErrors[activeTab] ? (
                     <div className="flex-1 flex flex-col items-center justify-center gap-2">
-                      <p className="text-xs" style={{ color: "var(--origin-semantic-error)" }}>
+                      <p className="text-xs" style={{ color: "var(--excode-semantic-error)" }}>
                         Failed to read {activeTab.split(/[\\/]/).pop()}
                       </p>
-                      <p className="text-xs" style={{ color: "var(--origin-fg-subtle)" }}>
+                      <p className="text-xs" style={{ color: "var(--excode-fg-subtle)" }}>
                         {fileErrors[activeTab]}
                       </p>
                     </div>
                   ) : (
                     <div className="flex-1 flex items-center justify-center">
-                      <span className="text-xs" style={{ color: "var(--origin-fg-subtle)", opacity: 0.6, letterSpacing: "0.12em" }}>
+                      <span className="text-xs" style={{ color: "var(--excode-fg-subtle)", opacity: 0.6, letterSpacing: "0.12em" }}>
                         Loading
-                        <span style={{ animation: "origin-ellipsis 1.2s steps(4, end) infinite" }}>…</span>
+                        <span style={{ animation: "excode-ellipsis 1.2s steps(4, end) infinite" }}>…</span>
                       </span>
                     </div>
                   )}
@@ -457,7 +476,7 @@ function App() {
                     <div
                       style={{
                         position: "absolute", bottom: 0, left: 0, right: 0, height: 20,
-                        background: "linear-gradient(to bottom, transparent, var(--origin-bg-panel))",
+                        background: "linear-gradient(to bottom, transparent, var(--excode-bg-panel))",
                         pointerEvents: "none", zIndex: 10,
                       }}
                     />
@@ -504,7 +523,7 @@ function App() {
       {paletteOpen && (
         <CommandPalette
           tabs={tabs}
-          onFileOpen={openTab}
+          onFileOpen={openWorkspaceFile}
           onFileOpenAtLine={(path, line) => { setPaletteOpen(false); openTabAtLine(path, line, 0); }}
           onClose={() => setPaletteOpen(false)}
           onNewFile={() => { setPaletteOpen(false); handleNewFile(); }}
@@ -529,8 +548,8 @@ function App() {
         >
           <div
             style={{
-              background: 'var(--origin-bg-surface)',
-              border: '1px solid var(--origin-border-default)',
+              background: 'var(--excode-bg-surface)',
+              border: '1px solid var(--excode-border-default)',
               borderRadius: '10px',
               padding: '28px 32px',
               minWidth: '280px',
@@ -539,17 +558,17 @@ function App() {
             }}
             onClick={e => e.stopPropagation()}
           >
-            <p style={{ fontSize: '16px', fontWeight: 600, color: 'var(--origin-fg-default)', margin: 0 }}>Origin IDE</p>
-            <p style={{ fontSize: '12px', color: 'var(--origin-fg-muted)', margin: 0 }}>Version 0.1.0</p>
-            <p style={{ fontSize: '12px', color: 'var(--origin-fg-subtle)', margin: '8px 0 0', lineHeight: 1.6 }}>
+            <p style={{ fontSize: '16px', fontWeight: 600, color: 'var(--excode-fg-default)', margin: 0 }}>ExCode</p>
+            <p style={{ fontSize: '12px', color: 'var(--excode-fg-muted)', margin: 0 }}>Version 0.1.0</p>
+            <p style={{ fontSize: '12px', color: 'var(--excode-fg-subtle)', margin: '8px 0 0', lineHeight: 1.6 }}>
               Built with Tauri 2.x + React + CodeMirror 6.
             </p>
             <button
               onClick={() => setAboutOpen(false)}
               style={{
                 marginTop: '16px', padding: '6px 16px', alignSelf: 'flex-end',
-                background: 'var(--origin-bg-hover)', color: 'var(--origin-fg-default)',
-                border: '1px solid var(--origin-border-default)', borderRadius: '6px',
+                background: 'var(--excode-bg-hover)', color: 'var(--excode-fg-default)',
+                border: '1px solid var(--excode-border-default)', borderRadius: '6px',
                 cursor: 'pointer', fontSize: '12px',
               }}
             >

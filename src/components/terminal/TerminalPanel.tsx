@@ -5,8 +5,8 @@ import TerminalInstance from "./Terminal";
 
 const MIN_HEIGHT = 120;
 const MAX_HEIGHT = 600;
-const LS_TABS = "origin-terminal-tabs";
-const LS_ACTIVE = "origin-terminal-active-index";
+const LS_TABS = "excode-terminal-tabs";
+const LS_ACTIVE = "excode-terminal-active-index";
 
 interface TermTab {
   id: number;
@@ -104,17 +104,17 @@ function PanelBtn({
         background: "transparent",
         border: "none",
         cursor: "pointer",
-        color: "var(--origin-fg-muted)",
+        color: "var(--excode-fg-muted)",
         borderRadius: 3,
         padding: 0,
       }}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.backgroundColor = "var(--origin-bg-hover)";
-        (e.currentTarget as HTMLElement).style.color = "var(--origin-fg-default)";
+        (e.currentTarget as HTMLElement).style.backgroundColor = "var(--excode-bg-hover)";
+        (e.currentTarget as HTMLElement).style.color = "var(--excode-fg-default)";
       }}
       onMouseLeave={(e) => {
         (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
-        (e.currentTarget as HTMLElement).style.color = "var(--origin-fg-muted)";
+        (e.currentTarget as HTMLElement).style.color = "var(--excode-fg-muted)";
       }}
     >
       {children}
@@ -128,7 +128,7 @@ function ShellDot({ info }: { info: TabShellInfo | undefined }) {
     return (
       <span style={{
         width: 6, height: 6, borderRadius: '50%', flexShrink: 0,
-        backgroundColor: 'var(--origin-accent-blue)',
+        backgroundColor: 'var(--excode-accent-blue)',
         animation: 'pulse 1.2s ease-in-out infinite',
         display: 'inline-block',
       }} />
@@ -138,7 +138,7 @@ function ShellDot({ info }: { info: TabShellInfo | undefined }) {
     return (
       <span style={{
         width: 6, height: 6, borderRadius: '50%', flexShrink: 0,
-        backgroundColor: info.exitCode === 0 ? 'var(--origin-semantic-success)' : 'var(--origin-semantic-error)',
+        backgroundColor: info.exitCode === 0 ? 'var(--excode-semantic-success)' : 'var(--excode-semantic-error)',
         display: 'inline-block',
       }} />
     );
@@ -167,6 +167,7 @@ const TerminalPanel = forwardRef<TerminalPanelHandle, Props>(function TerminalPa
   const editInputRef = useRef<HTMLInputElement>(null);
 
   const dragRef = useRef<{ startY: number; startH: number } | null>(null);
+
 
   useImperativeHandle(ref, () => ({
     addTab,
@@ -325,8 +326,8 @@ const TerminalPanel = forwardRef<TerminalPanelHandle, Props>(function TerminalPa
         flexShrink: 0,
         display: hidden ? "none" : "flex",
         flexDirection: "column",
-        borderTop: "1px solid var(--origin-border-default)",
-        backgroundColor: "var(--origin-bg-panel)",
+        borderTop: "1px solid var(--excode-border-default)",
+        backgroundColor: "var(--excode-bg-panel)",
       }}
     >
       {/* Drag handle */}
@@ -334,7 +335,7 @@ const TerminalPanel = forwardRef<TerminalPanelHandle, Props>(function TerminalPa
         onMouseDown={handleDragStart}
         style={{ height: 4, flexShrink: 0, cursor: "row-resize" }}
         onMouseEnter={(e) => {
-          (e.currentTarget as HTMLElement).style.backgroundColor = "var(--origin-border-default)";
+          (e.currentTarget as HTMLElement).style.backgroundColor = "var(--excode-border-default)";
         }}
         onMouseLeave={(e) => {
           (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
@@ -351,14 +352,14 @@ const TerminalPanel = forwardRef<TerminalPanelHandle, Props>(function TerminalPa
           gap: 4,
           paddingLeft: 10,
           paddingRight: 6,
-          borderBottom: "1px solid var(--origin-border-subtle)",
+          borderBottom: "1px solid var(--excode-border-subtle)",
           userSelect: "none",
         }}
       >
         {/* Panel icon */}
         <Terminal
           size={14}
-          style={{ color: "var(--origin-fg-muted)", flexShrink: 0, marginRight: 4 }}
+          style={{ color: "var(--excode-fg-muted)", flexShrink: 0, marginRight: 4 }}
         />
 
         {/* Tab strip */}
@@ -383,14 +384,14 @@ const TerminalPanel = forwardRef<TerminalPanelHandle, Props>(function TerminalPa
                   flexShrink: 0,
                   fontSize: 12,
                   fontFamily: "var(--font-mono)",
-                  color: isActive ? "var(--origin-fg-default)" : "var(--origin-fg-muted)",
-                  backgroundColor: isActive ? "var(--origin-bg-active)" : "transparent",
+                  color: isActive ? "var(--excode-fg-default)" : "var(--excode-fg-muted)",
+                  backgroundColor: isActive ? "var(--excode-bg-active)" : "transparent",
                   transition: "background 0.1s, color 0.1s",
                 }}
                 onMouseEnter={(e) => {
                   if (!isActive)
                     (e.currentTarget as HTMLElement).style.backgroundColor =
-                      "var(--origin-bg-hover)";
+                      "var(--excode-bg-hover)";
                 }}
                 onMouseLeave={(e) => {
                   if (!isActive)
@@ -415,9 +416,9 @@ const TerminalPanel = forwardRef<TerminalPanelHandle, Props>(function TerminalPa
                       width: Math.max(40, editValue.length * 7 + 8),
                       background: "transparent",
                       border: "none",
-                      outline: "1px solid var(--origin-accent-blue)",
+                      outline: "1px solid var(--excode-accent-blue)",
                       borderRadius: 2,
-                      color: "var(--origin-fg-default)",
+                      color: "var(--excode-fg-default)",
                       fontFamily: "var(--font-mono)",
                       fontSize: 12,
                       padding: "0 2px",
@@ -439,15 +440,15 @@ const TerminalPanel = forwardRef<TerminalPanelHandle, Props>(function TerminalPa
                       width: 14,
                       height: 14,
                       borderRadius: 2,
-                      color: "var(--origin-fg-subtle)",
+                      color: "var(--excode-fg-subtle)",
                     }}
                     onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.color = "var(--origin-fg-default)";
+                      (e.currentTarget as HTMLElement).style.color = "var(--excode-fg-default)";
                       (e.currentTarget as HTMLElement).style.backgroundColor =
-                        "var(--origin-bg-hover)";
+                        "var(--excode-bg-hover)";
                     }}
                     onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.color = "var(--origin-fg-subtle)";
+                      (e.currentTarget as HTMLElement).style.color = "var(--excode-fg-subtle)";
                       (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
                     }}
                   >

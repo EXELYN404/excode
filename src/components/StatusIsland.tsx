@@ -66,16 +66,16 @@ function fmtCost(n: number): string {
 
 function PillContent({ id, badges, notifying, task, gitData, gitBranch, project, memory, usageData }: PillProps) {
   const hasBadge = (badges[id] ?? 0) > 0;
-  const notifyFg = "var(--origin-bg-base)";
+  const notifyFg = "var(--excode-bg-base)";
   let icon: React.ReactNode;
   let text: string;
-  let iconColor = notifying ? notifyFg : "var(--origin-fg-subtle)";
+  let iconColor = notifying ? notifyFg : "var(--excode-fg-subtle)";
 
   switch (id) {
     case "task":
       icon = task ? <ClipboardList size={9} /> : <GitBranch size={9} />;
       text = task ?? (gitBranch ? `${gitBranch}  ·  ${project}` : project || "No workspace");
-      if (task && !notifying) iconColor = "var(--origin-accent-blue)";
+      if (task && !notifying) iconColor = "var(--excode-accent-blue)";
       else if (task && notifying) iconColor = notifyFg;
       break;
     case "changed":
@@ -96,7 +96,7 @@ function PillContent({ id, badges, notifying, task, gitData, gitBranch, project,
       const total = Object.values(usageData).reduce((s, m) => s + m.cost, 0);
       icon = <DollarSign size={9} />;
       text = total === 0 ? "No API spend" : `${fmtCost(total)} total`;
-      if (!notifying) iconColor = "var(--origin-semantic-success, #22c55e)";
+      if (!notifying) iconColor = "var(--excode-semantic-success, #22c55e)";
       break;
     }
   }
@@ -109,12 +109,12 @@ function PillContent({ id, badges, notifying, task, gitData, gitBranch, project,
       <span className="shrink-0 flex items-center" style={{ color: iconColor }}>{icon}</span>
       <span
         className="text-[10px] tracking-[0.03em] whitespace-nowrap"
-        style={{ color: notifying ? notifyFg : "var(--origin-fg-default)" }}
+        style={{ color: notifying ? notifyFg : "var(--excode-fg-default)" }}
       >
         {text}
       </span>
       {hasBadge && (
-        <span className="w-[5px] h-[5px] rounded-full shrink-0" style={{ backgroundColor: notifying ? notifyFg : "var(--origin-accent-blue)" }} />
+        <span className="w-[5px] h-[5px] rounded-full shrink-0" style={{ backgroundColor: notifying ? notifyFg : "var(--excode-accent-blue)" }} />
       )}
     </div>
   );
@@ -130,10 +130,10 @@ function CardHeader({ id }: { id: CardId }) {
     cost:    <DollarSign size={11} />,
   };
   const iconColors: Record<CardId, string> = {
-    task:    "var(--origin-accent-blue)",
-    changed: "var(--origin-fg-subtle)",
-    memory:  "var(--origin-fg-subtle)",
-    cost:    "var(--origin-semantic-success, #22c55e)",
+    task:    "var(--excode-accent-blue)",
+    changed: "var(--excode-fg-subtle)",
+    memory:  "var(--excode-fg-subtle)",
+    cost:    "var(--excode-semantic-success, #22c55e)",
   };
   const labels: Record<CardId, string> = {
     task: "Current Task", changed: "What Changed", memory: "Memory", cost: "AI Spend",
@@ -141,7 +141,7 @@ function CardHeader({ id }: { id: CardId }) {
   return (
     <div className="flex items-center gap-2 shrink-0" style={{ padding: "10px 16px 8px" }}>
       <span style={{ color: iconColors[id] }}>{icons[id]}</span>
-      <span className="text-[11px] font-medium" style={{ color: "var(--origin-fg-default)" }}>
+      <span className="text-[11px] font-medium" style={{ color: "var(--excode-fg-default)" }}>
         {labels[id]}
       </span>
     </div>
@@ -161,11 +161,11 @@ function ActionBtn({ label, variant = "default", onClick }: {
       className="font-mono text-[10px] rounded-md border-none cursor-pointer"
       style={{
         padding:         "3px 10px",
-        backgroundColor: "var(--origin-bg-hover)",
-        color:           variant === "danger" ? "var(--origin-semantic-error)" : "var(--origin-fg-muted)",
+        backgroundColor: "var(--excode-bg-hover)",
+        color:           variant === "danger" ? "var(--excode-semantic-error)" : "var(--excode-fg-muted)",
       }}
-      onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--origin-bg-active)"; }}
-      onMouseLeave={e => { e.currentTarget.style.backgroundColor = "var(--origin-bg-hover)"; }}
+      onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--excode-bg-active)"; }}
+      onMouseLeave={e => { e.currentTarget.style.backgroundColor = "var(--excode-bg-hover)"; }}
     >
       {label}
     </button>
@@ -181,12 +181,12 @@ function PieChart({ slices, size = 68 }: {
   const cx = size / 2, cy = size / 2;
   const r  = size * 0.44;
   const ir = size * 0.24;
-  const hole = "var(--origin-island-bg-open)";
+  const hole = "var(--excode-island-bg-open)";
 
   if (slices.length === 0 || slices.every(s => s.pct <= 0)) {
     return (
       <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
-        <circle cx={cx} cy={cy} r={r} fill="var(--origin-bg-hover)" />
+        <circle cx={cx} cy={cy} r={r} fill="var(--excode-bg-hover)" />
         <circle cx={cx} cy={cy} r={ir} fill={hole} />
       </svg>
     );
@@ -259,7 +259,7 @@ function CardBody({ id, task, onClearTask, onSetTask, gitData, gitBranch, projec
       if (task) {
         return (
           <>
-            <p className="text-[12px] font-medium" style={{ marginBottom: "10px", color: "var(--origin-fg-default)" }}>
+            <p className="text-[12px] font-medium" style={{ marginBottom: "10px", color: "var(--excode-fg-default)" }}>
               {task}
             </p>
             <div className="flex gap-2">
@@ -285,8 +285,8 @@ function CardBody({ id, task, onClearTask, onSetTask, gitData, gitBranch, projec
               className="font-mono text-[11px] rounded-md border-none outline-none w-full"
               style={{
                 padding:         "4px 8px",
-                backgroundColor: "var(--origin-bg-hover)",
-                color:           "var(--origin-fg-default)",
+                backgroundColor: "var(--excode-bg-hover)",
+                color:           "var(--excode-fg-default)",
               }}
             />
             <div className="flex gap-2">
@@ -301,16 +301,16 @@ function CardBody({ id, task, onClearTask, onSetTask, gitData, gitBranch, projec
           {gitBranch && (
             <>
               <div className="flex items-center gap-1.5" style={{ marginBottom: "3px" }}>
-                <span style={{ color: "var(--origin-fg-subtle)" }}><GitBranch size={9} /></span>
-                <span className="font-mono text-[10px]" style={{ color: "var(--origin-fg-muted)" }}>{gitBranch}</span>
+                <span style={{ color: "var(--excode-fg-subtle)" }}><GitBranch size={9} /></span>
+                <span className="font-mono text-[10px]" style={{ color: "var(--excode-fg-muted)" }}>{gitBranch}</span>
               </div>
-              <p className="font-mono text-[10px]" style={{ marginBottom: "10px", color: "var(--origin-fg-subtle)" }}>
+              <p className="font-mono text-[10px]" style={{ marginBottom: "10px", color: "var(--excode-fg-subtle)" }}>
                 {project}
               </p>
             </>
           )}
           {!gitBranch && (
-            <p className="font-mono text-[10px]" style={{ marginBottom: "10px", color: "var(--origin-fg-subtle)" }}>
+            <p className="font-mono text-[10px]" style={{ marginBottom: "10px", color: "var(--excode-fg-subtle)" }}>
               {project || "No workspace open"}
             </p>
           )}
@@ -321,24 +321,24 @@ function CardBody({ id, task, onClearTask, onSetTask, gitData, gitBranch, projec
     case "changed":
       if (!gitData) {
         return (
-          <p className="font-mono text-[10px]" style={{ color: "var(--origin-fg-subtle)" }}>
+          <p className="font-mono text-[10px]" style={{ color: "var(--excode-fg-subtle)" }}>
             {gitBranch ? "Loading…" : "No git repository"}
           </p>
         );
       }
       return (
         <>
-          <p className="font-mono text-[10px]" style={{ marginBottom: "8px", color: "var(--origin-fg-subtle)" }}>
+          <p className="font-mono text-[10px]" style={{ marginBottom: "8px", color: "var(--excode-fg-subtle)" }}>
             {gitData.commits_ahead} commits ahead  ·  {gitData.files} files changed
           </p>
           <div className="flex flex-col" style={{ gap: "6px" }}>
             {gitData.log.length > 0 ? gitData.log.map(e => (
               <div key={e.hash} className="flex items-baseline" style={{ gap: "8px" }}>
-                <span className="font-mono text-[9px] shrink-0" style={{ color: "var(--origin-fg-subtle)" }}>{e.hash}</span>
-                <span className="font-mono text-[10px] truncate" style={{ color: "var(--origin-fg-muted)" }}>{e.msg}</span>
+                <span className="font-mono text-[9px] shrink-0" style={{ color: "var(--excode-fg-subtle)" }}>{e.hash}</span>
+                <span className="font-mono text-[10px] truncate" style={{ color: "var(--excode-fg-muted)" }}>{e.msg}</span>
               </div>
             )) : (
-              <p className="font-mono text-[10px]" style={{ color: "var(--origin-fg-subtle)" }}>No commits yet</p>
+              <p className="font-mono text-[10px]" style={{ color: "var(--excode-fg-subtle)" }}>No commits yet</p>
             )}
           </div>
         </>
@@ -346,27 +346,27 @@ function CardBody({ id, task, onClearTask, onSetTask, gitData, gitBranch, projec
 
     case "memory": {
       if (!memory) {
-        return <p className="font-mono text-[10px]" style={{ color: "var(--origin-fg-subtle)" }}>Loading…</p>;
+        return <p className="font-mono text-[10px]" style={{ color: "var(--excode-fg-subtle)" }}>Loading…</p>;
       }
       const pct = ((memory.used_gb / memory.total_gb) * 100).toFixed(1);
       return (
         <>
           <div className="flex items-baseline justify-between" style={{ marginBottom: "6px" }}>
-            <span className="font-mono text-[13px] font-medium" style={{ color: "var(--origin-fg-default)" }}>
+            <span className="font-mono text-[13px] font-medium" style={{ color: "var(--excode-fg-default)" }}>
               {memory.used_gb} GB
             </span>
-            <span className="font-mono text-[10px]" style={{ color: "var(--origin-fg-subtle)" }}>of {memory.total_gb} GB</span>
+            <span className="font-mono text-[10px]" style={{ color: "var(--excode-fg-subtle)" }}>of {memory.total_gb} GB</span>
           </div>
           <div
             className="rounded-full overflow-hidden"
-            style={{ height: "3px", marginBottom: "4px", backgroundColor: "var(--origin-bg-hover)" }}
+            style={{ height: "3px", marginBottom: "4px", backgroundColor: "var(--excode-bg-hover)" }}
           >
             <div
               className="h-full rounded-full"
-              style={{ width: `${pct}%`, backgroundColor: "var(--origin-accent-blue)", transition: "width 0.5s ease" }}
+              style={{ width: `${pct}%`, backgroundColor: "var(--excode-accent-blue)", transition: "width 0.5s ease" }}
             />
           </div>
-          <p className="font-mono text-[10px]" style={{ marginBottom: "2px", color: "var(--origin-fg-subtle)" }}>{pct}% used</p>
+          <p className="font-mono text-[10px]" style={{ marginBottom: "2px", color: "var(--excode-fg-subtle)" }}>{pct}% used</p>
         </>
       );
     }
@@ -376,7 +376,7 @@ function CardBody({ id, task, onClearTask, onSetTask, gitData, gitBranch, projec
       const total  = models.reduce((s, m) => s + m.cost, 0);
       if (models.length === 0) {
         return (
-          <p className="font-mono text-[10px]" style={{ color: "var(--origin-fg-subtle)" }}>
+          <p className="font-mono text-[10px]" style={{ color: "var(--excode-fg-subtle)" }}>
             No API spend recorded yet.
           </p>
         );
@@ -387,12 +387,12 @@ function CardBody({ id, task, onClearTask, onSetTask, gitData, gitBranch, projec
           {/* Left: pie chart + total */}
           <div style={{ flexShrink: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: "4px" }}>
             <PieChart slices={slices} size={66} />
-            <span className="font-mono text-[11px] font-semibold" style={{ color: "var(--origin-fg-default)" }}>
+            <span className="font-mono text-[11px] font-semibold" style={{ color: "var(--excode-fg-default)" }}>
               {fmtCost(total)}
             </span>
           </div>
           {/* Divider */}
-          <div style={{ width: "1px", alignSelf: "stretch", backgroundColor: "var(--origin-border-default)", flexShrink: 0 }} />
+          <div style={{ width: "1px", alignSelf: "stretch", backgroundColor: "var(--excode-border-default)", flexShrink: 0 }} />
           {/* Right: model list + reset */}
           <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: "4px" }}>
             <div style={{ overflowY: "auto", maxHeight: "100px" }}>
@@ -400,15 +400,15 @@ function CardBody({ id, task, onClearTask, onSetTask, gitData, gitBranch, projec
                 <div key={m.modelId} style={{ display: "flex", alignItems: "center", gap: "5px", marginBottom: "5px" }}>
                   <span style={{ width: 6, height: 6, borderRadius: "50%", background: modelChartColor(m.modelId), flexShrink: 0, marginTop: "1px", alignSelf: "flex-start" }} />
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div className="font-mono text-[10px] truncate" style={{ color: "var(--origin-fg-muted)" }}>
+                    <div className="font-mono text-[10px] truncate" style={{ color: "var(--excode-fg-muted)" }}>
                       {m.modelName}
                     </div>
-                    <div className="font-mono text-[9px]" style={{ color: "var(--origin-fg-subtle)" }}>
+                    <div className="font-mono text-[9px]" style={{ color: "var(--excode-fg-subtle)" }}>
                       {fmtTokens(m.inputTokens)} in · {fmtTokens(m.outputTokens)} out
                       {(m.cacheReadTokens ?? 0) > 0 && <> · {fmtTokens(m.cacheReadTokens!)} cached</>}
                     </div>
                   </div>
-                  <span className="font-mono text-[10px]" style={{ color: "var(--origin-fg-default)", flexShrink: 0, alignSelf: "flex-start" }}>
+                  <span className="font-mono text-[10px]" style={{ color: "var(--excode-fg-default)", flexShrink: 0, alignSelf: "flex-start" }}>
                     {fmtCost(m.cost)}
                   </span>
                 </div>
@@ -560,20 +560,20 @@ export default function StatusIsland({ gitBranch, dirtyCount: _dirtyCount }: Sta
 
   // ── Computed island styles ──────────────────────────────────────────────────
 
-  const notifyBg     = "var(--origin-fg-default)";
-  const notifyBorder = "color-mix(in srgb, var(--origin-bg-base) 12%, transparent)";
-  const notifyFg     = "var(--origin-bg-base)";
+  const notifyBg     = "var(--excode-fg-default)";
+  const notifyBorder = "color-mix(in srgb, var(--excode-bg-base) 12%, transparent)";
+  const notifyFg     = "var(--excode-bg-base)";
 
   const bgColor = notifying ? notifyBg
-               : isOpen    ? "var(--origin-island-bg-open)"
-               :             "var(--origin-island-bg-closed)";
+               : isOpen    ? "var(--excode-island-bg-open)"
+               :             "var(--excode-island-bg-closed)";
 
   const borderColor = notifying ? notifyBorder
-                    : isOpen    ? "var(--origin-island-border-open)"
-                    :             "var(--origin-island-border-closed)";
+                    : isOpen    ? "var(--excode-island-border-open)"
+                    :             "var(--excode-island-border-closed)";
 
   const colorTransDuration = notifying ? "0s" : "0.9s ease";
-  const navColor = notifying ? notifyFg : isOpen ? "var(--origin-fg-muted)" : "var(--origin-fg-subtle)";
+  const navColor = notifying ? notifyFg : isOpen ? "var(--excode-fg-muted)" : "var(--excode-fg-subtle)";
 
   const handleResetUsage = () => {
     resetUsage();
@@ -628,13 +628,13 @@ export default function StatusIsland({ gitBranch, dirtyCount: _dirtyCount }: Sta
         }}
       >
         <CardHeader id={activeId} />
-        <div className="mx-4 shrink-0" style={{ height: "1px", backgroundColor: "var(--origin-border-default)" }} />
+        <div className="mx-4 shrink-0" style={{ height: "1px", backgroundColor: "var(--excode-border-default)" }} />
         <div
           className="flex-1 min-h-0 overflow-y-auto"
           style={{
             padding:        "10px 16px 16px",
             scrollbarWidth: "thin",
-            scrollbarColor: "var(--origin-fg-subtle) transparent",
+            scrollbarColor: "var(--excode-fg-subtle) transparent",
           } as React.CSSProperties}
         >
           <CardBody
@@ -656,7 +656,7 @@ export default function StatusIsland({ gitBranch, dirtyCount: _dirtyCount }: Sta
           onClick={e => step(-1, e)}
           className="flex items-center justify-center border-none cursor-pointer"
           style={{ width: "26px", height: "20px", background: "none", color: navColor }}
-          onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--origin-bg-hover)"; }}
+          onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--excode-bg-hover)"; }}
           onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; }}
         >
           <ChevronLeft size={9} strokeWidth={2.5} />
@@ -665,7 +665,7 @@ export default function StatusIsland({ gitBranch, dirtyCount: _dirtyCount }: Sta
           onClick={e => step(1, e)}
           className="flex items-center justify-center border-none cursor-pointer"
           style={{ width: "26px", height: "20px", background: "none", color: navColor }}
-          onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--origin-bg-hover)"; }}
+          onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--excode-bg-hover)"; }}
           onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; }}
         >
           <ChevronRight size={9} strokeWidth={2.5} />

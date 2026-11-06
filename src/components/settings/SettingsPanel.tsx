@@ -37,12 +37,12 @@ function NavItem({ active, icon, label, onClick }: {
         textAlign: "left",
         fontSize: "13px",
         fontWeight: active ? 500 : 400,
-        backgroundColor: active ? "var(--origin-bg-hover)" : "transparent",
-        color: active ? "var(--origin-fg-default)" : "var(--origin-fg-muted)",
+        backgroundColor: active ? "var(--excode-bg-hover)" : "transparent",
+        color: active ? "var(--excode-fg-default)" : "var(--excode-fg-muted)",
         transition: "background 0.1s",
       }}
       onMouseEnter={e => {
-        if (!active) e.currentTarget.style.backgroundColor = "var(--origin-bg-hover)";
+        if (!active) e.currentTarget.style.backgroundColor = "var(--excode-bg-hover)";
       }}
       onMouseLeave={e => {
         if (!active) e.currentTarget.style.backgroundColor = "transparent";
@@ -114,7 +114,7 @@ function AIProvidersSection() {
 
   return (
     <div style={{ padding: "2px 0 16px" }}>
-      <p style={{ fontSize: "12px", color: "var(--origin-fg-muted)", marginBottom: "18px", lineHeight: 1.5 }}>
+      <p style={{ fontSize: "12px", color: "var(--excode-fg-muted)", marginBottom: "18px", lineHeight: 1.5 }}>
         API keys are stored in your OS keychain and never leave your device.
       </p>
 
@@ -134,8 +134,8 @@ function AIProvidersSection() {
                 gap: "12px",
                 padding: "10px 12px",
                 borderRadius: "8px",
-                border: "1px solid var(--origin-border-default)",
-                backgroundColor: "var(--origin-bg-base)",
+                border: "1px solid var(--excode-border-default)",
+                backgroundColor: "var(--excode-bg-base)",
               }}
             >
               {/* Provider icon */}
@@ -164,13 +164,13 @@ function AIProvidersSection() {
 
               {/* Name */}
               <div style={{ width: 90, flexShrink: 0 }}>
-                <span style={{ fontSize: "13px", fontWeight: 500, color: "var(--origin-fg-default)" }}>
+                <span style={{ fontSize: "13px", fontWeight: 500, color: "var(--excode-fg-default)" }}>
                   {provider.name}
                 </span>
                 {hasSaved && (
                   <div style={{ display: "flex", alignItems: "center", gap: "3px", marginTop: "1px" }}>
-                    <Check size={10} style={{ color: "var(--origin-semantic-success)" }} />
-                    <span style={{ fontSize: "10px", color: "var(--origin-semantic-success)" }}>Key saved</span>
+                    <Check size={10} style={{ color: "var(--excode-semantic-success)" }} />
+                    <span style={{ fontSize: "10px", color: "var(--excode-semantic-success)" }}>Key saved</span>
                   </div>
                 )}
               </div>
@@ -187,9 +187,9 @@ function AIProvidersSection() {
                     width: "100%",
                     padding: "6px 30px 6px 9px",
                     borderRadius: "6px",
-                    border: "1px solid var(--origin-border-default)",
-                    backgroundColor: "var(--origin-bg-sidebar)",
-                    color: "var(--origin-fg-default)",
+                    border: "1px solid var(--excode-border-default)",
+                    backgroundColor: "var(--excode-bg-sidebar)",
+                    color: "var(--excode-fg-default)",
                     fontSize: "12px",
                     fontFamily: "var(--font-mono)",
                     outline: "none",
@@ -201,7 +201,7 @@ function AIProvidersSection() {
                   style={{
                     position: "absolute", right: 7, top: "50%", transform: "translateY(-50%)",
                     background: "none", border: "none", cursor: "pointer",
-                    color: "var(--origin-fg-subtle)", padding: 0, display: "flex",
+                    color: "var(--excode-fg-subtle)", padding: 0, display: "flex",
                   }}
                   tabIndex={-1}
                 >
@@ -217,17 +217,17 @@ function AIProvidersSection() {
                   style={{
                     padding: "5px 12px",
                     borderRadius: "6px",
-                    border: "1px solid var(--origin-border-default)",
+                    border: "1px solid var(--excode-border-default)",
                     backgroundColor: state.justSaved
-                      ? "color-mix(in srgb, var(--origin-semantic-success) 15%, transparent)"
+                      ? "color-mix(in srgb, var(--excode-semantic-success) 15%, transparent)"
                       : isDirty
-                        ? "var(--origin-fg-default)"
+                        ? "var(--excode-fg-default)"
                         : "transparent",
                     color: state.justSaved
-                      ? "var(--origin-semantic-success)"
+                      ? "var(--excode-semantic-success)"
                       : isDirty
-                        ? "var(--origin-bg-base)"
-                        : "var(--origin-fg-subtle)",
+                        ? "var(--excode-bg-base)"
+                        : "var(--excode-fg-subtle)",
                     fontSize: "12px",
                     fontWeight: 500,
                     cursor: isDirty ? "pointer" : "default",
@@ -243,9 +243,9 @@ function AIProvidersSection() {
                     style={{
                       padding: "5px 10px",
                       borderRadius: "6px",
-                      border: "1px solid var(--origin-border-default)",
+                      border: "1px solid var(--excode-border-default)",
                       backgroundColor: "transparent",
-                      color: "var(--origin-fg-muted)",
+                      color: "var(--excode-fg-muted)",
                       fontSize: "12px",
                       cursor: "pointer",
                     }}
@@ -264,13 +264,13 @@ function AIProvidersSection() {
         marginTop: "20px",
         padding: "10px 12px",
         borderRadius: "8px",
-        border: "1px solid var(--origin-border-default)",
-        backgroundColor: "var(--origin-bg-base)",
+        border: "1px solid var(--excode-border-default)",
+        backgroundColor: "var(--excode-bg-base)",
       }}>
-        <div style={{ fontSize: "12px", fontWeight: 500, color: "var(--origin-fg-muted)", marginBottom: "2px" }}>
+        <div style={{ fontSize: "12px", fontWeight: 500, color: "var(--excode-fg-muted)", marginBottom: "2px" }}>
           Local providers (Ollama, LM Studio, vLLM)
         </div>
-        <div style={{ fontSize: "12px", color: "var(--origin-fg-subtle)" }}>
+        <div style={{ fontSize: "12px", color: "var(--excode-fg-subtle)" }}>
           No API key required. Make sure your local server is running before starting a chat.
         </div>
       </div>
@@ -281,56 +281,26 @@ function AIProvidersSection() {
 // ── Appearance Section ───────────────────────────────────────────────────────
 
 function AppearanceSection() {
-  const { theme, themes, setTheme } = useTheme();
-
   return (
     <div style={{ padding: "2px 0 16px" }}>
-      <div style={{ marginBottom: "20px" }}>
-        <div style={{ fontSize: "12px", fontWeight: 600, color: "var(--origin-fg-muted)", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "10px" }}>
-          Theme
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-          {themes.map(t => {
-            const isActive = t.name === theme.name;
-            return (
-              <button
-                key={t.name}
-                onClick={() => setTheme(t)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "12px",
-                  padding: "10px 12px",
-                  borderRadius: "8px",
-                  border: `1px solid ${isActive ? "var(--origin-fg-muted)" : "var(--origin-border-default)"}`,
-                  backgroundColor: isActive ? "var(--origin-bg-hover)" : "var(--origin-bg-base)",
-                  cursor: "pointer",
-                  textAlign: "left",
-                  transition: "all 0.1s",
-                }}
-                onMouseEnter={e => {
-                  if (!isActive) e.currentTarget.style.backgroundColor = "var(--origin-bg-hover)";
-                }}
-                onMouseLeave={e => {
-                  if (!isActive) e.currentTarget.style.backgroundColor = "var(--origin-bg-base)";
-                }}
-              >
-                <div style={{
-                  width: 20, height: 20, borderRadius: "50%",
-                  border: "2px solid var(--origin-border-default)",
-                  backgroundColor: t.type === "dark" ? "#0a0a0a" : "#ffffff",
-                  flexShrink: 0,
-                }} />
-                <span style={{ fontSize: "13px", color: "var(--origin-fg-default)", fontWeight: isActive ? 500 : 400 }}>
-                  {t.name}
-                </span>
-                {isActive && (
-                  <Check size={14} style={{ marginLeft: "auto", color: "var(--origin-fg-default)" }} />
-                )}
-              </button>
-            );
-          })}
-        </div>
+      <div style={{
+        display: "flex", alignItems: "center", gap: "12px",
+        padding: "12px", borderRadius: "8px",
+        border: "1px solid var(--excode-border-default)",
+        background: "var(--excode-bg-base)",
+      }}>
+        <div style={{
+          width: 20, height: 20, borderRadius: "50%",
+          border: "2px solid var(--excode-border-default)",
+          background: "#0a0a0a", flexShrink: 0,
+        }} />
+        <span style={{ fontSize: "13px", color: "var(--excode-fg-default)", fontWeight: 500 }}>
+          ExCode Dark
+        </span>
+        <span style={{
+          marginLeft: "auto", fontSize: "11px",
+          color: "var(--excode-fg-muted)",
+        }}>Default</span>
       </div>
     </div>
   );
@@ -343,19 +313,19 @@ type PromptTab = "agent" | "ask" | "plan";
 const PROMPT_CONFIGS: Record<PromptTab, { label: string; storageKey: string; defaultValue: string; description: string }> = {
   agent: {
     label: "Agent",
-    storageKey: "origin-ai-system-prompt",
+    storageKey: "excode-ai-system-prompt",
     defaultValue: DEFAULT_SYSTEM_PROMPT,
     description: "Used in Agent mode. Full tool access — read, write, edit, bash.",
   },
   ask: {
     label: "Ask",
-    storageKey: "origin-ai-ask-prompt",
+    storageKey: "excode-ai-ask-prompt",
     defaultValue: DEFAULT_ASK_PROMPT,
     description: "Used in Ask mode. Can call edit / multi_edit; changes go through the diff view.",
   },
   plan: {
     label: "Plan",
-    storageKey: "origin-ai-plan-prompt",
+    storageKey: "excode-ai-plan-prompt",
     defaultValue: DEFAULT_PLAN_PROMPT,
     description: "Used in Plan mode Phase 1 (exploration) and drives the structured plan format.",
   },
@@ -390,7 +360,7 @@ function PromptEditor({ tab }: { tab: PromptTab }) {
 
   return (
     <div>
-      <p style={{ fontSize: "12px", color: "var(--origin-fg-muted)", marginBottom: "12px", lineHeight: 1.6 }}>
+      <p style={{ fontSize: "12px", color: "var(--excode-fg-muted)", marginBottom: "12px", lineHeight: 1.6 }}>
         {cfg.description} Changes take effect on the next message sent.
       </p>
       <textarea
@@ -402,9 +372,9 @@ function PromptEditor({ tab }: { tab: PromptTab }) {
           minHeight: "200px",
           padding: "10px 12px",
           borderRadius: "8px",
-          border: "1px solid var(--origin-border-default)",
-          backgroundColor: "var(--origin-bg-base)",
-          color: "var(--origin-fg-default)",
+          border: "1px solid var(--excode-border-default)",
+          backgroundColor: "var(--excode-bg-base)",
+          color: "var(--excode-fg-default)",
           fontSize: "12px",
           fontFamily: "var(--font-mono)",
           lineHeight: "1.65",
@@ -413,8 +383,8 @@ function PromptEditor({ tab }: { tab: PromptTab }) {
           boxSizing: "border-box",
           display: "block",
         }}
-        onFocus={e => { e.currentTarget.style.borderColor = "var(--origin-fg-muted)"; }}
-        onBlur={e => { e.currentTarget.style.borderColor = "var(--origin-border-default)"; }}
+        onFocus={e => { e.currentTarget.style.borderColor = "var(--excode-fg-muted)"; }}
+        onBlur={e => { e.currentTarget.style.borderColor = "var(--excode-border-default)"; }}
       />
       <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "10px" }}>
         <button
@@ -422,9 +392,9 @@ function PromptEditor({ tab }: { tab: PromptTab }) {
           disabled={isDefault}
           style={{
             padding: "5px 12px", borderRadius: "6px",
-            border: "1px solid var(--origin-border-default)",
+            border: "1px solid var(--excode-border-default)",
             backgroundColor: "transparent",
-            color: isDefault ? "var(--origin-fg-subtle)" : "var(--origin-fg-muted)",
+            color: isDefault ? "var(--excode-fg-subtle)" : "var(--excode-fg-muted)",
             fontSize: "12px", cursor: isDefault ? "default" : "pointer",
           }}
         >
@@ -436,13 +406,13 @@ function PromptEditor({ tab }: { tab: PromptTab }) {
           disabled={!isDirty}
           style={{
             padding: "5px 16px", borderRadius: "6px",
-            border: "1px solid var(--origin-border-default)",
+            border: "1px solid var(--excode-border-default)",
             backgroundColor: justSaved
-              ? "color-mix(in srgb, var(--origin-semantic-success) 15%, transparent)"
-              : isDirty ? "var(--origin-fg-default)" : "transparent",
+              ? "color-mix(in srgb, var(--excode-semantic-success) 15%, transparent)"
+              : isDirty ? "var(--excode-fg-default)" : "transparent",
             color: justSaved
-              ? "var(--origin-semantic-success)"
-              : isDirty ? "var(--origin-bg-base)" : "var(--origin-fg-subtle)",
+              ? "var(--excode-semantic-success)"
+              : isDirty ? "var(--excode-bg-base)" : "var(--excode-fg-subtle)",
             fontSize: "12px", fontWeight: 500,
             cursor: isDirty ? "pointer" : "default",
             transition: "all 0.15s", minWidth: 56,
@@ -472,12 +442,12 @@ function PromptsSection() {
               style={{
                 padding: "4px 14px", borderRadius: "6px", fontSize: "12px", fontWeight: active ? 500 : 400,
                 border: "1px solid",
-                borderColor: active ? "var(--origin-fg-muted)" : "var(--origin-border-default)",
-                backgroundColor: active ? "var(--origin-bg-hover)" : "transparent",
-                color: active ? "var(--origin-fg-default)" : "var(--origin-fg-muted)",
+                borderColor: active ? "var(--excode-fg-muted)" : "var(--excode-border-default)",
+                backgroundColor: active ? "var(--excode-bg-hover)" : "transparent",
+                color: active ? "var(--excode-fg-default)" : "var(--excode-fg-muted)",
                 cursor: "pointer", transition: "all 0.1s",
               }}
-              onMouseEnter={e => { if (!active) e.currentTarget.style.backgroundColor = "var(--origin-bg-hover)"; }}
+              onMouseEnter={e => { if (!active) e.currentTarget.style.backgroundColor = "var(--excode-bg-hover)"; }}
               onMouseLeave={e => { if (!active) e.currentTarget.style.backgroundColor = "transparent"; }}
             >
               {PROMPT_CONFIGS[t].label}
@@ -492,8 +462,8 @@ function PromptsSection() {
 
 // ── General Section ──────────────────────────────────────────────────────────
 
-const AUTOCOMPLETE_DELAY_KEY = 'origin-editor-autocomplete-delay';
-const AUTOCOMPLETE_DELAY_UNIT_KEY = 'origin-editor-autocomplete-delay-unit';
+const AUTOCOMPLETE_DELAY_KEY = 'excode-editor-autocomplete-delay';
+const AUTOCOMPLETE_DELAY_UNIT_KEY = 'excode-editor-autocomplete-delay-unit';
 const AUTOCOMPLETE_DELAY_DEFAULT_MS = 350;
 
 type DelayUnit = 'ms' | 's';
@@ -519,7 +489,7 @@ function GeneralSection() {
     msToDisplay(parseInt(localStorage.getItem(AUTOCOMPLETE_DELAY_KEY) ?? String(AUTOCOMPLETE_DELAY_DEFAULT_MS), 10), (localStorage.getItem(AUTOCOMPLETE_DELAY_UNIT_KEY) as DelayUnit | null) ?? 'ms')
   );
   const [completionsEnabled, setCompletionsEnabled] = useState(
-    () => localStorage.getItem('origin-editor-ai-autocomplete') !== 'false'
+    () => localStorage.getItem('excode-editor-ai-autocomplete') !== 'false'
   );
 
   function commitInput(raw: string) {
@@ -541,7 +511,7 @@ function GeneralSection() {
 
   function toggleCompletions() {
     const next = !completionsEnabled;
-    localStorage.setItem('origin-editor-ai-autocomplete', next ? 'true' : 'false');
+    localStorage.setItem('excode-editor-ai-autocomplete', next ? 'true' : 'false');
     setCompletionsEnabled(next);
   }
 
@@ -549,9 +519,9 @@ function GeneralSection() {
     width: "80px",
     padding: "5px 8px",
     borderRadius: "6px",
-    border: "1px solid var(--origin-border-default)",
-    backgroundColor: "var(--origin-bg-sidebar)",
-    color: "var(--origin-fg-default)",
+    border: "1px solid var(--excode-border-default)",
+    backgroundColor: "var(--excode-bg-sidebar)",
+    color: "var(--excode-fg-default)",
     fontSize: "12px",
     fontFamily: "var(--font-mono)",
     outline: "none",
@@ -561,7 +531,7 @@ function GeneralSection() {
   return (
     <div style={{ padding: "2px 0 16px" }}>
       <div style={{
-        fontSize: "12px", fontWeight: 600, color: "var(--origin-fg-muted)",
+        fontSize: "12px", fontWeight: 600, color: "var(--excode-fg-muted)",
         textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "10px",
       }}>
         AI Autocomplete
@@ -571,12 +541,12 @@ function GeneralSection() {
         <div style={{
           display: "flex", alignItems: "center", gap: "12px",
           padding: "10px 12px", borderRadius: "8px",
-          border: "1px solid var(--origin-border-default)",
-          backgroundColor: "var(--origin-bg-base)",
+          border: "1px solid var(--excode-border-default)",
+          backgroundColor: "var(--excode-bg-base)",
         }}>
           <div style={{ flex: 1 }}>
-            <div style={{ fontSize: "13px", color: "var(--origin-fg-default)" }}>Inline completions</div>
-            <div style={{ fontSize: "11px", color: "var(--origin-fg-muted)", marginTop: "2px" }}>
+            <div style={{ fontSize: "13px", color: "var(--excode-fg-default)" }}>Inline completions</div>
+            <div style={{ fontSize: "11px", color: "var(--excode-fg-muted)", marginTop: "2px" }}>
               Ghost text as you type — Tab to accept, Escape to dismiss.
             </div>
           </div>
@@ -584,9 +554,9 @@ function GeneralSection() {
             onClick={toggleCompletions}
             style={{
               padding: "4px 12px", borderRadius: "6px", fontSize: "12px",
-              border: "1px solid var(--origin-border-default)",
-              backgroundColor: completionsEnabled ? "var(--origin-fg-default)" : "transparent",
-              color: completionsEnabled ? "var(--origin-bg-base)" : "var(--origin-fg-muted)",
+              border: "1px solid var(--excode-border-default)",
+              backgroundColor: completionsEnabled ? "var(--excode-fg-default)" : "transparent",
+              color: completionsEnabled ? "var(--excode-bg-base)" : "var(--excode-fg-muted)",
               cursor: "pointer", fontWeight: 500, transition: "all 0.15s",
             }}
           >
@@ -597,12 +567,12 @@ function GeneralSection() {
         <div style={{
           display: "flex", alignItems: "center", gap: "12px",
           padding: "10px 14px", borderRadius: "8px",
-          border: "1px solid var(--origin-border-default)",
-          backgroundColor: "var(--origin-bg-base)",
+          border: "1px solid var(--excode-border-default)",
+          backgroundColor: "var(--excode-bg-base)",
         }}>
           <div style={{ flex: 1 }}>
-            <div style={{ fontSize: "13px", color: "var(--origin-fg-default)" }}>Ghost text delay</div>
-            <div style={{ fontSize: "11px", color: "var(--origin-fg-muted)", marginTop: "2px" }}>
+            <div style={{ fontSize: "13px", color: "var(--excode-fg-default)" }}>Ghost text delay</div>
+            <div style={{ fontSize: "11px", color: "var(--excode-fg-muted)", marginTop: "2px" }}>
               Wait time after typing stops before requesting a suggestion.
             </div>
           </div>
@@ -613,12 +583,12 @@ function GeneralSection() {
               step={unit === 's' ? 0.1 : 50}
               value={inputVal}
               onChange={e => setInputVal(e.target.value)}
-              onBlur={e => { e.currentTarget.style.borderColor = "var(--origin-border-default)"; commitInput(e.target.value); }}
+              onBlur={e => { e.currentTarget.style.borderColor = "var(--excode-border-default)"; commitInput(e.target.value); }}
               onKeyDown={e => { if (e.key === 'Enter') { e.currentTarget.blur(); } }}
               style={inputStyle}
-              onFocus={e => { e.currentTarget.style.borderColor = "var(--origin-fg-muted)"; }}
+              onFocus={e => { e.currentTarget.style.borderColor = "var(--excode-fg-muted)"; }}
             />
-            <div style={{ display: "flex", borderRadius: "6px", border: "1px solid var(--origin-border-default)", overflow: "hidden" }}>
+            <div style={{ display: "flex", borderRadius: "6px", border: "1px solid var(--excode-border-default)", overflow: "hidden" }}>
               {(['ms', 's'] as DelayUnit[]).map(u => (
                 <button
                   key={u}
@@ -628,10 +598,10 @@ function GeneralSection() {
                     fontSize: "11px",
                     fontWeight: 500,
                     border: "none",
-                    borderRight: u === 'ms' ? "1px solid var(--origin-border-default)" : "none",
+                    borderRight: u === 'ms' ? "1px solid var(--excode-border-default)" : "none",
                     cursor: "pointer",
-                    backgroundColor: unit === u ? "var(--origin-fg-default)" : "transparent",
-                    color: unit === u ? "var(--origin-bg-base)" : "var(--origin-fg-muted)",
+                    backgroundColor: unit === u ? "var(--excode-fg-default)" : "transparent",
+                    color: unit === u ? "var(--excode-bg-base)" : "var(--excode-fg-muted)",
                     transition: "all 0.1s",
                   }}
                 >
@@ -666,13 +636,13 @@ const SHELL_CONFIGS: Record<string, { label: string; filename: string; code: str
     label: "Bash",
     filename: "~/.bashrc",
     code: [
-      '__origin_prompt() {',
+      '__excode_prompt() {',
       '  local code=$?',
       "  printf '\\033]133;D;%s\\007' \"$code\"",
       "  printf '\\033]7;file://%s%s\\007' \"$HOSTNAME\" \"$PWD\"",
       "  printf '\\033]133;A\\007'",
       '}',
-      'PROMPT_COMMAND="__origin_prompt${PROMPT_COMMAND:+;$PROMPT_COMMAND}"',
+      'PROMPT_COMMAND="__excode_prompt${PROMPT_COMMAND:+;$PROMPT_COMMAND}"',
       "PS1=\"${PS1}\"$'\\033]133;B\\007'",
     ].join('\n'),
   },
@@ -680,13 +650,13 @@ const SHELL_CONFIGS: Record<string, { label: string; filename: string; code: str
     label: "Zsh",
     filename: "~/.zshrc",
     code: [
-      '__origin_precmd() {',
+      '__excode_precmd() {',
       '  local code=$?',
       "  printf '\\033]133;D;%s\\007' \"$code\"",
       "  printf '\\033]7;file://%s%s\\007' \"$HOST\" \"$PWD\"",
       "  printf '\\033]133;A\\007'",
       '}',
-      'precmd_functions+=(__origin_precmd)',
+      'precmd_functions+=(__excode_precmd)',
       "PROMPT=\"${PROMPT}\"$'\\033]133;B\\007'",
     ].join('\n'),
   },
@@ -705,12 +675,12 @@ function TerminalSection() {
   return (
     <div style={{ padding: "2px 0 16px" }}>
       <div style={{
-        fontSize: "12px", fontWeight: 600, color: "var(--origin-fg-muted)",
+        fontSize: "12px", fontWeight: 600, color: "var(--excode-fg-muted)",
         textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "10px",
       }}>
         Shell Integration
       </div>
-      <p style={{ fontSize: "12px", color: "var(--origin-fg-muted)", marginBottom: "20px", lineHeight: 1.6 }}>
+      <p style={{ fontSize: "12px", color: "var(--excode-fg-muted)", marginBottom: "20px", lineHeight: 1.6 }}>
         Paste the snippet for your shell into the file shown, then reload your shell. Once active, terminal tabs show a live directory and a colored dot for command exit status.
       </p>
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
@@ -718,19 +688,19 @@ function TerminalSection() {
           <div key={key}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "6px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <span style={{ fontSize: "13px", fontWeight: 500, color: "var(--origin-fg-default)" }}>{cfg.label}</span>
-                <span style={{ fontSize: "11px", color: "var(--origin-fg-subtle)", fontFamily: "var(--font-mono)" }}>{cfg.filename}</span>
+                <span style={{ fontSize: "13px", fontWeight: 500, color: "var(--excode-fg-default)" }}>{cfg.label}</span>
+                <span style={{ fontSize: "11px", color: "var(--excode-fg-subtle)", fontFamily: "var(--font-mono)" }}>{cfg.filename}</span>
               </div>
               <button
                 onClick={() => copy(key, cfg.code)}
                 style={{
                   display: "flex", alignItems: "center", gap: "5px",
                   padding: "4px 10px", borderRadius: "6px", fontSize: "12px",
-                  border: "1px solid var(--origin-border-default)",
+                  border: "1px solid var(--excode-border-default)",
                   backgroundColor: copied === key
-                    ? "color-mix(in srgb, var(--origin-semantic-success) 15%, transparent)"
+                    ? "color-mix(in srgb, var(--excode-semantic-success) 15%, transparent)"
                     : "transparent",
-                  color: copied === key ? "var(--origin-semantic-success)" : "var(--origin-fg-muted)",
+                  color: copied === key ? "var(--excode-semantic-success)" : "var(--excode-fg-muted)",
                   cursor: "pointer", transition: "all 0.15s",
                 }}
               >
@@ -741,9 +711,9 @@ function TerminalSection() {
             <pre style={{
               margin: 0, padding: "10px 14px",
               borderRadius: "8px",
-              border: "1px solid var(--origin-border-default)",
-              backgroundColor: "var(--origin-bg-base)",
-              color: "var(--origin-fg-default)",
+              border: "1px solid var(--excode-border-default)",
+              backgroundColor: "var(--excode-bg-base)",
+              color: "var(--excode-fg-default)",
               fontSize: "11px",
               fontFamily: "var(--font-mono)",
               lineHeight: "1.65",
@@ -790,8 +760,8 @@ export default function SettingsPanel({ onClose }: SettingsPanelProps) {
         style={{
           width: "min(760px, 92vw)",
           height: "min(540px, 88vh)",
-          backgroundColor: "var(--origin-bg-sidebar)",
-          border: "1px solid var(--origin-border-default)",
+          backgroundColor: "var(--excode-bg-sidebar)",
+          border: "1px solid var(--excode-border-default)",
           borderRadius: "12px",
           boxShadow: "0 24px 64px rgba(0,0,0,0.5)",
           display: "flex",
@@ -806,10 +776,10 @@ export default function SettingsPanel({ onClose }: SettingsPanelProps) {
           alignItems: "center",
           padding: "0 16px",
           height: "48px",
-          borderBottom: "1px solid var(--origin-border-default)",
+          borderBottom: "1px solid var(--excode-border-default)",
           flexShrink: 0,
         }}>
-          <span style={{ fontSize: "14px", fontWeight: 600, color: "var(--origin-fg-default)" }}>
+          <span style={{ fontSize: "14px", fontWeight: 600, color: "var(--excode-fg-default)" }}>
             Settings
           </span>
           <button
@@ -822,15 +792,15 @@ export default function SettingsPanel({ onClose }: SettingsPanelProps) {
               border: "none",
               background: "none",
               cursor: "pointer",
-              color: "var(--origin-fg-muted)",
+              color: "var(--excode-fg-muted)",
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.backgroundColor = "var(--origin-bg-hover)";
-              e.currentTarget.style.color = "var(--origin-fg-default)";
+              e.currentTarget.style.backgroundColor = "var(--excode-bg-hover)";
+              e.currentTarget.style.color = "var(--excode-fg-default)";
             }}
             onMouseLeave={e => {
               e.currentTarget.style.backgroundColor = "transparent";
-              e.currentTarget.style.color = "var(--origin-fg-muted)";
+              e.currentTarget.style.color = "var(--excode-fg-muted)";
             }}
           >
             <X size={15} />
@@ -843,11 +813,11 @@ export default function SettingsPanel({ onClose }: SettingsPanelProps) {
           <div style={{
             width: "172px",
             flexShrink: 0,
-            borderRight: "1px solid var(--origin-border-default)",
+            borderRight: "1px solid var(--excode-border-default)",
             padding: "10px 8px",
             overflowY: "auto",
           }}>
-            <div style={{ fontSize: "10px", fontWeight: 600, color: "var(--origin-fg-subtle)", textTransform: "uppercase", letterSpacing: "0.07em", padding: "4px 10px 6px" }}>
+            <div style={{ fontSize: "10px", fontWeight: 600, color: "var(--excode-fg-subtle)", textTransform: "uppercase", letterSpacing: "0.07em", padding: "4px 10px 6px" }}>
               Settings
             </div>
             <NavItem
@@ -892,7 +862,7 @@ export default function SettingsPanel({ onClose }: SettingsPanelProps) {
           <div style={{ flex: 1, overflowY: "auto", padding: "20px 24px" }}>
             <div style={{
               fontSize: "15px", fontWeight: 600,
-              color: "var(--origin-fg-default)",
+              color: "var(--excode-fg-default)",
               marginBottom: "14px",
             }}>
               {section === "general" ? "General" : section === "ai" ? "AI Providers" : section === "prompts" ? "System Prompts" : section === "appearance" ? "Appearance" : section === "keybindings" ? "Keyboard Shortcuts" : "Terminal"}

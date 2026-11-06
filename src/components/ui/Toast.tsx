@@ -35,9 +35,9 @@ export function useToast() {
 const AUTO_DISMISS_MS = 3000;
 
 function textColor(type: ToastType): string {
-  if (type === 'error')   return 'var(--origin-semantic-error)';
-  if (type === 'success') return 'var(--origin-semantic-success)';
-  return 'var(--origin-fg-default)';
+  if (type === 'error')   return 'var(--excode-semantic-error)';
+  if (type === 'success') return 'var(--excode-semantic-success)';
+  return 'var(--excode-fg-default)';
 }
 
 export function ToastProvider({ children }: { children: React.ReactNode }) {
@@ -76,8 +76,8 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
             gap: 10,
             padding: '8px 10px 8px 14px',
             borderRadius: 7,
-            backgroundColor: 'var(--origin-bg-base)',
-            border: '1px solid var(--origin-border-default)',
+            backgroundColor: 'var(--excode-bg-base)',
+            border: '1px solid var(--excode-border-default)',
             color: textColor(toast.type),
             fontSize: 12,
             fontFamily: 'var(--font-sans)',
@@ -90,14 +90,14 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
             <button
               onClick={() => { toast.action!.onClick(); dismiss(); }}
               style={{
-                flexShrink: 0, background: 'var(--origin-bg-hover)',
-                border: '1px solid var(--origin-border-default)',
+                flexShrink: 0, background: 'var(--excode-bg-hover)',
+                border: '1px solid var(--excode-border-default)',
                 borderRadius: 5, cursor: 'pointer', padding: '3px 10px',
-                color: 'var(--origin-fg-default)', fontSize: 11,
+                color: 'var(--excode-fg-default)', fontSize: 11,
                 fontFamily: 'var(--font-sans)', fontWeight: 500,
               }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--origin-bg-active)'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'var(--origin-bg-hover)'; }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--excode-bg-active)'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'var(--excode-bg-hover)'; }}
             >
               {toast.action.label}
             </button>
@@ -108,10 +108,10 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               flexShrink: 0, background: 'transparent', border: 'none',
               cursor: 'pointer', padding: 2, borderRadius: '50%',
-              color: 'var(--origin-fg-muted)',
+              color: 'var(--excode-fg-muted)',
             }}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--origin-fg-default)'; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--origin-fg-muted)'; }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--excode-fg-default)'; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--excode-fg-muted)'; }}
           >
             <XCircle size={15} />
           </button>

@@ -29,12 +29,12 @@ function ToolBtn({
         width: 26, height: 26, borderRadius: 5,
         background: 'none', border: 'none',
         cursor: disabled ? 'not-allowed' : 'pointer',
-        color: disabled ? 'var(--origin-fg-subtle)' : 'var(--origin-fg-default)',
+        color: disabled ? 'var(--excode-fg-subtle)' : 'var(--excode-fg-default)',
         transition: 'background 0.1s',
         flexShrink: 0,
       }}
       onMouseEnter={e => {
-        if (!disabled) (e.currentTarget as HTMLElement).style.background = 'var(--origin-bg-active)';
+        if (!disabled) (e.currentTarget as HTMLElement).style.background = 'var(--excode-bg-active)';
       }}
       onMouseLeave={e => {
         (e.currentTarget as HTMLElement).style.background = 'none';
@@ -49,7 +49,7 @@ function Divider() {
   return (
     <div style={{
       width: 1, height: 14, margin: '0 2px',
-      backgroundColor: 'var(--origin-border-default)',
+      backgroundColor: 'var(--excode-border-default)',
       flexShrink: 0,
     }} />
   );
@@ -66,8 +66,8 @@ export default function DebugToolbar({ status, onContinue, onStepOver, onStepIn,
         zIndex: 50,
         display: 'flex', alignItems: 'center', gap: 2,
         padding: '3px 6px',
-        backgroundColor: 'var(--origin-bg-base)',
-        border: '1px solid var(--origin-border-default)',
+        backgroundColor: 'var(--excode-bg-base)',
+        border: '1px solid var(--excode-border-default)',
         borderRadius: 8,
         boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
         userSelect: 'none',
@@ -95,7 +95,7 @@ export default function DebugToolbar({ status, onContinue, onStepOver, onStepIn,
         <Pause size={13} />
       </ToolBtn>
       <ToolBtn onClick={onStop} title="Stop (Shift+F5)">
-        <Square size={11} style={{ color: 'var(--origin-semantic-error)' }} />
+        <Square size={11} style={{ color: 'var(--excode-semantic-error)' }} />
       </ToolBtn>
     </div>
   );

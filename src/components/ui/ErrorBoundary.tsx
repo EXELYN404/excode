@@ -31,12 +31,12 @@ export class ErrorBoundary extends Component<Props, State> {
         justifyContent: 'center',
         height: '100vh',
         gap: '16px',
-        background: 'var(--origin-bg-base)',
-        color: 'var(--origin-fg-default)',
+        background: 'var(--excode-bg-base)',
+        color: 'var(--excode-fg-default)',
         fontFamily: 'monospace',
         padding: '32px',
       }}>
-        <div style={{ fontSize: '18px', color: 'var(--origin-semantic-error)' }}>
+        <div style={{ fontSize: '18px', color: 'var(--excode-semantic-error)' }}>
           Something went wrong
         </div>
         <pre style={{
@@ -44,7 +44,7 @@ export class ErrorBoundary extends Component<Props, State> {
           maxHeight: '300px',
           overflow: 'auto',
           padding: '16px',
-          background: 'var(--origin-bg-surface)',
+          background: 'var(--excode-bg-surface)',
           borderRadius: '6px',
           fontSize: '12px',
           whiteSpace: 'pre-wrap',
@@ -57,9 +57,9 @@ export class ErrorBoundary extends Component<Props, State> {
           onClick={() => window.location.reload()}
           style={{
             padding: '8px 20px',
-            background: 'var(--origin-bg-surface)',
-            color: 'var(--origin-fg-default)',
-            border: '1px solid var(--origin-border-default)',
+            background: 'var(--excode-bg-surface)',
+            color: 'var(--excode-fg-default)',
+            border: '1px solid var(--excode-border-default)',
             borderRadius: '6px',
             cursor: 'pointer',
             fontFamily: 'monospace',

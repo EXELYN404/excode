@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef, createContext, useContext, useCallback } from "react";
 import {
-  ChevronRight, ChevronDown, Folder, FolderOpen, File,
+  ChevronRight, ChevronDown, File,
   FilePlus, FolderPlus, Pencil, Trash2, Copy, ExternalLink,
 } from "lucide-react";
 import { readDir, writeFile, renamePath, deletePath, createDirCmd, revealInExplorer, type FsEntry } from "../lib/fs";
-import { fileColor } from "../lib/fileColors";
+import FileIcon from "./FileIcon";
 import { useWorkspace } from "../context/WorkspaceContext";
 import ContextMenu, { type MenuEntry } from "./ContextMenu";
 
@@ -68,8 +68,8 @@ function RenameInput({ entry, onDone }: { entry: FsEntry; onDone: () => void }) 
       onBlur={commit}
       style={{
         flex: 1, fontSize: '12px', padding: '1px 4px', minWidth: 0,
-        backgroundColor: 'var(--origin-bg-active)', color: 'var(--origin-fg-default)',
-        border: '1px solid var(--origin-accent-blue)', borderRadius: 3,
+        backgroundColor: 'var(--excode-bg-active)', color: 'var(--excode-fg-default)',
+        border: '1px solid var(--excode-accent-blue)', borderRadius: 3,
         outline: 'none', fontFamily: 'var(--font-sans)',
       }}
     />
@@ -108,7 +108,7 @@ function CreateInput({ parentPath, kind, depth, onDone }: {
     <div style={{ display: 'flex', alignItems: 'center', gap: 4, padding: `3px 8px 3px ${indent}px` }}>
       {kind === 'folder'
         ? <FolderPlus size={14} style={{ flexShrink: 0, color: '#eab308' }} />
-        : <FilePlus  size={14} style={{ flexShrink: 0, color: 'var(--origin-fg-muted)' }} />}
+        : <FilePlus  size={14} style={{ flexShrink: 0, color: 'var(--excode-fg-muted)' }} />}
       <input
         ref={inputRef}
         value={name}
@@ -118,8 +118,8 @@ function CreateInput({ parentPath, kind, depth, onDone }: {
         onBlur={commit}
         style={{
           flex: 1, fontSize: '12px', padding: '1px 4px', minWidth: 0,
-          backgroundColor: 'var(--origin-bg-active)', color: 'var(--origin-fg-default)',
-          border: '1px solid var(--origin-accent-blue)', borderRadius: 3,
+          backgroundColor: 'var(--excode-bg-active)', color: 'var(--excode-fg-default)',
+          border: '1px solid var(--excode-accent-blue)', borderRadius: 3,
           outline: 'none', fontFamily: 'var(--font-sans)',
         }}
       />
@@ -185,26 +185,26 @@ function TreeNode({ entry, depth }: { entry: FsEntry; depth: number }) {
         style={{
           width: '100%', display: 'flex', alignItems: 'center',
           gap: 4, padding: `3px 8px 3px ${indent}px`,
-          border: 'none', background: hovered ? 'var(--origin-bg-hover)' : 'transparent',
+          border: 'none', background: hovered ? 'var(--excode-bg-hover)' : 'transparent',
           cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left', transition: 'background 0.1s',
         }}
       >
-        <span style={{ width: 14, flexShrink: 0, color: 'var(--origin-fg-muted)', display: 'flex', alignItems: 'center' }}>
+        <span style={{ width: 14, flexShrink: 0, color: 'var(--excode-fg-muted)', display: 'flex', alignItems: 'center' }}>
           {entry.is_dir ? (expanded ? <ChevronDown size={12} /> : <ChevronRight size={12} />) : null}
         </span>
 
-        {entry.is_dir
-          ? expanded
-            ? <FolderOpen size={14} style={{ flexShrink: 0, color: '#eab308' }} />
-            : <Folder    size={14} style={{ flexShrink: 0, color: '#eab308' }} />
-          : <File size={14} style={{ flexShrink: 0, color: fileColor(entry.name) }} />
-        }
+        <FileIcon
+          name={entry.name}
+          size={14}
+          kind={entry.is_dir ? 'folder' : 'file'}
+          expanded={expanded}
+        />
 
         {isRenaming
           ? <RenameInput entry={entry} onDone={() => setRenamingPath(null)} />
           : (
             <span style={{
-              fontSize: 13, color: 'var(--origin-fg-default)',
+              fontSize: 13, color: 'var(--excode-fg-default)',
               overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
               opacity: entry.name.startsWith('.') ? 0.5 : 1,
             }}>
@@ -327,7 +327,7 @@ export default function FileTree({ onFileOpen, refreshKey }: Props) {
   if (!folderPath) {
     return (
       <div className="flex-1 flex items-center justify-center">
-        <p className="text-xs" style={{ color: 'var(--origin-fg-subtle)' }}>No folder open</p>
+        <p className="text-xs" style={{ color: 'var(--excode-fg-subtle)' }}>No folder open</p>
       </div>
     );
   }
@@ -349,7 +349,7 @@ export default function FileTree({ onFileOpen, refreshKey }: Props) {
       >
         <div style={{
           padding: '10px 12px 6px', fontSize: 11, fontWeight: 600,
-          letterSpacing: '0.8px', textTransform: 'uppercase', color: 'var(--origin-fg-muted)',
+          letterSpacing: '0.8px', textTransform: 'uppercase', color: 'var(--excode-fg-muted)',
           userSelect: 'none',
         }}>
           {rootName}

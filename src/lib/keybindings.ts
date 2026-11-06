@@ -20,46 +20,46 @@ export interface CommandDef {
 
 export const COMMANDS: CommandDef[] = [
   // File
-  { id: "origin.newFile",        label: "New File",             category: "File",    defaultKey: "ctrl+n" },
-  { id: "origin.openFile",       label: "Open File",            category: "File",    defaultKey: "ctrl+o" },
-  { id: "origin.save",           label: "Save",                 category: "File",    defaultKey: "ctrl+s" },
-  { id: "origin.saveAs",         label: "Save As",              category: "File",    defaultKey: "ctrl+shift+s" },
-  { id: "origin.closeTab",       label: "Close Editor",         category: "File",    defaultKey: "ctrl+w" },
+  { id: "excode.newFile",        label: "New File",             category: "File",    defaultKey: "ctrl+n" },
+  { id: "excode.openFile",       label: "Open File",            category: "File",    defaultKey: "ctrl+o" },
+  { id: "excode.save",           label: "Save",                 category: "File",    defaultKey: "ctrl+s" },
+  { id: "excode.saveAs",         label: "Save As",              category: "File",    defaultKey: "ctrl+shift+s" },
+  { id: "excode.closeTab",       label: "Close Editor",         category: "File",    defaultKey: "ctrl+w" },
   // Edit
-  { id: "origin.editorUndo",     label: "Undo",                 category: "Edit",    defaultKey: "ctrl+z" },
-  { id: "origin.editorRedo",     label: "Redo",                 category: "Edit",    defaultKey: "ctrl+y" },
-  { id: "origin.editorFind",     label: "Find",                 category: "Edit",    defaultKey: "ctrl+f" },
-  { id: "origin.editorReplace",  label: "Replace",              category: "Edit",    defaultKey: "ctrl+h" },
-  { id: "origin.editorCut",      label: "Cut",                  category: "Edit",    defaultKey: "ctrl+x" },
-  { id: "origin.editorCopy",     label: "Copy",                 category: "Edit",    defaultKey: "ctrl+c" },
-  { id: "origin.editorPaste",    label: "Paste",                category: "Edit",    defaultKey: "ctrl+v" },
-  { id: "origin.editorSelectAll",label: "Select All",           category: "Edit",    defaultKey: "ctrl+a" },
+  { id: "excode.editorUndo",     label: "Undo",                 category: "Edit",    defaultKey: "ctrl+z" },
+  { id: "excode.editorRedo",     label: "Redo",                 category: "Edit",    defaultKey: "ctrl+y" },
+  { id: "excode.editorFind",     label: "Find",                 category: "Edit",    defaultKey: "ctrl+f" },
+  { id: "excode.editorReplace",  label: "Replace",              category: "Edit",    defaultKey: "ctrl+h" },
+  { id: "excode.editorCut",      label: "Cut",                  category: "Edit",    defaultKey: "ctrl+x" },
+  { id: "excode.editorCopy",     label: "Copy",                 category: "Edit",    defaultKey: "ctrl+c" },
+  { id: "excode.editorPaste",    label: "Paste",                category: "Edit",    defaultKey: "ctrl+v" },
+  { id: "excode.editorSelectAll",label: "Select All",           category: "Edit",    defaultKey: "ctrl+a" },
   // View
-  { id: "origin.togglePalette",  label: "Command Palette",      category: "View",    defaultKey: "ctrl+p" },
-  { id: "origin.toggleSidebar",  label: "Toggle Sidebar",       category: "View",    defaultKey: "ctrl+b" },
-  { id: "origin.toggleTerminal", label: "Toggle Terminal",      category: "View",    defaultKey: "ctrl+`" },
-  { id: "origin.toggleSettings", label: "Open Settings",        category: "View",    defaultKey: "ctrl+," },
-  { id: "origin.toggleFullscreen",label: "Toggle Full Screen",  category: "View",    defaultKey: "f11" },
-  { id: "origin.zoomIn",         label: "Zoom In",              category: "View",    defaultKey: "ctrl+=" },
-  { id: "origin.zoomOut",        label: "Zoom Out",             category: "View",    defaultKey: "ctrl+-" },
-  { id: "origin.zoomReset",      label: "Reset Zoom",           category: "View",    defaultKey: "ctrl+0" },
+  { id: "excode.togglePalette",  label: "Command Palette",      category: "View",    defaultKey: "ctrl+p" },
+  { id: "excode.toggleSidebar",  label: "Toggle Sidebar",       category: "View",    defaultKey: "ctrl+b" },
+  { id: "excode.toggleTerminal", label: "Toggle Terminal",      category: "View",    defaultKey: "ctrl+`" },
+  { id: "excode.toggleSettings", label: "Open Settings",        category: "View",    defaultKey: "ctrl+," },
+  { id: "excode.toggleFullscreen",label: "Toggle Full Screen",  category: "View",    defaultKey: "f11" },
+  { id: "excode.zoomIn",         label: "Zoom In",              category: "View",    defaultKey: "ctrl+=" },
+  { id: "excode.zoomOut",        label: "Zoom Out",             category: "View",    defaultKey: "ctrl+-" },
+  { id: "excode.zoomReset",      label: "Reset Zoom",           category: "View",    defaultKey: "ctrl+0" },
   // Debug
-  { id: "origin.startDebug",     label: "Start Debugging",      category: "Debug",   defaultKey: "f5" },
-  { id: "origin.stopDebug",      label: "Stop Debugging",       category: "Debug",   defaultKey: "shift+f5" },
-  { id: "origin.stepOver",       label: "Step Over",            category: "Debug",   defaultKey: "f10" },
-  { id: "origin.stepInto",       label: "Step Into",            category: "Debug",   defaultKey: "f11" },
-  { id: "origin.stepOut",        label: "Step Out",             category: "Debug",   defaultKey: "shift+f11" },
-  { id: "origin.toggleBreakpoint",label: "Toggle Breakpoint",  category: "Debug",   defaultKey: "f9" },
+  { id: "excode.startDebug",     label: "Start Debugging",      category: "Debug",   defaultKey: "f5" },
+  { id: "excode.stopDebug",      label: "Stop Debugging",       category: "Debug",   defaultKey: "shift+f5" },
+  { id: "excode.stepOver",       label: "Step Over",            category: "Debug",   defaultKey: "f10" },
+  { id: "excode.stepInto",       label: "Step Into",            category: "Debug",   defaultKey: "f11" },
+  { id: "excode.stepOut",        label: "Step Out",             category: "Debug",   defaultKey: "shift+f11" },
+  { id: "excode.toggleBreakpoint",label: "Toggle Breakpoint",  category: "Debug",   defaultKey: "f9" },
 ];
 
 // ── Storage ──────────────────────────────────────────────────────────────────
 
-const STORAGE_KEY = "origin-keybindings";
+const STORAGE_KEY = "excode-keybindings";
 
 export function loadKeybindings(): UserKeybinding[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as UserKeybinding[]) : [];
+    return raw ? (JSON.parse(raw) as UserKeybinding[]).map(b => ({ ...b, command: b.command.startsWith("origin.") ? "excode." + b.command.slice(7) : b.command })) : [];
   } catch {
     return [];
   }
@@ -141,37 +141,37 @@ export function matchesEvent(e: KeyboardEvent, keyStr: string): boolean {
 
 // ── VS Code / Cursor / Windsurf import ───────────────────────────────────────
 
-// Maps VS Code command IDs → Origin command IDs
+// Maps VS Code command IDs → EXCODE command IDs
 const VSCODE_CMD_MAP: Record<string, string> = {
-  "workbench.action.files.newUntitledFile":    "origin.newFile",
-  "workbench.action.files.openFile":           "origin.openFile",
-  "workbench.action.files.save":               "origin.save",
-  "workbench.action.files.saveAs":             "origin.saveAs",
-  "workbench.action.closeActiveEditor":        "origin.closeTab",
-  "undo":                                       "origin.editorUndo",
-  "redo":                                       "origin.editorRedo",
-  "actions.find":                               "origin.editorFind",
-  "editor.action.startFindReplaceAction":      "origin.editorReplace",
-  "editor.action.clipboardCutAction":          "origin.editorCut",
-  "editor.action.clipboardCopyAction":         "origin.editorCopy",
-  "editor.action.clipboardPasteAction":        "origin.editorPaste",
-  "editor.action.selectAll":                   "origin.editorSelectAll",
-  "workbench.action.quickOpen":                "origin.togglePalette",
-  "workbench.action.showCommands":             "origin.togglePalette",
-  "workbench.action.toggleSidebarVisibility":  "origin.toggleSidebar",
-  "workbench.action.terminal.toggleTerminal":  "origin.toggleTerminal",
-  "workbench.action.openSettings":             "origin.toggleSettings",
-  "workbench.action.toggleFullScreen":         "origin.toggleFullscreen",
-  "workbench.action.zoomIn":                   "origin.zoomIn",
-  "workbench.action.zoomOut":                  "origin.zoomOut",
-  "workbench.action.zoomReset":                "origin.zoomReset",
-  "workbench.action.debug.start":              "origin.startDebug",
-  "workbench.action.debug.run":                "origin.startDebug",
-  "workbench.action.debug.stop":               "origin.stopDebug",
-  "workbench.action.debug.stepOver":           "origin.stepOver",
-  "workbench.action.debug.stepInto":           "origin.stepInto",
-  "workbench.action.debug.stepOut":            "origin.stepOut",
-  "editor.debug.action.toggleBreakpoint":      "origin.toggleBreakpoint",
+  "workbench.action.files.newUntitledFile":    "excode.newFile",
+  "workbench.action.files.openFile":           "excode.openFile",
+  "workbench.action.files.save":               "excode.save",
+  "workbench.action.files.saveAs":             "excode.saveAs",
+  "workbench.action.closeActiveEditor":        "excode.closeTab",
+  "undo":                                       "excode.editorUndo",
+  "redo":                                       "excode.editorRedo",
+  "actions.find":                               "excode.editorFind",
+  "editor.action.startFindReplaceAction":      "excode.editorReplace",
+  "editor.action.clipboardCutAction":          "excode.editorCut",
+  "editor.action.clipboardCopyAction":         "excode.editorCopy",
+  "editor.action.clipboardPasteAction":        "excode.editorPaste",
+  "editor.action.selectAll":                   "excode.editorSelectAll",
+  "workbench.action.quickOpen":                "excode.togglePalette",
+  "workbench.action.showCommands":             "excode.togglePalette",
+  "workbench.action.toggleSidebarVisibility":  "excode.toggleSidebar",
+  "workbench.action.terminal.toggleTerminal":  "excode.toggleTerminal",
+  "workbench.action.openSettings":             "excode.toggleSettings",
+  "workbench.action.toggleFullScreen":         "excode.toggleFullscreen",
+  "workbench.action.zoomIn":                   "excode.zoomIn",
+  "workbench.action.zoomOut":                  "excode.zoomOut",
+  "workbench.action.zoomReset":                "excode.zoomReset",
+  "workbench.action.debug.start":              "excode.startDebug",
+  "workbench.action.debug.run":                "excode.startDebug",
+  "workbench.action.debug.stop":               "excode.stopDebug",
+  "workbench.action.debug.stepOver":           "excode.stepOver",
+  "workbench.action.debug.stepInto":           "excode.stepInto",
+  "workbench.action.debug.stepOut":            "excode.stepOut",
+  "editor.debug.action.toggleBreakpoint":      "excode.toggleBreakpoint",
 };
 
 interface ImportResult {

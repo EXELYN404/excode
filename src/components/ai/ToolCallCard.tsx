@@ -59,8 +59,8 @@ export default function ToolCallCard({ tc }: { tc: ToolCallDisplay }) {
   const baseStyle: React.CSSProperties = {
     margin: "3px 0",
     borderRadius: "6px",
-    border: "1px solid var(--origin-border-default)",
-    backgroundColor: "var(--origin-bg-editor)",
+    border: "1px solid var(--excode-border-default)",
+    backgroundColor: "var(--excode-bg-editor)",
     fontSize: "12px",
     overflow: "hidden",
   };
@@ -68,18 +68,18 @@ export default function ToolCallCard({ tc }: { tc: ToolCallDisplay }) {
   if (tc.status === "running") {
     return (
       <div style={baseStyle}>
-        <div style={{ display: "flex", alignItems: "center", gap: "6px", padding: "5px 10px", color: "var(--origin-fg-muted)" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px", padding: "5px 10px", color: "var(--excode-fg-muted)" }}>
           <div style={{
             width: 11, height: 11, flexShrink: 0,
-            border: "1.5px solid var(--origin-fg-subtle)",
-            borderTopColor: "var(--origin-accent-blue)",
+            border: "1.5px solid var(--excode-fg-subtle)",
+            borderTopColor: "var(--excode-accent-blue)",
             borderRadius: "50%",
             animation: "spin 0.8s linear infinite",
           }} />
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--origin-fg-muted)" }}>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--excode-fg-muted)" }}>
             {toolLabel(tc.toolName)}
           </span>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--origin-fg-subtle)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1 }}>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--excode-fg-subtle)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1 }}>
             {argsPreview(tc.toolName, tc.args)}
           </span>
         </div>
@@ -90,31 +90,31 @@ export default function ToolCallCard({ tc }: { tc: ToolCallDisplay }) {
   if (tc.status === "approval-required" && tc.action) {
     const action = tc.action;
     return (
-      <div style={{ ...baseStyle, border: "1px solid color-mix(in srgb, var(--origin-semantic-warning) 50%, transparent)", backgroundColor: "color-mix(in srgb, var(--origin-semantic-warning) 8%, transparent)" }}>
+      <div style={{ ...baseStyle, border: "1px solid color-mix(in srgb, var(--excode-semantic-warning) 50%, transparent)", backgroundColor: "color-mix(in srgb, var(--excode-semantic-warning) 8%, transparent)" }}>
         <div style={{ padding: "8px 10px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "5px", marginBottom: "6px" }}>
-            <ShieldAlert size={11} style={{ color: "var(--origin-semantic-warning)", flexShrink: 0 }} />
-            <span style={{ fontSize: "11px", fontWeight: 600, color: "var(--origin-semantic-warning)" }}>Approval required</span>
-            <span style={{ fontSize: "11px", color: "var(--origin-fg-muted)", fontFamily: "var(--font-mono)", marginLeft: 4 }}>
+            <ShieldAlert size={11} style={{ color: "var(--excode-semantic-warning)", flexShrink: 0 }} />
+            <span style={{ fontSize: "11px", fontWeight: 600, color: "var(--excode-semantic-warning)" }}>Approval required</span>
+            <span style={{ fontSize: "11px", color: "var(--excode-fg-muted)", fontFamily: "var(--font-mono)", marginLeft: 4 }}>
               {toolLabel(tc.toolName)}
             </span>
           </div>
           <div style={{
-            backgroundColor: "var(--origin-bg-base)",
+            backgroundColor: "var(--excode-bg-base)",
             borderRadius: "4px",
             padding: "6px 8px",
             marginBottom: "8px",
             fontFamily: "var(--font-mono)",
             fontSize: "11px",
-            color: "var(--origin-fg-muted)",
+            color: "var(--excode-fg-muted)",
             maxHeight: "100px",
             overflowY: "auto",
           }}>
             {action.type === "bash_run" && (
-              <span style={{ color: "var(--origin-fg-default)" }}>
+              <span style={{ color: "var(--excode-fg-default)" }}>
                 $ {action.command}
                 {action.cwd && (
-                  <span style={{ color: "var(--origin-fg-subtle)", marginLeft: 8 }}>
+                  <span style={{ color: "var(--excode-fg-subtle)", marginLeft: 8 }}>
                     ({action.cwd.split(/[/\\]/).pop()})
                   </span>
                 )}
@@ -122,10 +122,10 @@ export default function ToolCallCard({ tc }: { tc: ToolCallDisplay }) {
             )}
             {action.type === "write_file" && (
               <>
-                <div style={{ color: "var(--origin-fg-subtle)", marginBottom: 4 }}>
+                <div style={{ color: "var(--excode-fg-subtle)", marginBottom: 4 }}>
                   {action.path.split(/[/\\]/).pop()}
                 </div>
-                <div style={{ color: "var(--origin-fg-muted)" }}>
+                <div style={{ color: "var(--excode-fg-muted)" }}>
                   {action.content.slice(0, 180)}
                   {action.content.length > 180 ? "…" : ""}
                 </div>
@@ -133,10 +133,10 @@ export default function ToolCallCard({ tc }: { tc: ToolCallDisplay }) {
             )}
             {action.type === "edit" && (
               <>
-                <div style={{ color: "var(--origin-fg-subtle)", marginBottom: 4 }}>
+                <div style={{ color: "var(--excode-fg-subtle)", marginBottom: 4 }}>
                   {action.path.split(/[/\\]/).pop()}
                 </div>
-                <div style={{ color: "var(--origin-semantic-success)" }}>
+                <div style={{ color: "var(--excode-semantic-success)" }}>
                   + {action.updated.slice(0, 120)}
                   {action.updated.length > 120 ? "…" : ""}
                 </div>
@@ -144,7 +144,7 @@ export default function ToolCallCard({ tc }: { tc: ToolCallDisplay }) {
             )}
           </div>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
-            <span style={{ fontSize: "11px", color: "var(--origin-fg-subtle)", fontStyle: "italic" }}>
+            <span style={{ fontSize: "11px", color: "var(--excode-fg-subtle)", fontStyle: "italic" }}>
               Review in the diff tab →
             </span>
           </div>
@@ -162,35 +162,35 @@ export default function ToolCallCard({ tc }: { tc: ToolCallDisplay }) {
         <div
           onClick={() => setExpanded(e => !e)}
           style={{ display: "flex", alignItems: "center", gap: "6px", padding: "5px 10px", cursor: "pointer" }}
-          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "var(--origin-bg-hover)"; }}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "var(--excode-bg-hover)"; }}
           onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "transparent"; }}
         >
           {isCancelled ? (
-            <span style={{ fontSize: "9px", color: "var(--origin-fg-subtle)", flexShrink: 0 }}>✕</span>
+            <span style={{ fontSize: "9px", color: "var(--excode-fg-subtle)", flexShrink: 0 }}>✕</span>
           ) : isError ? (
-            <span style={{ fontSize: "9px", color: "var(--origin-semantic-error)", flexShrink: 0 }}>✕</span>
+            <span style={{ fontSize: "9px", color: "var(--excode-semantic-error)", flexShrink: 0 }}>✕</span>
           ) : (
-            <Check size={11} style={{ color: "var(--origin-semantic-success)", flexShrink: 0 }} />
+            <Check size={11} style={{ color: "var(--excode-semantic-success)", flexShrink: 0 }} />
           )}
           {toolIcon(tc.toolName)}
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--origin-fg-muted)" }}>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--excode-fg-muted)" }}>
             {toolLabel(tc.toolName)}
           </span>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--origin-fg-subtle)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1 }}>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--excode-fg-subtle)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1 }}>
             {argsPreview(tc.toolName, tc.args)}
           </span>
           <ChevronDown
             size={10}
-            style={{ flexShrink: 0, color: "var(--origin-fg-subtle)", transform: expanded ? "rotate(180deg)" : "none", transition: "transform 0.12s" }}
+            style={{ flexShrink: 0, color: "var(--excode-fg-subtle)", transform: expanded ? "rotate(180deg)" : "none", transition: "transform 0.12s" }}
           />
         </div>
         {expanded && (
           <div style={{
             padding: "6px 10px",
-            borderTop: "1px solid var(--origin-border-default)",
+            borderTop: "1px solid var(--excode-border-default)",
             fontFamily: "var(--font-mono)",
             fontSize: "11px",
-            color: "var(--origin-fg-muted)",
+            color: "var(--excode-fg-muted)",
             maxHeight: "160px",
             overflowY: "auto",
             whiteSpace: "pre-wrap",

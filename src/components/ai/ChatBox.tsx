@@ -40,8 +40,8 @@ function ModeDropdown({ anchorEl, selected, onSelect, onClose }: {
   return createPortal(
     <div ref={menuRef} style={{ position:"fixed", top:pos.top, left:pos.left, minWidth:"200px", maxWidth:"220px",
       transform:"translateY(-100%)",
-      background:"color-mix(in srgb, var(--origin-bg-base) 90%, transparent)", backdropFilter:"blur(16px)",
-      WebkitBackdropFilter:"blur(16px)", border:"1px solid var(--origin-border-default)", borderRadius:"10px",
+      background:"color-mix(in srgb, var(--excode-bg-base) 90%, transparent)", backdropFilter:"blur(16px)",
+      WebkitBackdropFilter:"blur(16px)", border:"1px solid var(--excode-border-default)", borderRadius:"10px",
       boxShadow:"0 8px 32px rgba(0,0,0,0.35)", padding:"4px", zIndex:9999 }}>
       {MODES.map(({ id, Icon, label, description }) => {
         const isSelected = selected === id; const isHovered = hovered === id;
@@ -50,11 +50,11 @@ function ModeDropdown({ anchorEl, selected, onSelect, onClose }: {
             onClick={() => { onSelect(id); onClose(); }}
             style={{ width:"100%", display:"flex", alignItems:"flex-start", gap:"10px", padding:"8px 10px",
               borderRadius:"7px", border:"none", cursor:"pointer",
-              background: isHovered ? "var(--origin-bg-hover)" : "transparent", textAlign:"left", transition:"background 0.1s" }}>
-            <div style={{ marginTop:"1px", color: isSelected ? "var(--origin-fg-default)" : "var(--origin-fg-muted)", flexShrink:0 }}><Icon size={15} /></div>
+              background: isHovered ? "var(--excode-bg-hover)" : "transparent", textAlign:"left", transition:"background 0.1s" }}>
+            <div style={{ marginTop:"1px", color: isSelected ? "var(--excode-fg-default)" : "var(--excode-fg-muted)", flexShrink:0 }}><Icon size={15} /></div>
             <div>
-              <div style={{ fontSize:"13px", fontWeight: isSelected ? 600 : 400, color:"var(--origin-fg-default)", marginBottom:"2px" }}>{label}</div>
-              <div style={{ fontSize:"11px", color:"var(--origin-fg-muted)", lineHeight:"1.4" }}>{description}</div>
+              <div style={{ fontSize:"13px", fontWeight: isSelected ? 600 : 400, color:"var(--excode-fg-default)", marginBottom:"2px" }}>{label}</div>
+              <div style={{ fontSize:"11px", color:"var(--excode-fg-muted)", lineHeight:"1.4" }}>{description}</div>
             </div>
           </button>
         );
@@ -73,9 +73,9 @@ function createBadgeElement(filepath: string, filename: string): HTMLSpanElement
   badge.style.cssText = [
     'display:inline-flex', 'align-items:center', 'padding:1px 6px',
     'border-radius:4px', 'font-size:11px', 'font-family:var(--font-mono)',
-    'background:var(--origin-bg-active)',
-    'border:1px solid var(--origin-border-default)',
-    'color:var(--origin-fg-default)', 'cursor:default', 'user-select:none',
+    'background:var(--excode-bg-active)',
+    'border:1px solid var(--excode-border-default)',
+    'color:var(--excode-fg-default)', 'cursor:default', 'user-select:none',
     'vertical-align:middle', 'margin:0 1px',
   ].join(';');
   return badge;
@@ -214,13 +214,13 @@ export default function ChatBox({ onSend, getEditorContext, forcedContext, onFor
   const [contextSnap, setContextSnap] = useState<EditorContext | null>(null);
   const [contextDismissed, setContextDismissed] = useState(false);
   const [selectedModelId, setSelectedModelId] = useState(
-    () => localStorage.getItem("origin-ai-model") ?? DEFAULT_MODEL_ID
+    () => localStorage.getItem("excode-ai-model") ?? DEFAULT_MODEL_ID
   );
   const [selectedProviderId, setSelectedProviderId] = useState(
-    () => localStorage.getItem("origin-ai-provider") ?? DEFAULT_PROVIDER_ID
+    () => localStorage.getItem("excode-ai-provider") ?? DEFAULT_PROVIDER_ID
   );
   const [effort, setEffort] = useState<"normal" | "max">(
-    () => (localStorage.getItem("origin-ai-effort") ?? "normal") as "normal" | "max"
+    () => (localStorage.getItem("excode-ai-effort") ?? "normal") as "normal" | "max"
   );
 
   const refreshContext = useCallback(() => {
@@ -339,10 +339,10 @@ export default function ChatBox({ onSend, getEditorContext, forcedContext, onFor
       style={{
         margin: "10px",
         borderRadius: "8px",
-        border: "1px solid var(--origin-border-default)",
-        backgroundColor: "var(--origin-bg-base)",
+        border: "1px solid var(--excode-border-default)",
+        backgroundColor: "var(--excode-bg-base)",
         outline: focused
-          ? "1px solid color-mix(in srgb, var(--origin-fg-muted) 50%, transparent)"
+          ? "1px solid color-mix(in srgb, var(--excode-fg-muted) 50%, transparent)"
           : "1px solid transparent",
         outlineOffset: "2px",
         transition: "outline-color 0.15s ease",
@@ -397,12 +397,12 @@ export default function ChatBox({ onSend, getEditorContext, forcedContext, onFor
             borderRadius: "5px",
             fontSize: "11px",
             fontFamily: "var(--font-mono)",
-            background: "var(--origin-bg-active)",
-            border: "1px solid var(--origin-border-default)",
-            color: "var(--origin-fg-default)",
+            background: "var(--excode-bg-active)",
+            border: "1px solid var(--excode-border-default)",
+            color: "var(--excode-fg-default)",
             maxWidth: "100%",
           }}>
-            <FileCode size={11} style={{ flexShrink: 0, color: "var(--origin-fg-muted)" }} />
+            <FileCode size={11} style={{ flexShrink: 0, color: "var(--excode-fg-muted)" }} />
             <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
               {contextSnap!.filename}
             </span>
@@ -410,8 +410,8 @@ export default function ChatBox({ onSend, getEditorContext, forcedContext, onFor
               padding: "0 4px",
               borderRadius: "3px",
               fontSize: "10px",
-              background: "var(--origin-bg-hover)",
-              color: "var(--origin-fg-muted)",
+              background: "var(--excode-bg-hover)",
+              color: "var(--excode-fg-muted)",
             }}>
               {contextLabel(contextSnap!)}
             </span>
@@ -428,7 +428,7 @@ export default function ChatBox({ onSend, getEditorContext, forcedContext, onFor
                 border: "none",
                 cursor: "pointer",
                 padding: "0",
-                color: "var(--origin-fg-subtle)",
+                color: "var(--excode-fg-subtle)",
                 lineHeight: 1,
               }}
             >
@@ -454,7 +454,7 @@ export default function ChatBox({ onSend, getEditorContext, forcedContext, onFor
             padding: "8px 10px",
             outline: "none",
             fontSize: "13px",
-            color: "var(--origin-fg-default)",
+            color: "var(--excode-fg-default)",
             lineHeight: "1.5",
             whiteSpace: "pre-wrap",
             wordBreak: "break-word",
@@ -470,7 +470,7 @@ export default function ChatBox({ onSend, getEditorContext, forcedContext, onFor
               left: "10px",
               pointerEvents: "none",
               fontSize: "13px",
-              color: "var(--origin-fg-subtle)",
+              color: "var(--excode-fg-subtle)",
               lineHeight: "1.5",
               userSelect: "none",
             }}
@@ -497,12 +497,12 @@ export default function ChatBox({ onSend, getEditorContext, forcedContext, onFor
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            background: attachOpen ? "var(--origin-bg-hover)" : "none",
+            background: attachOpen ? "var(--excode-bg-hover)" : "none",
             border: "none",
             cursor: folderPath ? "pointer" : "default",
             padding: "2px",
             borderRadius: "4px",
-            color: attachOpen ? "var(--origin-fg-default)" : "var(--origin-fg-muted)",
+            color: attachOpen ? "var(--excode-fg-default)" : "var(--excode-fg-muted)",
           }}
         >
           <Plus size={14} />
@@ -512,9 +512,9 @@ export default function ChatBox({ onSend, getEditorContext, forcedContext, onFor
           ref={modeAnchorRef}
           onClick={() => setModeOpen(v => !v)}
           style={{ display:"flex", alignItems:"center", gap:"5px", fontSize:"12px", fontWeight:500,
-            padding:"2px 7px 2px 8px", borderRadius:"9999px", border:"1px solid var(--origin-border-default)",
-            backgroundColor: mode !== "agent" ? "var(--origin-bg-active)" : "transparent",
-            color: mode !== "agent" ? "var(--origin-fg-default)" : "var(--origin-fg-muted)",
+            padding:"2px 7px 2px 8px", borderRadius:"9999px", border:"1px solid var(--excode-border-default)",
+            backgroundColor: mode !== "agent" ? "var(--excode-bg-active)" : "transparent",
+            color: mode !== "agent" ? "var(--excode-fg-default)" : "var(--excode-fg-muted)",
             userSelect:"none", cursor:"pointer", transition:"background 0.1s, color 0.1s" }}>
           {currentMode.label}
           <ChevronDown size={10} />
@@ -538,7 +538,7 @@ export default function ChatBox({ onSend, getEditorContext, forcedContext, onFor
             cursor: "pointer",
             padding: "2px",
             borderRadius: "4px",
-            color: "var(--origin-fg-muted)",
+            color: "var(--excode-fg-muted)",
           }}
         >
           <SlidersHorizontal size={14} />
@@ -553,10 +553,10 @@ export default function ChatBox({ onSend, getEditorContext, forcedContext, onFor
             onSelect={(providerId, modelId) => {
               setSelectedModelId(modelId);
               setSelectedProviderId(providerId);
-              localStorage.setItem("origin-ai-model", modelId);
-              localStorage.setItem("origin-ai-provider", providerId);
+              localStorage.setItem("excode-ai-model", modelId);
+              localStorage.setItem("excode-ai-provider", providerId);
             }}
-            onEffortChange={e => { setEffort(e); localStorage.setItem("origin-ai-effort", e); }}
+            onEffortChange={e => { setEffort(e); localStorage.setItem("excode-ai-effort", e); }}
             onClose={() => setPrefsOpen(false)}
           />
         )}
@@ -572,8 +572,8 @@ export default function ChatBox({ onSend, getEditorContext, forcedContext, onFor
             borderRadius: "6px",
             border: "none",
             cursor: "pointer",
-            backgroundColor: "var(--origin-fg-default)",
-            color: "var(--origin-bg-base)",
+            backgroundColor: "var(--excode-fg-default)",
+            color: "var(--excode-bg-base)",
           }}
         >
           <ArrowUp size={14} />

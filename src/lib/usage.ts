@@ -1,4 +1,4 @@
-const USAGE_KEY = "origin_ai_usage";
+const USAGE_KEY = "excode_ai_usage";
 
 export interface ModelUsage {
   modelId:          string;

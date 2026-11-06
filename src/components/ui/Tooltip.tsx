@@ -52,8 +52,8 @@ export function Tooltip({ content, children, side = "right", delay = 700 }: Tool
             top: pos.top,
             left: pos.left,
             transform,
-            backgroundColor: "var(--origin-tooltip-bg)",
-            color: "var(--origin-tooltip-fg)",
+            backgroundColor: "var(--excode-tooltip-bg)",
+            color: "var(--excode-tooltip-fg)",
           }}
         >
           {content}

@@ -1,6 +1,6 @@
-export type ThemeType = "dark" | "light";
+export type ThemeType = "dark";
 
-export interface OriginTheme {
+export interface ExcodeTheme {
   name: string;
   type: ThemeType;
   colors: Record<string, string>;

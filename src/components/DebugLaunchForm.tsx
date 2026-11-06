@@ -5,7 +5,7 @@ import { readDir } from '../lib/fs';
 import type { DapAdapterType, DapLaunchConfig } from '../lib/dap';
 import type { DebugLastConfig } from '../lib/settings';
 
-const LS_KEY = 'origin-debug-last-config';
+const LS_KEY = 'excode-debug-last-config';
 
 function loadSaved(): DebugLastConfig | null {
   try {
@@ -23,17 +23,17 @@ function saveLast(cfg: DebugLastConfig) {
 const FIELD_STYLE: React.CSSProperties = {
   width: '100%', boxSizing: 'border-box',
   padding: '4px 7px',
-  background: 'var(--origin-bg-input)',
-  border: '1px solid var(--origin-border-default)',
+  background: 'var(--excode-bg-input)',
+  border: '1px solid var(--excode-border-default)',
   borderRadius: 5, outline: 'none',
-  color: 'var(--origin-fg-default)',
+  color: 'var(--excode-fg-default)',
   fontSize: '11px',
   fontFamily: 'var(--font-mono)',
 };
 
 const LABEL_STYLE: React.CSSProperties = {
   fontSize: '10px', fontWeight: 600, letterSpacing: '0.05em',
-  color: 'var(--origin-fg-subtle)', textTransform: 'uppercase',
+  color: 'var(--excode-fg-subtle)', textTransform: 'uppercase',
   display: 'block', marginBottom: 3,
 };
 
@@ -122,8 +122,8 @@ export default function DebugLaunchForm() {
           onChange={e => setAdapterPath(e.target.value)}
           placeholder={adapter === 'codelldb' ? 'codelldb.exe' : 'python (on PATH)'}
           style={FIELD_STYLE}
-          onFocus={e => { (e.target as HTMLElement).style.borderColor = 'var(--origin-accent-blue)'; }}
-          onBlur={e => { (e.target as HTMLElement).style.borderColor = 'var(--origin-border-default)'; }}
+          onFocus={e => { (e.target as HTMLElement).style.borderColor = 'var(--excode-accent-blue)'; }}
+          onBlur={e => { (e.target as HTMLElement).style.borderColor = 'var(--excode-border-default)'; }}
         />
       </Field>
 
@@ -134,8 +134,8 @@ export default function DebugLaunchForm() {
           onChange={e => setProgram(e.target.value)}
           placeholder="Path to executable or script"
           style={FIELD_STYLE}
-          onFocus={e => { (e.target as HTMLElement).style.borderColor = 'var(--origin-accent-blue)'; }}
-          onBlur={e => { (e.target as HTMLElement).style.borderColor = 'var(--origin-border-default)'; }}
+          onFocus={e => { (e.target as HTMLElement).style.borderColor = 'var(--excode-accent-blue)'; }}
+          onBlur={e => { (e.target as HTMLElement).style.borderColor = 'var(--excode-border-default)'; }}
         />
       </Field>
 
@@ -146,8 +146,8 @@ export default function DebugLaunchForm() {
           onChange={e => setArgs(e.target.value)}
           placeholder="Space-separated arguments"
           style={FIELD_STYLE}
-          onFocus={e => { (e.target as HTMLElement).style.borderColor = 'var(--origin-accent-blue)'; }}
-          onBlur={e => { (e.target as HTMLElement).style.borderColor = 'var(--origin-border-default)'; }}
+          onFocus={e => { (e.target as HTMLElement).style.borderColor = 'var(--excode-accent-blue)'; }}
+          onBlur={e => { (e.target as HTMLElement).style.borderColor = 'var(--excode-border-default)'; }}
         />
       </Field>
 
@@ -158,12 +158,12 @@ export default function DebugLaunchForm() {
           onChange={e => setCwd(e.target.value)}
           placeholder={folderPath ?? ''}
           style={FIELD_STYLE}
-          onFocus={e => { (e.target as HTMLElement).style.borderColor = 'var(--origin-accent-blue)'; }}
-          onBlur={e => { (e.target as HTMLElement).style.borderColor = 'var(--origin-border-default)'; }}
+          onFocus={e => { (e.target as HTMLElement).style.borderColor = 'var(--excode-accent-blue)'; }}
+          onBlur={e => { (e.target as HTMLElement).style.borderColor = 'var(--excode-border-default)'; }}
         />
       </Field>
 
-      <label style={{ display: 'flex', alignItems: 'center', gap: 7, cursor: 'pointer', fontSize: '11px', color: 'var(--origin-fg-muted)' }}>
+      <label style={{ display: 'flex', alignItems: 'center', gap: 7, cursor: 'pointer', fontSize: '11px', color: 'var(--excode-fg-muted)' }}>
         <input
           type="checkbox"
           checked={stopOnEntry}
@@ -180,9 +180,9 @@ export default function DebugLaunchForm() {
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
           padding: '6px 12px', borderRadius: 6, border: 'none',
           backgroundColor: launching || !program.trim()
-            ? 'var(--origin-bg-active)'
-            : 'var(--origin-accent-blue)',
-          color: launching || !program.trim() ? 'var(--origin-fg-subtle)' : '#fff',
+            ? 'var(--excode-bg-active)'
+            : 'var(--excode-accent-blue)',
+          color: launching || !program.trim() ? 'var(--excode-fg-subtle)' : '#fff',
           cursor: launching || !program.trim() ? 'not-allowed' : 'pointer',
           fontSize: '12px', fontWeight: 600, fontFamily: 'var(--font-sans)',
           transition: 'background 0.15s',

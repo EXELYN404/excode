@@ -2,7 +2,7 @@ import { invoke } from "@tauri-apps/api/core";
 
 const LITELLM_URL =
   "https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json";
-const CACHE_KEY   = "origin_pricing_cache";
+const CACHE_KEY   = "excode_pricing_cache";
 const CACHE_TTL   = 24 * 60 * 60 * 1000; // 24 h
 
 interface PricingEntry {

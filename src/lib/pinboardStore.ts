@@ -1,7 +1,7 @@
 import type { PinnedMessage } from "./aiTypes";
 
-export const PINBOARD_KEY = (fp: string) => `origin-pinboard:${fp || "global"}`;
-export const NOTES_KEY    = (fp: string) => `origin-pinboard-notes:${fp || "global"}`;
+export const PINBOARD_KEY = (fp: string) => `excode-pinboard:${fp || "global"}`;
+export const NOTES_KEY    = (fp: string) => `excode-pinboard-notes:${fp || "global"}`;
 
 export function pbRead(fp: string): PinnedMessage[] {
   try { return JSON.parse(localStorage.getItem(PINBOARD_KEY(fp)) ?? "[]"); }

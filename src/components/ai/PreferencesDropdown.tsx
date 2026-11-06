@@ -29,7 +29,7 @@ function ToggleSwitch({ on, onToggle }: { on: boolean; onToggle: () => void }) {
       onClick={e => { e.stopPropagation(); onToggle(); }}
       style={{
         width: 32, height: 18, borderRadius: 9999, border: "none", cursor: "pointer", padding: 0, flexShrink: 0,
-        backgroundColor: on ? "#1a56db" : "var(--origin-border-default)",
+        backgroundColor: on ? "#1a56db" : "var(--excode-border-default)",
         transition: "background-color 0.2s",
         position: "relative",
       }}
@@ -126,14 +126,14 @@ const ModelSubmenu = forwardRef<HTMLDivElement, {
         position: "fixed", top: pos.top, left: pos.left,
         width: SUB_WIDTH, height: SUB_HEIGHT,
         display: "flex",
-        background: "color-mix(in srgb, var(--origin-bg-base) 90%, transparent)",
+        background: "color-mix(in srgb, var(--excode-bg-base) 90%, transparent)",
         backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
-        border: "1px solid var(--origin-border-default)", borderRadius: "10px",
+        border: "1px solid var(--excode-border-default)", borderRadius: "10px",
         boxShadow: "0 8px 32px rgba(0,0,0,0.35)", overflow: "hidden", zIndex: 10000,
       }}
     >
       {/* Left: provider icons */}
-      <div style={{ width: 48, flexShrink: 0, borderRight: "1px solid var(--origin-border-default)", position: "relative", overflow: "hidden" }}>
+      <div style={{ width: 48, flexShrink: 0, borderRight: "1px solid var(--excode-border-default)", position: "relative", overflow: "hidden" }}>
         <div
           ref={providerScrollRef}
           style={{ position: "absolute", inset: 0, overflowY: "auto", display: "flex", flexDirection: "column", alignItems: "center", padding: "6px 0", gap: 2, scrollbarWidth: "none" }}
@@ -145,8 +145,8 @@ const ModelSubmenu = forwardRef<HTMLDivElement, {
                 key={p.id}
                 onClick={() => { setActiveProviderId(p.id); setSearch(""); }}
                 title={p.name}
-                style={{ width: 34, height: 30, borderRadius: 6, border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: isActive ? "var(--origin-bg-hover)" : "transparent", flexShrink: 0, transition: "background 0.1s" }}
-                onMouseEnter={e => { if (!isActive) e.currentTarget.style.backgroundColor = "var(--origin-bg-hover)"; }}
+                style={{ width: 34, height: 30, borderRadius: 6, border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: isActive ? "var(--excode-bg-hover)" : "transparent", flexShrink: 0, transition: "background 0.1s" }}
+                onMouseEnter={e => { if (!isActive) e.currentTarget.style.backgroundColor = "var(--excode-bg-hover)"; }}
                 onMouseLeave={e => { if (!isActive) e.currentTarget.style.backgroundColor = "transparent"; }}
               >
                 {p.icon
@@ -163,24 +163,24 @@ const ModelSubmenu = forwardRef<HTMLDivElement, {
 
       {/* Right: model list */}
       <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-        <div style={{ padding: "10px 12px 6px", fontSize: 11, fontWeight: 600, color: "var(--origin-fg-muted)", textTransform: "uppercase", letterSpacing: "0.05em", flexShrink: 0 }}>
+        <div style={{ padding: "10px 12px 6px", fontSize: 11, fontWeight: 600, color: "var(--excode-fg-muted)", textTransform: "uppercase", letterSpacing: "0.05em", flexShrink: 0 }}>
           {activeProvider.name}
         </div>
         <div style={{ padding: "0 8px 6px", flexShrink: 0 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "5px 8px", borderRadius: 6, border: "1px solid var(--origin-border-default)", backgroundColor: "var(--origin-bg-sidebar)" }}>
-            <Search size={11} style={{ color: "var(--origin-fg-subtle)", flexShrink: 0 }} />
+          <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "5px 8px", borderRadius: 6, border: "1px solid var(--excode-border-default)", backgroundColor: "var(--excode-bg-sidebar)" }}>
+            <Search size={11} style={{ color: "var(--excode-fg-subtle)", flexShrink: 0 }} />
             <input
               ref={searchRef}
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search models..."
-              style={{ flex: 1, background: "none", border: "none", outline: "none", fontSize: 12, color: "var(--origin-fg-default)", fontFamily: "inherit" }}
+              style={{ flex: 1, background: "none", border: "none", outline: "none", fontSize: 12, color: "var(--excode-fg-default)", fontFamily: "inherit" }}
             />
           </div>
         </div>
         <div style={{ flex: 1, overflowY: "auto", padding: "0 4px 4px" }}>
           {filteredModels.length === 0 ? (
-            <div style={{ padding: "16px 8px", fontSize: 12, color: "var(--origin-fg-subtle)", textAlign: "center" }}>
+            <div style={{ padding: "16px 8px", fontSize: 12, color: "var(--excode-fg-subtle)", textAlign: "center" }}>
               {activeProvider.models.length === 0 ? "Models are detected automatically." : "No models found."}
             </div>
           ) : filteredModels.map(m => {
@@ -190,20 +190,20 @@ const ModelSubmenu = forwardRef<HTMLDivElement, {
                 key={m.id}
                 onClick={() => { onSelect(activeProvider.id, m.id); onClose(); }}
                 style={{ width: "100%", display: "flex", alignItems: "center", gap: 8, padding: "6px 8px", borderRadius: 6, border: "none", cursor: "pointer", background: "transparent", textAlign: "left", transition: "background 0.1s" }}
-                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--origin-bg-hover)"; }}
+                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--excode-bg-hover)"; }}
                 onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; }}
               >
                 <div style={{ width: 28, height: 28, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                   {(m.icon ?? activeProvider.icon)
                     ? <img src={m.icon ?? activeProvider.icon!} alt={m.name} style={{ width: 22, height: 22, objectFit: "contain", filter: (m.iconInvert ?? activeProvider.invert) ? (isDark ? "brightness(0) invert(1)" : "none") : "none" }} />
-                    : <span style={{ fontSize: 9, fontWeight: 700, color: "var(--origin-fg-muted)" }}>{activeProvider.initial}</span>
+                    : <span style={{ fontSize: 9, fontWeight: 700, color: "var(--excode-fg-muted)" }}>{activeProvider.initial}</span>
                   }
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 12, fontWeight: isSelected ? 600 : 400, color: "var(--origin-fg-default)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{m.name}</div>
-                  <div style={{ fontSize: 10, color: "var(--origin-fg-muted)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginTop: 1 }}>{m.description}</div>
+                  <div style={{ fontSize: 12, fontWeight: isSelected ? 600 : 400, color: "var(--excode-fg-default)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{m.name}</div>
+                  <div style={{ fontSize: 10, color: "var(--excode-fg-muted)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginTop: 1 }}>{m.description}</div>
                 </div>
-                {isSelected && <div style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: "var(--origin-accent-blue)", flexShrink: 0 }} />}
+                {isSelected && <div style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: "var(--excode-accent-blue)", flexShrink: 0 }} />}
               </button>
             );
           })}
@@ -261,9 +261,9 @@ export default function PreferencesDropdown({ anchorEl, selectedModelId, effort,
         ref={menuRef}
         style={{
           position: "fixed", top: pos.top, left: pos.left, width: MAIN_WIDTH,
-          background: "color-mix(in srgb, var(--origin-bg-base) 90%, transparent)",
+          background: "color-mix(in srgb, var(--excode-bg-base) 90%, transparent)",
           backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
-          border: "1px solid var(--origin-border-default)", borderRadius: 10,
+          border: "1px solid var(--excode-border-default)", borderRadius: 10,
           boxShadow: "0 8px 32px rgba(0,0,0,0.35)", overflow: "hidden", zIndex: 9999,
         }}
       >
@@ -271,32 +271,32 @@ export default function PreferencesDropdown({ anchorEl, selectedModelId, effort,
         <div
           onClick={() => onEffortChange(effort === "max" ? "normal" : "max")}
           style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 14px", cursor: "pointer" }}
-          onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.backgroundColor = "var(--origin-bg-hover)"; }}
+          onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.backgroundColor = "var(--excode-bg-hover)"; }}
           onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.backgroundColor = "transparent"; }}
         >
           <div>
-            <div style={{ fontSize: 13, fontWeight: 500, color: "var(--origin-fg-default)" }}>Max Effort</div>
-            <div style={{ fontSize: 11, color: "var(--origin-fg-muted)", marginTop: 1 }}>Full system prompt for complex tasks</div>
+            <div style={{ fontSize: 13, fontWeight: 500, color: "var(--excode-fg-default)" }}>Max Effort</div>
+            <div style={{ fontSize: 11, color: "var(--excode-fg-muted)", marginTop: 1 }}>Full system prompt for complex tasks</div>
           </div>
           <ToggleSwitch on={effort === "max"} onToggle={() => onEffortChange(effort === "max" ? "normal" : "max")} />
         </div>
 
-        <div style={{ height: 1, backgroundColor: "var(--origin-border-default)", margin: "0 10px" }} />
+        <div style={{ height: 1, backgroundColor: "var(--excode-border-default)", margin: "0 10px" }} />
 
         {/* Model row */}
         <div
           onClick={() => setModelOpen(v => !v)}
           style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 14px", cursor: "pointer" }}
-          onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.backgroundColor = "var(--origin-bg-hover)"; }}
-          onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.backgroundColor = modelOpen ? "var(--origin-bg-active)" : "transparent"; }}
+          onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.backgroundColor = "var(--excode-bg-hover)"; }}
+          onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.backgroundColor = modelOpen ? "var(--excode-bg-active)" : "transparent"; }}
         >
           <div>
-            <div style={{ fontSize: 13, fontWeight: 500, color: "var(--origin-fg-default)" }}>Model</div>
-            <div style={{ fontSize: 11, color: "var(--origin-fg-muted)", marginTop: 1 }}>
+            <div style={{ fontSize: 13, fontWeight: 500, color: "var(--excode-fg-default)" }}>Model</div>
+            <div style={{ fontSize: 11, color: "var(--excode-fg-muted)", marginTop: 1 }}>
               {activeModel?.name ?? selectedModelId}
             </div>
           </div>
-          <ChevronRight size={14} style={{ color: "var(--origin-fg-muted)", flexShrink: 0, transform: modelOpen ? "rotate(180deg)" : "none", transition: "transform 0.15s" }} />
+          <ChevronRight size={14} style={{ color: "var(--excode-fg-muted)", flexShrink: 0, transform: modelOpen ? "rotate(180deg)" : "none", transition: "transform 0.15s" }} />
         </div>
       </div>
 

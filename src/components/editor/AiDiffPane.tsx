@@ -4,7 +4,7 @@ import { EditorState } from '@codemirror/state';
 import { syntaxHighlighting } from '@codemirror/language';
 import { unifiedMergeView } from '@codemirror/merge';
 import { Check, X } from 'lucide-react';
-import { originBaseTheme, originHighlight } from './Editor';
+import { excodeBaseTheme, excodeHighlight } from './Editor';
 import { getLanguageExtension } from './languageSupport';
 
 export interface AiDiffTabData {
@@ -31,7 +31,7 @@ export default function AiDiffPane({ tab, onClose }: Props) {
       doc: tab.proposedContent,
       extensions: [
         lineNumbers(),
-        syntaxHighlighting(originHighlight),
+        syntaxHighlighting(excodeHighlight),
         getLanguageExtension(tab.filePath),
         // Merge view is baked in from construction — no post-mount mutation
         unifiedMergeView({
@@ -42,7 +42,7 @@ export default function AiDiffPane({ tab, onClose }: Props) {
         }),
         EditorState.readOnly.of(true),
         EditorView.editable.of(false),
-        originBaseTheme,
+        excodeBaseTheme,
       ],
     });
 
@@ -77,13 +77,13 @@ export default function AiDiffPane({ tab, onClose }: Props) {
       <div style={{
         display: 'flex', alignItems: 'center', gap: '10px',
         padding: '7px 14px',
-        borderBottom: '1px solid var(--origin-border-default)',
-        backgroundColor: 'var(--origin-bg-panel)',
+        borderBottom: '1px solid var(--excode-border-default)',
+        backgroundColor: 'var(--excode-bg-panel)',
         flexShrink: 0,
       }}>
-        <span style={{ fontSize: '12px', color: 'var(--origin-fg-muted)', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+        <span style={{ fontSize: '12px', color: 'var(--excode-fg-muted)', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           Review AI changes:{' '}
-          <span style={{ color: 'var(--origin-fg-default)', fontWeight: 500 }}>{fileName}</span>
+          <span style={{ color: 'var(--excode-fg-default)', fontWeight: 500 }}>{fileName}</span>
         </span>
 
         <button
@@ -91,10 +91,10 @@ export default function AiDiffPane({ tab, onClose }: Props) {
           style={{
             ...btnBase,
             background: 'transparent',
-            borderColor: 'color-mix(in srgb, var(--origin-semantic-error) 40%, transparent)',
-            color: 'var(--origin-semantic-error)',
+            borderColor: 'color-mix(in srgb, var(--excode-semantic-error) 40%, transparent)',
+            color: 'var(--excode-semantic-error)',
           }}
-          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'color-mix(in srgb, var(--origin-semantic-error) 8%, transparent)'; }}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'color-mix(in srgb, var(--excode-semantic-error) 8%, transparent)'; }}
           onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
         >
           <X size={12} />
@@ -105,12 +105,12 @@ export default function AiDiffPane({ tab, onClose }: Props) {
           onClick={handleApprove}
           style={{
             ...btnBase,
-            background: 'color-mix(in srgb, var(--origin-semantic-success) 12%, transparent)',
-            borderColor: 'color-mix(in srgb, var(--origin-semantic-success) 50%, transparent)',
-            color: 'var(--origin-semantic-success)',
+            background: 'color-mix(in srgb, var(--excode-semantic-success) 12%, transparent)',
+            borderColor: 'color-mix(in srgb, var(--excode-semantic-success) 50%, transparent)',
+            color: 'var(--excode-semantic-success)',
           }}
-          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'color-mix(in srgb, var(--origin-semantic-success) 22%, transparent)'; }}
-          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'color-mix(in srgb, var(--origin-semantic-success) 12%, transparent)'; }}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'color-mix(in srgb, var(--excode-semantic-success) 22%, transparent)'; }}
+          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'color-mix(in srgb, var(--excode-semantic-success) 12%, transparent)'; }}
         >
           <Check size={12} />
           Accept
@@ -120,7 +120,7 @@ export default function AiDiffPane({ tab, onClose }: Props) {
       {/* Read-only diff view */}
       <div
         ref={containerRef}
-        style={{ flex: 1, overflow: 'hidden', backgroundColor: 'var(--origin-bg-editor)' }}
+        style={{ flex: 1, overflow: 'hidden', backgroundColor: 'var(--excode-bg-editor)' }}
       />
     </div>
   );

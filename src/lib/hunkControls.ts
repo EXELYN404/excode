@@ -14,8 +14,8 @@ class HunkControlWidget extends WidgetType {
       alignItems: 'center',
       gap: '5px',
       padding: '2px 8px',
-      borderTop: '1px solid color-mix(in srgb, var(--origin-border-default) 50%, transparent)',
-      backgroundColor: 'color-mix(in srgb, var(--origin-bg-panel) 60%, transparent)',
+      borderTop: '1px solid color-mix(in srgb, var(--excode-border-default) 50%, transparent)',
+      backgroundColor: 'color-mix(in srgb, var(--excode-bg-panel) 60%, transparent)',
       userSelect: 'none',
     });
 
@@ -49,12 +49,12 @@ function makeBtn(text: string, isAccept: boolean): HTMLButtonElement {
     padding: '1px 8px',
     borderRadius: '4px',
     border: isAccept
-      ? '1px solid color-mix(in srgb, var(--origin-semantic-success) 35%, transparent)'
+      ? '1px solid color-mix(in srgb, var(--excode-semantic-success) 35%, transparent)'
       : '1px solid transparent',
     background: isAccept
-      ? 'color-mix(in srgb, var(--origin-semantic-success) 12%, transparent)'
+      ? 'color-mix(in srgb, var(--excode-semantic-success) 12%, transparent)'
       : 'transparent',
-    color: isAccept ? 'var(--origin-semantic-success)' : 'var(--origin-fg-muted)',
+    color: isAccept ? 'var(--excode-semantic-success)' : 'var(--excode-fg-muted)',
     cursor: 'pointer',
     fontSize: '11px',
     fontFamily: 'var(--font-sans)',
@@ -63,12 +63,12 @@ function makeBtn(text: string, isAccept: boolean): HTMLButtonElement {
 
   btn.addEventListener('mouseenter', () => {
     btn.style.background = isAccept
-      ? 'color-mix(in srgb, var(--origin-semantic-success) 22%, transparent)'
-      : 'var(--origin-bg-hover)';
+      ? 'color-mix(in srgb, var(--excode-semantic-success) 22%, transparent)'
+      : 'var(--excode-bg-hover)';
   });
   btn.addEventListener('mouseleave', () => {
     btn.style.background = isAccept
-      ? 'color-mix(in srgb, var(--origin-semantic-success) 12%, transparent)'
+      ? 'color-mix(in srgb, var(--excode-semantic-success) 12%, transparent)'
       : 'transparent';
   });
 

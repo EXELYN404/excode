@@ -13,13 +13,13 @@ const WorkspaceContext = createContext<WorkspaceContextType>({
 
 export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
   const [folderPath, setFolderPathState] = useState<string | null>(() =>
-    localStorage.getItem("origin-workspace-folder") ?? null
+    localStorage.getItem("excode-workspace-folder") ?? null
   );
 
   const setFolderPath = (path: string | null) => {
     setFolderPathState(path);
-    if (path) localStorage.setItem("origin-workspace-folder", path);
-    else localStorage.removeItem("origin-workspace-folder");
+    if (path) localStorage.setItem("excode-workspace-folder", path);
+    else localStorage.removeItem("excode-workspace-folder");
   };
 
   return (

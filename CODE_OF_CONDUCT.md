@@ -1,6 +1,6 @@
 # Code of Conduct
 
-Origin is a collaborative open-source project. We expect contributors to interact professionally and respectfully.
+EXCODE is a collaborative open-source project. We expect contributors to interact professionally and respectfully.
 
 ## Be Respectful
 
@@ -30,7 +30,7 @@ When participating in issues, discussions, pull requests, or code reviews:
 
 ## Reporting Violations
 
-If you encounter behavior that violates this Code of Conduct, please report it directly to the maintainers through the Origin Discord server.
+If you encounter behavior that violates this Code of Conduct, please report it directly to the maintainers through the EXCODE Discord server.
 
 Reports will be reviewed by the maintainers and handled at their discretion.
 
@@ -44,4 +44,4 @@ Repeated or severe violations may result in temporary or permanent removal from 
 
 If something would be considered inappropriate in a professional engineering environment, it probably does not belong here.
 
-Help keep Origin a place where people can build great software together.
+Help keep EXCODE a place where people can build great software together.

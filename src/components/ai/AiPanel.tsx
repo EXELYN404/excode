@@ -62,15 +62,15 @@ function HeaderBtn({ label, active, onClick, onMouseEnter, onMouseLeave, childre
       className="flex items-center justify-center rounded"
       style={{
         width: 26, height: 26, background: "none", border: "none", cursor: "pointer",
-        color: active ? "var(--origin-fg-default)" : "var(--origin-fg-muted)",
+        color: active ? "var(--excode-fg-default)" : "var(--excode-fg-muted)",
       }}
       onMouseEnter={e => {
-        e.currentTarget.style.color = "var(--origin-fg-default)";
-        e.currentTarget.style.backgroundColor = "var(--origin-bg-hover)";
+        e.currentTarget.style.color = "var(--excode-fg-default)";
+        e.currentTarget.style.backgroundColor = "var(--excode-bg-hover)";
         onMouseEnter?.(e);
       }}
       onMouseLeave={e => {
-        e.currentTarget.style.color = active ? "var(--origin-fg-default)" : "var(--origin-fg-muted)";
+        e.currentTarget.style.color = active ? "var(--excode-fg-default)" : "var(--excode-fg-muted)";
         e.currentTarget.style.backgroundColor = "transparent";
         onMouseLeave?.(e);
       }}
@@ -108,16 +108,16 @@ function ConfirmDialog({
         onClick={e => e.stopPropagation()}
         style={{
           width: 340, borderRadius: "10px",
-          border: "1px solid var(--origin-border-default)",
-          backgroundColor: "var(--origin-bg-sidebar)",
+          border: "1px solid var(--excode-border-default)",
+          backgroundColor: "var(--excode-bg-sidebar)",
           boxShadow: "0 20px 60px rgba(0,0,0,0.4)", overflow: "hidden",
         }}
       >
         <div style={{ padding: "18px 20px 0" }}>
-          <div style={{ fontSize: "14px", fontWeight: 600, color: "var(--origin-fg-default)", marginBottom: "6px" }}>
+          <div style={{ fontSize: "14px", fontWeight: 600, color: "var(--excode-fg-default)", marginBottom: "6px" }}>
             {title}
           </div>
-          <div style={{ fontSize: "13px", color: "var(--origin-fg-muted)", lineHeight: 1.55 }}>
+          <div style={{ fontSize: "13px", color: "var(--excode-fg-muted)", lineHeight: 1.55 }}>
             {message}
           </div>
         </div>
@@ -126,17 +126,17 @@ function ConfirmDialog({
             onClick={onCancel} autoFocus
             style={{
               padding: "6px 14px", borderRadius: "6px", fontSize: "13px", fontWeight: 500, cursor: "pointer",
-              background: "var(--origin-bg-active)", border: "1px solid var(--origin-border-default)",
-              color: "var(--origin-fg-default)",
+              background: "var(--excode-bg-active)", border: "1px solid var(--excode-border-default)",
+              color: "var(--excode-fg-default)",
             }}
-            onMouseEnter={e => { e.currentTarget.style.background = "var(--origin-bg-hover)"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "var(--origin-bg-active)"; }}
+            onMouseEnter={e => { e.currentTarget.style.background = "var(--excode-bg-hover)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "var(--excode-bg-active)"; }}
           >Cancel</button>
           <button
             onClick={onConfirm}
             style={{
               padding: "6px 14px", borderRadius: "6px", fontSize: "13px", fontWeight: 500, cursor: "pointer",
-              background: "var(--origin-semantic-error)", border: "1px solid transparent", color: "#fff",
+              background: "var(--excode-semantic-error)", border: "1px solid transparent", color: "#fff",
             }}
             onMouseEnter={e => { e.currentTarget.style.opacity = "0.85"; }}
             onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
@@ -168,10 +168,10 @@ function PinLabelPopover({ onConfirm, onCancel }: {
     >
       <div
         onClick={e => e.stopPropagation()}
-        style={{ width: 320, borderRadius: "10px", border: "1px solid var(--origin-border-default)", backgroundColor: "var(--origin-bg-sidebar)", boxShadow: "0 20px 60px rgba(0,0,0,0.4)", padding: "20px" }}
+        style={{ width: 320, borderRadius: "10px", border: "1px solid var(--excode-border-default)", backgroundColor: "var(--excode-bg-sidebar)", boxShadow: "0 20px 60px rgba(0,0,0,0.4)", padding: "20px" }}
       >
-        <div style={{ fontSize: "14px", fontWeight: 600, color: "var(--origin-fg-default)", marginBottom: "4px" }}>Pin message</div>
-        <div style={{ fontSize: "12px", color: "var(--origin-fg-muted)", marginBottom: "14px" }}>
+        <div style={{ fontSize: "14px", fontWeight: 600, color: "var(--excode-fg-default)", marginBottom: "4px" }}>Pin message</div>
+        <div style={{ fontSize: "12px", color: "var(--excode-fg-muted)", marginBottom: "14px" }}>
           Add a label to find it quickly. Leave blank to use a content preview.
         </div>
         <input
@@ -182,21 +182,21 @@ function PinLabelPopover({ onConfirm, onCancel }: {
           placeholder="e.g. auth fix, regex approach…"
           style={{
             width: "100%", boxSizing: "border-box",
-            background: "var(--origin-bg-base)", border: "1px solid var(--origin-border-default)",
+            background: "var(--excode-bg-base)", border: "1px solid var(--excode-border-default)",
             borderRadius: "6px", padding: "7px 10px", fontSize: "13px",
-            color: "var(--origin-fg-default)", outline: "none", fontFamily: "var(--font-sans)",
+            color: "var(--excode-fg-default)", outline: "none", fontFamily: "var(--font-sans)",
           }}
         />
         <div style={{ display: "flex", justifyContent: "flex-end", gap: "8px", marginTop: "14px" }}>
           <button
             onClick={onCancel}
-            style={{ padding: "6px 14px", borderRadius: "6px", fontSize: "13px", fontWeight: 500, cursor: "pointer", background: "var(--origin-bg-active)", border: "1px solid var(--origin-border-default)", color: "var(--origin-fg-default)" }}
-            onMouseEnter={e => { e.currentTarget.style.background = "var(--origin-bg-hover)"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "var(--origin-bg-active)"; }}
+            style={{ padding: "6px 14px", borderRadius: "6px", fontSize: "13px", fontWeight: 500, cursor: "pointer", background: "var(--excode-bg-active)", border: "1px solid var(--excode-border-default)", color: "var(--excode-fg-default)" }}
+            onMouseEnter={e => { e.currentTarget.style.background = "var(--excode-bg-hover)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "var(--excode-bg-active)"; }}
           >Cancel</button>
           <button
             onClick={() => onConfirm(label.trim())}
-            style={{ padding: "6px 14px", borderRadius: "6px", fontSize: "13px", fontWeight: 500, cursor: "pointer", background: "var(--origin-fg-default)", border: "1px solid transparent", color: "var(--origin-bg-base)" }}
+            style={{ padding: "6px 14px", borderRadius: "6px", fontSize: "13px", fontWeight: 500, cursor: "pointer", background: "var(--excode-fg-default)", border: "1px solid transparent", color: "var(--excode-bg-base)" }}
           >Pin</button>
         </div>
       </div>
@@ -211,17 +211,17 @@ function RecentSessions({ sessions, onSelect, onShowAll }: {
   return (
     <div style={{ padding: "20px 14px 0" }}>
       <div style={{ display: "flex", alignItems: "center", marginBottom: "6px" }}>
-        <span style={{ fontSize: "11px", fontWeight: 500, color: "var(--origin-fg-subtle)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+        <span style={{ fontSize: "11px", fontWeight: 500, color: "var(--excode-fg-subtle)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
           Recent
         </span>
         {sessions.length > 5 && (
-          <button onClick={onShowAll} style={{ marginLeft: "auto", fontSize: "11px", color: "var(--origin-fg-muted)", background: "none", border: "none", cursor: "pointer", padding: 0 }}>
+          <button onClick={onShowAll} style={{ marginLeft: "auto", fontSize: "11px", color: "var(--excode-fg-muted)", background: "none", border: "none", cursor: "pointer", padding: 0 }}>
             Show all
           </button>
         )}
       </div>
       {sessions.length === 0 ? (
-        <div style={{ fontSize: "12px", color: "var(--origin-fg-subtle)", padding: "6px 0" }}>
+        <div style={{ fontSize: "12px", color: "var(--excode-fg-subtle)", padding: "6px 0" }}>
           No sessions for this project yet.
         </div>
       ) : (
@@ -235,13 +235,13 @@ function RecentSessions({ sessions, onSelect, onShowAll }: {
                 padding: "7px 8px", borderRadius: "6px",
                 background: "none", border: "none", cursor: "pointer", gap: "8px",
               }}
-              onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--origin-bg-hover)"; }}
+              onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--excode-bg-hover)"; }}
               onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; }}
             >
-              <span style={{ flex: 1, fontSize: "12px", color: "var(--origin-fg-default)", textAlign: "left", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+              <span style={{ flex: 1, fontSize: "12px", color: "var(--excode-fg-default)", textAlign: "left", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                 {s.title}
               </span>
-              <ChevronRight size={13} style={{ color: "var(--origin-fg-subtle)", flexShrink: 0 }} />
+              <ChevronRight size={13} style={{ color: "var(--excode-fg-subtle)", flexShrink: 0 }} />
             </button>
           ))}
         </div>
@@ -359,16 +359,16 @@ export default function AiPanel({
   const { folderPath } = useWorkspace();
 
   const [width, setWidth] = useState(() => {
-    const n = parseInt(localStorage.getItem("origin-ai-panel-width") ?? "", 10);
+    const n = parseInt(localStorage.getItem("excode-ai-panel-width") ?? "", 10);
     return isNaN(n) ? DEFAULT_WIDTH : Math.min(MAX_WIDTH, Math.max(MIN_WIDTH, n));
   });
   const [contextOpen, setContextOpen] = useState(false);
   const [chatView, setChatView] = useState<"new" | "chat" | "history">(() => {
-    const stored = localStorage.getItem("origin-ai-chat-view");
+    const stored = localStorage.getItem("excode-ai-chat-view");
     return (stored === "new" || stored === "chat") ? stored : "new";
   });
   const [contextWidth, setContextWidth] = useState(() => {
-    const n = parseInt(localStorage.getItem("origin-ai-ctx-width") ?? "", 10);
+    const n = parseInt(localStorage.getItem("excode-ai-ctx-width") ?? "", 10);
     return isNaN(n) ? CTX_DEFAULT : Math.min(CTX_MAX, Math.max(CTX_MIN, n));
   });
 
@@ -392,7 +392,7 @@ export default function AiPanel({
   const messagesEndRef     = useRef<HTMLDivElement>(null);
 
   const folderPathRef              = useRef<string | null | undefined>(folderPath);
-  const originMdRef                = useRef<string>("");
+  const excodeMdRef                = useRef<string>("");
   const isFirstFolderEffect        = useRef(true);
   const activeSessionIdRef         = useRef<string | null>(null);
   const pendingAssistantDbIdRef    = useRef<string | null>(null);
@@ -421,11 +421,11 @@ export default function AiPanel({
   }, [folderPath]);
 
   useEffect(() => {
-    if (!folderPath) { originMdRef.current = ""; return; }
+    if (!folderPath) { excodeMdRef.current = ""; return; }
     const sep = folderPath.includes("\\") ? "\\" : "/";
-    readFile(`${folderPath}${sep}ORIGIN.md`)
-      .then(content => { originMdRef.current = content.trim(); })
-      .catch(() => { originMdRef.current = ""; });
+    readFile(`${folderPath}${sep}EXCODE.md`)
+      .then(content => { excodeMdRef.current = content.trim(); })
+      .catch(() => { excodeMdRef.current = ""; });
   }, [folderPath]);
 
   useEffect(() => {
@@ -459,7 +459,7 @@ export default function AiPanel({
       setMessages([]);
       activeSessionIdRef.current = null;
       setChatView("new");
-      localStorage.setItem("origin-ai-chat-view", "new");
+      localStorage.setItem("excode-ai-chat-view", "new");
     }
     isFirstFolderEffect.current = false;
 
@@ -475,7 +475,7 @@ export default function AiPanel({
             setMessages(displayMsgs);
             activeSessionIdRef.current = storedId;
             setChatView("chat");
-            localStorage.setItem("origin-ai-chat-view", "chat");
+            localStorage.setItem("excode-ai-chat-view", "chat");
           }
         } catch (err) {
           console.error("[AiPanel] DB session restore failed:", err);
@@ -501,7 +501,7 @@ export default function AiPanel({
     localStorage.setItem(activeSessionKey(fp), sessionId);
     setMessages([]);
     setChatView("chat");
-    localStorage.setItem("origin-ai-chat-view", "chat");
+    localStorage.setItem("excode-ai-chat-view", "chat");
 
     try {
       const displayMsgs = await restoreSession(sessionId);
@@ -552,7 +552,7 @@ export default function AiPanel({
         { role: "assistant" as const, content: "No API key found for this provider. Please add your API key in Settings → Connect AI.", streaming: false },
       ]);
       setChatView("chat");
-      localStorage.setItem("origin-ai-chat-view", "chat");
+      localStorage.setItem("excode-ai-chat-view", "chat");
       return;
     }
 
@@ -627,16 +627,16 @@ export default function AiPanel({
       { role: "assistant", content: "", streaming: true, parts: [], sourceFilePath: userMsg.sourceFilePath },
     ]);
     setChatView("chat");
-    localStorage.setItem("origin-ai-chat-view", "chat");
+    localStorage.setItem("excode-ai-chat-view", "chat");
 
-    const originMd = originMdRef.current;
-    const withOriginMd = (base: string) =>
-      originMd ? `${base}\n\n---\n\n${originMd}` : base;
+    const excodeMd = excodeMdRef.current;
+    const withExcodeMd = (base: string) =>
+      excodeMd ? `${base}\n\n---\n\n${excodeMd}` : base;
 
-    const isMax = (localStorage.getItem("origin-ai-effort") ?? "normal") === "max";
-    const systemPrompt     = withOriginMd(localStorage.getItem("origin-ai-system-prompt") ?? (isMax ? DEFAULT_SYSTEM_PROMPT     : DEFAULT_SYSTEM_PROMPT_LITE));
-    const askSystemPrompt  = withOriginMd(localStorage.getItem("origin-ai-ask-prompt")    ?? (isMax ? DEFAULT_ASK_PROMPT        : DEFAULT_ASK_PROMPT_LITE));
-    const planSystemPrompt = withOriginMd(localStorage.getItem("origin-ai-plan-prompt")   ?? (isMax ? DEFAULT_PLAN_PROMPT       : DEFAULT_PLAN_PROMPT_LITE));
+    const isMax = (localStorage.getItem("excode-ai-effort") ?? "normal") === "max";
+    const systemPrompt     = withExcodeMd(localStorage.getItem("excode-ai-system-prompt") ?? (isMax ? DEFAULT_SYSTEM_PROMPT     : DEFAULT_SYSTEM_PROMPT_LITE));
+    const askSystemPrompt  = withExcodeMd(localStorage.getItem("excode-ai-ask-prompt")    ?? (isMax ? DEFAULT_ASK_PROMPT        : DEFAULT_ASK_PROMPT_LITE));
+    const planSystemPrompt = withExcodeMd(localStorage.getItem("excode-ai-plan-prompt")   ?? (isMax ? DEFAULT_PLAN_PROMPT       : DEFAULT_PLAN_PROMPT_LITE));
 
     // ── Event handler ────────────────────────────────────────────────────────
     const handleEvent = (event: AgentEvent) => {
@@ -879,8 +879,8 @@ export default function AiPanel({
           { role: "assistant", content: "", streaming: true, parts: [] },
         ]);
 
-        const phase2IsMax = (localStorage.getItem("origin-ai-effort") ?? "normal") === "max";
-        const phase2SystemPrompt = withOriginMd(localStorage.getItem("origin-ai-system-prompt") ?? (phase2IsMax ? DEFAULT_SYSTEM_PROMPT : DEFAULT_SYSTEM_PROMPT_LITE));
+        const phase2IsMax = (localStorage.getItem("excode-ai-effort") ?? "normal") === "max";
+        const phase2SystemPrompt = withExcodeMd(localStorage.getItem("excode-ai-system-prompt") ?? (phase2IsMax ? DEFAULT_SYSTEM_PROMPT : DEFAULT_SYSTEM_PROMPT_LITE));
         const { cancel } = runAgent({ model, messages: phase2Messages, tools: makeFullTools(), systemPrompt: phase2SystemPrompt, cacheSystem: providerId === "anthropic", onEvent: handleEvent });
         streamCleanupRef.current = cancel;
       };
@@ -921,7 +921,7 @@ export default function AiPanel({
     const fp = folderPathRef.current ?? "";
     localStorage.removeItem(activeSessionKey(fp));
     setChatView("new");
-    localStorage.removeItem("origin-ai-chat-view");
+    localStorage.removeItem("excode-ai-chat-view");
     setSessions(lsForPath(fp));
   }, []);
 
@@ -1027,7 +1027,7 @@ export default function AiPanel({
       if (!dragging.current) return;
       const next = Math.min(MAX_WIDTH, Math.max(MIN_WIDTH, startW.current + (startX.current - ev.clientX)));
       setWidth(next);
-      localStorage.setItem("origin-ai-panel-width", String(next));
+      localStorage.setItem("excode-ai-panel-width", String(next));
     };
     const onUp = () => { dragging.current = false; window.removeEventListener("mousemove", onMove); window.removeEventListener("mouseup", onUp); };
     window.addEventListener("mousemove", onMove);
@@ -1041,7 +1041,7 @@ export default function AiPanel({
       if (!dragging.current) return;
       const next = Math.min(CTX_MAX, Math.max(CTX_MIN, startW.current + (startX.current - ev.clientX)));
       setContextWidth(next);
-      localStorage.setItem("origin-ai-ctx-width", String(next));
+      localStorage.setItem("excode-ai-ctx-width", String(next));
     };
     const onUp = () => { dragging.current = false; window.removeEventListener("mousemove", onMove); window.removeEventListener("mouseup", onUp); };
     window.addEventListener("mousemove", onMove);
@@ -1057,19 +1057,19 @@ export default function AiPanel({
       {/* ── Chat section ── */}
       <div
         className="relative flex flex-col shrink-0"
-        style={{ width, borderLeft: "1px solid var(--origin-border-default)", backgroundColor: "var(--origin-bg-sidebar)" }}
+        style={{ width, borderLeft: "1px solid var(--excode-border-default)", backgroundColor: "var(--excode-bg-sidebar)" }}
       >
         <div
           onMouseDown={onMouseDown}
           className="absolute left-0 top-0 bottom-0 w-1 cursor-col-resize z-10"
           style={{ backgroundColor: "transparent" }}
-          onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--origin-border-default)"; }}
+          onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--excode-border-default)"; }}
           onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; }}
         />
 
         {/* Header */}
-        <div className="flex items-center px-3 shrink-0" style={{ height: "36px", borderBottom: "1px solid var(--origin-border-default)" }}>
-          <MessageSquare size={14} style={{ color: "var(--origin-fg-muted)" }} />
+        <div className="flex items-center px-3 shrink-0" style={{ height: "36px", borderBottom: "1px solid var(--excode-border-default)" }}>
+          <MessageSquare size={14} style={{ color: "var(--excode-fg-muted)" }} />
           <div className="flex items-center gap-0.5 ml-auto">
             <HeaderBtn
               label="History"
@@ -1096,8 +1096,8 @@ export default function AiPanel({
         {chatView === "new" && (
           <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
             <div style={{ padding: "0 14px 16px" }}>
-              <div style={{ fontSize: "22px", fontWeight: 600, color: "var(--origin-fg-default)", marginBottom: "4px" }}>Write with AI</div>
-              <div style={{ fontSize: "13px", color: "var(--origin-fg-muted)", lineHeight: "1.5" }}>
+              <div style={{ fontSize: "22px", fontWeight: 600, color: "var(--excode-fg-default)", marginBottom: "4px" }}>Write with AI</div>
+              <div style={{ fontSize: "13px", color: "var(--excode-fg-muted)", lineHeight: "1.5" }}>
                 Ask questions, write code, and fix bugs with AI.
               </div>
             </div>
@@ -1137,16 +1137,16 @@ export default function AiPanel({
         {/* History view */}
         {chatView === "history" && (
           <div style={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column" }}>
-            <div style={{ padding: "14px 14px 10px", borderBottom: "1px solid var(--origin-border-default)" }}>
-              <div style={{ fontSize: "13px", fontWeight: 600, color: "var(--origin-fg-default)" }}>Chat History</div>
+            <div style={{ padding: "14px 14px 10px", borderBottom: "1px solid var(--excode-border-default)" }}>
+              <div style={{ fontSize: "13px", fontWeight: 600, color: "var(--excode-fg-default)" }}>Chat History</div>
               {folderPath && (
-                <div style={{ fontSize: "11px", color: "var(--origin-fg-subtle)", marginTop: "2px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                <div style={{ fontSize: "11px", color: "var(--excode-fg-subtle)", marginTop: "2px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                   {folderPath.split(/[/\\]/).pop()}
                 </div>
               )}
             </div>
             {sessions.length === 0 ? (
-              <div style={{ padding: "20px 14px", fontSize: "12px", color: "var(--origin-fg-subtle)" }}>
+              <div style={{ padding: "20px 14px", fontSize: "12px", color: "var(--excode-fg-subtle)" }}>
                 No chat history for this project yet.
               </div>
             ) : (
@@ -1163,15 +1163,15 @@ export default function AiPanel({
                       style={{
                         display: "flex", alignItems: "center", flex: 1,
                         padding: "8px 8px", borderRadius: "6px",
-                        background: hoveredSessionId === s.id ? "var(--origin-bg-hover)" : "none",
+                        background: hoveredSessionId === s.id ? "var(--excode-bg-hover)" : "none",
                         border: "none", cursor: "pointer", gap: "8px", textAlign: "left", minWidth: 0,
                       }}
                     >
-                      <MessageSquare size={13} style={{ color: "var(--origin-fg-subtle)", flexShrink: 0 }} />
-                      <span style={{ flex: 1, fontSize: "12px", color: "var(--origin-fg-default)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                      <MessageSquare size={13} style={{ color: "var(--excode-fg-subtle)", flexShrink: 0 }} />
+                      <span style={{ flex: 1, fontSize: "12px", color: "var(--excode-fg-default)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                         {s.title}
                       </span>
-                      <span style={{ fontSize: "11px", color: "var(--origin-fg-subtle)", flexShrink: 0, marginRight: "4px" }}>
+                      <span style={{ fontSize: "11px", color: "var(--excode-fg-subtle)", flexShrink: 0, marginRight: "4px" }}>
                         {formatRelativeTime(s.updated_at)}
                       </span>
                     </button>
@@ -1181,13 +1181,13 @@ export default function AiPanel({
                         flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center",
                         width: "26px", height: "26px", borderRadius: "5px",
                         background: "none", border: "none", cursor: "pointer",
-                        color: "var(--origin-fg-subtle)",
+                        color: "var(--excode-fg-subtle)",
                         opacity: hoveredSessionId === s.id ? 1 : 0,
                         pointerEvents: hoveredSessionId === s.id ? "auto" : "none",
                         marginRight: "4px", transition: "opacity 0.1s",
                       }}
-                      onMouseEnter={e => { e.currentTarget.style.color = "var(--origin-fg-default)"; e.currentTarget.style.backgroundColor = "var(--origin-bg-active)"; }}
-                      onMouseLeave={e => { e.currentTarget.style.color = "var(--origin-fg-subtle)"; e.currentTarget.style.backgroundColor = "transparent"; }}
+                      onMouseEnter={e => { e.currentTarget.style.color = "var(--excode-fg-default)"; e.currentTarget.style.backgroundColor = "var(--excode-bg-active)"; }}
+                      onMouseLeave={e => { e.currentTarget.style.color = "var(--excode-fg-subtle)"; e.currentTarget.style.backgroundColor = "transparent"; }}
                       aria-label="Delete session"
                     >
                       <Trash2 size={13} />
@@ -1204,23 +1204,23 @@ export default function AiPanel({
       {contextOpen && (
         <div
           className="relative flex flex-col shrink-0"
-          style={{ width: contextWidth, borderLeft: "1px solid var(--origin-border-default)", backgroundColor: "var(--origin-bg-sidebar)" }}
+          style={{ width: contextWidth, borderLeft: "1px solid var(--excode-border-default)", backgroundColor: "var(--excode-bg-sidebar)" }}
         >
           <div
             onMouseDown={onCtxMouseDown}
             className="absolute left-0 top-0 bottom-0 w-1 cursor-col-resize z-10"
             style={{ backgroundColor: "transparent" }}
-            onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--origin-border-default)"; }}
+            onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--excode-border-default)"; }}
             onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; }}
           />
-          <div className="flex items-center px-3 shrink-0" style={{ height: "36px", borderBottom: "1px solid var(--origin-border-default)", gap: "6px" }}>
-            <Pin size={13} style={{ color: "var(--origin-fg-muted)" }} />
-            <span style={{ fontSize: "12px", fontWeight: 600, color: "var(--origin-fg-default)" }}>Pinboard</span>
+          <div className="flex items-center px-3 shrink-0" style={{ height: "36px", borderBottom: "1px solid var(--excode-border-default)", gap: "6px" }}>
+            <Pin size={13} style={{ color: "var(--excode-fg-muted)" }} />
+            <span style={{ fontSize: "12px", fontWeight: 600, color: "var(--excode-fg-default)" }}>Pinboard</span>
           </div>
 
           <div style={{ flex: 7, minHeight: 0, overflowY: "auto", padding: "8px 8px 4px" }}>
             {pinnedMessages.length === 0 ? (
-              <div style={{ padding: "16px 6px", fontSize: "12px", color: "var(--origin-fg-subtle)", lineHeight: 1.55 }}>
+              <div style={{ padding: "16px 6px", fontSize: "12px", color: "var(--excode-fg-subtle)", lineHeight: 1.55 }}>
                 No pinned messages yet. Hover over an AI response and click the pin icon to save it here.
               </div>
             ) : (
@@ -1229,35 +1229,35 @@ export default function AiPanel({
                   const isExpanded = expandedPins.has(pin.id);
                   const preview = pinPreview(pin);
                   return (
-                    <div key={pin.id} style={{ borderRadius: "7px", border: "1px solid var(--origin-border-default)", backgroundColor: "var(--origin-bg-base)", overflow: "hidden" }}>
+                    <div key={pin.id} style={{ borderRadius: "7px", border: "1px solid var(--excode-border-default)", backgroundColor: "var(--excode-bg-base)", overflow: "hidden" }}>
                       <div
                         onClick={() => setExpandedPins(prev => { const next = new Set(prev); if (next.has(pin.id)) next.delete(pin.id); else next.add(pin.id); return next; })}
                         style={{ display: "flex", alignItems: "flex-start", gap: "6px", padding: "8px 8px 6px", cursor: "pointer" }}
-                        onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.backgroundColor = "var(--origin-bg-hover)"; }}
+                        onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.backgroundColor = "var(--excode-bg-hover)"; }}
                         onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.backgroundColor = "transparent"; }}
                       >
-                        <span style={{ flexShrink: 0, marginTop: "1px", color: "var(--origin-fg-subtle)" }}>
+                        <span style={{ flexShrink: 0, marginTop: "1px", color: "var(--excode-fg-subtle)" }}>
                           {isExpanded ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
                         </span>
                         <div style={{ flex: 1, minWidth: 0 }}>
-                          <div style={{ fontSize: "12px", fontWeight: pin.label ? 600 : 400, color: "var(--origin-fg-default)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                          <div style={{ fontSize: "12px", fontWeight: pin.label ? 600 : 400, color: "var(--excode-fg-default)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                             {preview}
                           </div>
-                          <div style={{ fontSize: "10px", color: "var(--origin-fg-subtle)", marginTop: "2px" }}>
+                          <div style={{ fontSize: "10px", color: "var(--excode-fg-subtle)", marginTop: "2px" }}>
                             {formatRelativeTime(pin.pinnedAt)}
                           </div>
                         </div>
                         {pin.sessionId && (
-                          <button onClick={e => { e.stopPropagation(); handleNavigateToPin(pin); }} title="Go to message" style={{ flexShrink: 0, display: "flex", alignItems: "center", background: "none", border: "none", cursor: "pointer", padding: "2px", borderRadius: "3px", color: "var(--origin-fg-subtle)" }} onMouseEnter={e => { e.currentTarget.style.color = "var(--origin-fg-default)"; e.currentTarget.style.backgroundColor = "var(--origin-bg-active)"; }} onMouseLeave={e => { e.currentTarget.style.color = "var(--origin-fg-subtle)"; e.currentTarget.style.backgroundColor = "transparent"; }}>
+                          <button onClick={e => { e.stopPropagation(); handleNavigateToPin(pin); }} title="Go to message" style={{ flexShrink: 0, display: "flex", alignItems: "center", background: "none", border: "none", cursor: "pointer", padding: "2px", borderRadius: "3px", color: "var(--excode-fg-subtle)" }} onMouseEnter={e => { e.currentTarget.style.color = "var(--excode-fg-default)"; e.currentTarget.style.backgroundColor = "var(--excode-bg-active)"; }} onMouseLeave={e => { e.currentTarget.style.color = "var(--excode-fg-subtle)"; e.currentTarget.style.backgroundColor = "transparent"; }}>
                             <ArrowUpRight size={12} />
                           </button>
                         )}
-                        <button onClick={e => { e.stopPropagation(); handleUnpin(pin.id); }} title="Unpin" style={{ flexShrink: 0, display: "flex", alignItems: "center", background: "none", border: "none", cursor: "pointer", padding: "2px", borderRadius: "3px", color: "var(--origin-fg-subtle)" }} onMouseEnter={e => { e.currentTarget.style.color = "var(--origin-fg-default)"; e.currentTarget.style.backgroundColor = "var(--origin-bg-active)"; }} onMouseLeave={e => { e.currentTarget.style.color = "var(--origin-fg-subtle)"; e.currentTarget.style.backgroundColor = "transparent"; }}>
+                        <button onClick={e => { e.stopPropagation(); handleUnpin(pin.id); }} title="Unpin" style={{ flexShrink: 0, display: "flex", alignItems: "center", background: "none", border: "none", cursor: "pointer", padding: "2px", borderRadius: "3px", color: "var(--excode-fg-subtle)" }} onMouseEnter={e => { e.currentTarget.style.color = "var(--excode-fg-default)"; e.currentTarget.style.backgroundColor = "var(--excode-bg-active)"; }} onMouseLeave={e => { e.currentTarget.style.color = "var(--excode-fg-subtle)"; e.currentTarget.style.backgroundColor = "transparent"; }}>
                           <PinOff size={11} />
                         </button>
                       </div>
                       {isExpanded && (
-                        <div style={{ padding: "0 10px 10px", borderTop: "1px solid var(--origin-border-default)", fontSize: "12px", lineHeight: 1.55, overflowY: "auto", maxHeight: "320px" }}>
+                        <div style={{ padding: "0 10px 10px", borderTop: "1px solid var(--excode-border-default)", fontSize: "12px", lineHeight: 1.55, overflowY: "auto", maxHeight: "320px" }}>
                           <MarkdownMessage content={pin.content} isStreaming={false} />
                         </div>
                       )}
@@ -1268,15 +1268,15 @@ export default function AiPanel({
             )}
           </div>
 
-          <div style={{ flex: 3, minHeight: 0, borderTop: "1px solid var(--origin-border-default)", display: "flex", flexDirection: "column" }}>
-            <div style={{ padding: "6px 12px 4px", fontSize: "10px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--origin-fg-subtle)", flexShrink: 0 }}>
+          <div style={{ flex: 3, minHeight: 0, borderTop: "1px solid var(--excode-border-default)", display: "flex", flexDirection: "column" }}>
+            <div style={{ padding: "6px 12px 4px", fontSize: "10px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--excode-fg-subtle)", flexShrink: 0 }}>
               Notes
             </div>
             <textarea
               value={notesValue}
               onChange={handleNotesChange}
               placeholder="Write anything…"
-              style={{ flex: 1, resize: "none", border: "none", outline: "none", background: "transparent", padding: "4px 12px 10px", fontSize: "12px", lineHeight: 1.6, color: "var(--origin-fg-default)", fontFamily: "var(--font-sans)", overflowY: "auto" }}
+              style={{ flex: 1, resize: "none", border: "none", outline: "none", background: "transparent", padding: "4px 12px 10px", fontSize: "12px", lineHeight: 1.6, color: "var(--excode-fg-default)", fontFamily: "var(--font-sans)", overflowY: "auto" }}
             />
           </div>
         </div>

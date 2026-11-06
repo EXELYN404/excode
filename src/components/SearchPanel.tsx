@@ -39,7 +39,7 @@ function MatchLine({ match, query, onOpen }: { match: SearchMatch; query: string
   const highlighted = idx !== -1 ? (
     <>
       {match.text.slice(0, idx)}
-      <mark style={{ background: 'var(--origin-accent-blue)', color: 'var(--origin-bg-base)', borderRadius: 2, padding: '0 1px' }}>
+      <mark style={{ background: 'var(--excode-accent-blue)', color: 'var(--excode-bg-base)', borderRadius: 2, padding: '0 1px' }}>
         {match.text.slice(idx, idx + query.length)}
       </mark>
       {match.text.slice(idx + query.length)}
@@ -54,18 +54,18 @@ function MatchLine({ match, query, onOpen }: { match: SearchMatch; query: string
       style={{
         display: 'flex', alignItems: 'baseline', gap: 8,
         padding: '2px 10px 2px 24px', cursor: 'pointer',
-        background: hovered ? 'var(--origin-bg-hover)' : 'transparent',
+        background: hovered ? 'var(--excode-bg-hover)' : 'transparent',
         transition: 'background 0.08s',
       }}
     >
       <span style={{
-        fontSize: 10, color: 'var(--origin-fg-subtle)', flexShrink: 0,
+        fontSize: 10, color: 'var(--excode-fg-subtle)', flexShrink: 0,
         fontFamily: 'var(--font-mono)', minWidth: 26, textAlign: 'right',
       }}>
         {match.line}
       </span>
       <span style={{
-        fontSize: 12, color: 'var(--origin-fg-muted)',
+        fontSize: 12, color: 'var(--excode-fg-muted)',
         overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
         fontFamily: 'var(--font-mono)',
       }}>
@@ -108,7 +108,7 @@ export default function SearchPanel({ onFileOpenAtLine }: Props) {
       <div style={{
         padding: '10px 12px 6px', fontSize: 11, fontWeight: 600,
         letterSpacing: '0.8px', textTransform: 'uppercase',
-        color: 'var(--origin-fg-muted)',
+        color: 'var(--excode-fg-muted)',
       }}>
         Search
       </div>
@@ -117,14 +117,14 @@ export default function SearchPanel({ onFileOpenAtLine }: Props) {
       <div style={{ padding: '0 8px 8px' }}>
         <div style={{
           display: 'flex', alignItems: 'center', gap: 6,
-          background: 'var(--origin-bg-input)',
-          border: '1px solid var(--origin-border-default)',
+          background: 'var(--excode-bg-input)',
+          border: '1px solid var(--excode-border-default)',
           borderRadius: 6, padding: '5px 8px',
         }}>
           <Search
             size={12}
             style={{
-              color: 'var(--origin-fg-muted)', flexShrink: 0,
+              color: 'var(--excode-fg-muted)', flexShrink: 0,
               opacity: loading ? 0.4 : 1,
               animation: loading ? 'pulse 1s ease-in-out infinite' : 'none',
             }}
@@ -135,7 +135,7 @@ export default function SearchPanel({ onFileOpenAtLine }: Props) {
             placeholder="Search files…"
             style={{
               flex: 1, background: 'transparent', border: 'none', outline: 'none',
-              fontSize: 12, color: 'var(--origin-fg-default)', fontFamily: 'var(--font-sans)',
+              fontSize: 12, color: 'var(--excode-fg-default)', fontFamily: 'var(--font-sans)',
             }}
           />
           {query && (
@@ -143,7 +143,7 @@ export default function SearchPanel({ onFileOpenAtLine }: Props) {
               onClick={() => setQuery('')}
               style={{
                 background: 'none', border: 'none', cursor: 'pointer',
-                color: 'var(--origin-fg-subtle)', padding: 0, fontSize: 14, lineHeight: 1,
+                color: 'var(--excode-fg-subtle)', padding: 0, fontSize: 14, lineHeight: 1,
               }}
             >
               ×
@@ -154,7 +154,7 @@ export default function SearchPanel({ onFileOpenAtLine }: Props) {
 
       {/* Results summary */}
       {results.length > 0 && (
-        <div style={{ padding: '0 12px 4px', fontSize: 10, color: 'var(--origin-fg-subtle)' }}>
+        <div style={{ padding: '0 12px 4px', fontSize: 10, color: 'var(--excode-fg-subtle)' }}>
           {results.length}{results.length >= 500 ? '+' : ''} result{results.length !== 1 ? 's' : ''} in {groups.length} file{groups.length !== 1 ? 's' : ''}
         </div>
       )}
@@ -162,13 +162,13 @@ export default function SearchPanel({ onFileOpenAtLine }: Props) {
       {/* Result list */}
       <div style={{ flex: 1, overflowY: 'auto' }}>
         {!folderPath && (
-          <div style={{ padding: '20px 12px', fontSize: 12, color: 'var(--origin-fg-subtle)', textAlign: 'center' }}>
+          <div style={{ padding: '20px 12px', fontSize: 12, color: 'var(--excode-fg-subtle)', textAlign: 'center' }}>
             Open a folder to search
           </div>
         )}
 
         {folderPath && query.trim() && !loading && results.length === 0 && (
-          <div style={{ padding: '20px 12px', fontSize: 12, color: 'var(--origin-fg-subtle)', textAlign: 'center' }}>
+          <div style={{ padding: '20px 12px', fontSize: 12, color: 'var(--excode-fg-subtle)', textAlign: 'center' }}>
             No results for "{query}"
           </div>
         )}
@@ -178,19 +178,19 @@ export default function SearchPanel({ onFileOpenAtLine }: Props) {
             <div style={{
               display: 'flex', alignItems: 'center', gap: 5,
               padding: '6px 10px 2px', fontSize: 12, fontWeight: 500,
-              color: 'var(--origin-fg-default)',
+              color: 'var(--excode-fg-default)',
               position: 'sticky', top: 0,
-              background: 'var(--origin-bg-sidebar)',
+              background: 'var(--excode-bg-sidebar)',
             }}>
               <File size={12} style={{ color: fileColor(group.name), flexShrink: 0 }} />
               <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1 }}>
                 {group.name}
               </span>
-              <span style={{ fontSize: 10, color: 'var(--origin-fg-subtle)', flexShrink: 0 }}>
+              <span style={{ fontSize: 10, color: 'var(--excode-fg-subtle)', flexShrink: 0 }}>
                 {group.matches.length}
               </span>
             </div>
-            <div style={{ fontSize: 10, color: 'var(--origin-fg-subtle)', padding: '0 10px 3px 24px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            <div style={{ fontSize: 10, color: 'var(--excode-fg-subtle)', padding: '0 10px 3px 24px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {group.rel}
             </div>
             {group.matches.map((m, i) => (
@@ -205,7 +205,7 @@ export default function SearchPanel({ onFileOpenAtLine }: Props) {
         ))}
 
         {results.length >= 500 && (
-          <div style={{ padding: '8px 12px', fontSize: 11, color: 'var(--origin-fg-subtle)', fontStyle: 'italic' }}>
+          <div style={{ padding: '8px 12px', fontSize: 11, color: 'var(--excode-fg-subtle)', fontStyle: 'italic' }}>
             Showing first 500 matches — refine your query to narrow results
           </div>
         )}

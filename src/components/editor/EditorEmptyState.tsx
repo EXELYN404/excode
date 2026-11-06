@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 import { open } from '@tauri-apps/plugin-dialog';
 import { FolderOpen, FileText, FilePlus, ChevronDown } from 'lucide-react';
-import { useTheme } from '../../themes/ThemeContext';
 import { getSetting, pushRecentProject, type RecentProject } from '../../lib/settings';
-import wordmarkWhite from '../../assets/origin_wordmark_white_color.svg';
-import wordmarkBlack from '../../assets/origin_wordmark_black_color.svg';
+import wordmarkWhite from '../../assets/excode/wordmark-dark.png';
 
 interface Props {
   onFolderOpen: (path: string) => void;
@@ -22,12 +20,12 @@ function ActionButton({ icon, label, onClick }: { icon: React.ReactNode; label: 
       style={{
         display: 'flex', alignItems: 'center', gap: '8px',
         padding: '9px 20px', borderRadius: '8px', cursor: 'pointer',
-        border: '1px solid var(--origin-border-default)',
-        background: hovered ? 'var(--origin-bg-base)' : 'transparent',
-        color: hovered ? 'var(--origin-fg-default)' : 'var(--origin-fg-muted)',
+        border: '1px solid var(--excode-border-default)',
+        background: hovered ? 'var(--excode-bg-base)' : 'transparent',
+        color: hovered ? 'var(--excode-fg-default)' : 'var(--excode-fg-muted)',
         fontSize: '13px', fontWeight: 500, fontFamily: 'inherit',
         transition: 'background 0.15s, color 0.15s, border-color 0.15s',
-        borderColor: hovered ? 'var(--origin-border-subtle)' : 'var(--origin-border-default)',
+        borderColor: hovered ? 'var(--excode-border-subtle)' : 'var(--excode-border-default)',
         whiteSpace: 'nowrap',
       }}
     >
@@ -41,7 +39,6 @@ const INITIAL_LIMIT = 5;
 const ITEM_HEIGHT = 34; // px per item including gap
 
 export default function EditorEmptyState({ onFolderOpen, onFileOpen, onNewFile }: Props) {
-  const { theme } = useTheme();
   const [recents, setRecents] = useState<RecentProject[]>([]);
   const [expanded, setExpanded] = useState(false);
   const [showMoreHovered, setShowMoreHovered] = useState(false);
@@ -86,8 +83,8 @@ export default function EditorEmptyState({ onFolderOpen, onFileOpen, onNewFile }
 
         {/* Logo */}
         <img
-          src={theme.type === 'dark' ? wordmarkWhite : wordmarkBlack}
-          alt="Origin"
+          src={wordmarkWhite}
+          alt="ExCode"
           style={{ height: '32px' }}
         />
 
@@ -100,11 +97,11 @@ export default function EditorEmptyState({ onFolderOpen, onFileOpen, onNewFile }
 
         {/* Recent projects */}
         <div style={{ width: '100%' }}>
-          <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--origin-fg-muted)', marginBottom: '8px' }}>
+          <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--excode-fg-muted)', marginBottom: '8px' }}>
             Recent Projects
           </div>
           {recents.length === 0 ? (
-            <div style={{ fontSize: '12px', color: 'var(--origin-fg-subtle)', padding: '6px 0' }}>
+            <div style={{ fontSize: '12px', color: 'var(--excode-fg-subtle)', padding: '6px 0' }}>
               No recent projects
             </div>
           ) : (
@@ -127,13 +124,13 @@ export default function EditorEmptyState({ onFolderOpen, onFileOpen, onNewFile }
                       width: '100%', textAlign: 'left', transition: 'background 0.12s',
                       flexShrink: 0,
                     }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--origin-bg-base)'; }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--excode-bg-base)'; }}
                     onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
                   >
-                    <span style={{ fontSize: '13px', fontWeight: 500, color: 'var(--origin-fg-default)', flexShrink: 0 }}>
+                    <span style={{ fontSize: '13px', fontWeight: 500, color: 'var(--excode-fg-default)', flexShrink: 0 }}>
                       {p.name}
                     </span>
-                    <span style={{ fontSize: '12px', color: 'var(--origin-fg-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1, textAlign: 'right' }}>
+                    <span style={{ fontSize: '12px', color: 'var(--excode-fg-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1, textAlign: 'right' }}>
                       {truncatePath(p.path)}
                     </span>
                   </button>
@@ -151,17 +148,17 @@ export default function EditorEmptyState({ onFolderOpen, onFileOpen, onNewFile }
                     background: 'none', border: 'none', cursor: 'pointer',
                   }}
                 >
-                  <div style={{ flex: 1, height: '1px', background: 'var(--origin-border-default)' }} />
+                  <div style={{ flex: 1, height: '1px', background: 'var(--excode-border-default)' }} />
                   <div style={{
                     width: '20px', height: '20px', borderRadius: '50%', flexShrink: 0,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    border: `1px solid ${showMoreHovered ? 'var(--origin-fg-muted)' : 'var(--origin-border-default)'}`,
-                    color: showMoreHovered ? 'var(--origin-fg-default)' : 'var(--origin-fg-muted)',
+                    border: `1px solid ${showMoreHovered ? 'var(--excode-fg-muted)' : 'var(--excode-border-default)'}`,
+                    color: showMoreHovered ? 'var(--excode-fg-default)' : 'var(--excode-fg-muted)',
                     transition: 'border-color 0.15s, color 0.15s',
                   }}>
                     <ChevronDown size={11} strokeWidth={2.5} />
                   </div>
-                  <div style={{ flex: 1, height: '1px', background: 'var(--origin-border-default)' }} />
+                  <div style={{ flex: 1, height: '1px', background: 'var(--excode-border-default)' }} />
                 </button>
               )}
             </>

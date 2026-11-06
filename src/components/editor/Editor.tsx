@@ -29,48 +29,48 @@ import {
 
 // ── Syntax token colors — all via CSS variables ────────────────────────────────
 
-export const originHighlight = HighlightStyle.define([
-  { tag: t.comment,                                    color: 'var(--origin-syntax-comment)', fontStyle: 'italic' },
-  { tag: t.lineComment,                                color: 'var(--origin-syntax-comment)', fontStyle: 'italic' },
-  { tag: t.blockComment,                               color: 'var(--origin-syntax-comment)', fontStyle: 'italic' },
-  { tag: t.keyword,                                    color: 'var(--origin-syntax-keyword)' },
-  { tag: t.controlKeyword,                             color: 'var(--origin-syntax-keyword)' },
-  { tag: t.definitionKeyword,                          color: 'var(--origin-syntax-keyword)' },
-  { tag: t.moduleKeyword,                              color: 'var(--origin-syntax-keyword)' },
-  { tag: [t.string, t.special(t.string)],              color: 'var(--origin-syntax-string)' },
-  { tag: t.regexp,                                     color: 'var(--origin-syntax-string)' },
-  { tag: [t.function(t.variableName), t.function(t.propertyName)], color: 'var(--origin-syntax-function)' },
-  { tag: t.definition(t.variableName),                 color: 'var(--origin-syntax-function)' },
-  { tag: t.definition(t.function(t.variableName)),     color: 'var(--origin-syntax-function)' },
-  { tag: t.variableName,                               color: 'var(--origin-syntax-variable)' },
-  { tag: t.propertyName,                               color: 'var(--origin-syntax-variable)' },
-  { tag: [t.number, t.integer, t.float],               color: 'var(--origin-syntax-constant)' },
-  { tag: t.constant(t.variableName),                   color: 'var(--origin-syntax-constant)' },
-  { tag: t.bool,                                       color: 'var(--origin-syntax-constant)' },
-  { tag: t.null,                                       color: 'var(--origin-syntax-constant)' },
-  { tag: [t.typeName, t.className, t.namespace],       color: 'var(--origin-syntax-type)' },
-  { tag: t.typeOperator,                               color: 'var(--origin-syntax-type)' },
-  { tag: [t.operator, t.punctuation],                  color: 'var(--origin-syntax-operator)' },
-  { tag: t.special(t.punctuation),                     color: 'var(--origin-syntax-operator)' },
-  { tag: t.attributeName,                              color: 'var(--origin-syntax-attribute)' },
-  { tag: t.attributeValue,                             color: 'var(--origin-syntax-string)' },
-  { tag: t.tagName,                                    color: 'var(--origin-syntax-keyword)' },
-  { tag: t.self,                                       color: 'var(--origin-syntax-keyword)' },
-  { tag: [t.meta, t.documentMeta],                     color: 'var(--origin-syntax-comment)' },
+export const excodeHighlight = HighlightStyle.define([
+  { tag: t.comment,                                    color: 'var(--excode-syntax-comment)', fontStyle: 'italic' },
+  { tag: t.lineComment,                                color: 'var(--excode-syntax-comment)', fontStyle: 'italic' },
+  { tag: t.blockComment,                               color: 'var(--excode-syntax-comment)', fontStyle: 'italic' },
+  { tag: t.keyword,                                    color: 'var(--excode-syntax-keyword)' },
+  { tag: t.controlKeyword,                             color: 'var(--excode-syntax-keyword)' },
+  { tag: t.definitionKeyword,                          color: 'var(--excode-syntax-keyword)' },
+  { tag: t.moduleKeyword,                              color: 'var(--excode-syntax-keyword)' },
+  { tag: [t.string, t.special(t.string)],              color: 'var(--excode-syntax-string)' },
+  { tag: t.regexp,                                     color: 'var(--excode-syntax-string)' },
+  { tag: [t.function(t.variableName), t.function(t.propertyName)], color: 'var(--excode-syntax-function)' },
+  { tag: t.definition(t.variableName),                 color: 'var(--excode-syntax-function)' },
+  { tag: t.definition(t.function(t.variableName)),     color: 'var(--excode-syntax-function)' },
+  { tag: t.variableName,                               color: 'var(--excode-syntax-variable)' },
+  { tag: t.propertyName,                               color: 'var(--excode-syntax-variable)' },
+  { tag: [t.number, t.integer, t.float],               color: 'var(--excode-syntax-constant)' },
+  { tag: t.constant(t.variableName),                   color: 'var(--excode-syntax-constant)' },
+  { tag: t.bool,                                       color: 'var(--excode-syntax-constant)' },
+  { tag: t.null,                                       color: 'var(--excode-syntax-constant)' },
+  { tag: [t.typeName, t.className, t.namespace],       color: 'var(--excode-syntax-type)' },
+  { tag: t.typeOperator,                               color: 'var(--excode-syntax-type)' },
+  { tag: [t.operator, t.punctuation],                  color: 'var(--excode-syntax-operator)' },
+  { tag: t.special(t.punctuation),                     color: 'var(--excode-syntax-operator)' },
+  { tag: t.attributeName,                              color: 'var(--excode-syntax-attribute)' },
+  { tag: t.attributeValue,                             color: 'var(--excode-syntax-string)' },
+  { tag: t.tagName,                                    color: 'var(--excode-syntax-keyword)' },
+  { tag: t.self,                                       color: 'var(--excode-syntax-keyword)' },
+  { tag: [t.meta, t.documentMeta],                     color: 'var(--excode-syntax-comment)' },
   { tag: t.strong,                                     fontWeight: 'bold' },
   { tag: t.emphasis,                                   fontStyle: 'italic' },
   { tag: t.strikethrough,                              textDecoration: 'line-through' },
-  { tag: t.link,                                       color: 'var(--origin-syntax-constant)', textDecoration: 'underline' },
-  { tag: t.heading,                                    color: 'var(--origin-syntax-keyword)', fontWeight: 'bold' },
+  { tag: t.link,                                       color: 'var(--excode-syntax-constant)', textDecoration: 'underline' },
+  { tag: t.heading,                                    color: 'var(--excode-syntax-keyword)', fontWeight: 'bold' },
 ]);
 
 // ── Structural theme ───────────────────────────────────────────────────────────
 
-export const originBaseTheme = EditorView.theme({
+export const excodeBaseTheme = EditorView.theme({
   '&': {
     height: '100%',
     backgroundColor: 'transparent',
-    color: 'var(--origin-fg-default)',
+    color: 'var(--excode-fg-default)',
   },
   '&.cm-focused': { outline: 'none' },
   '.cm-scroller': {
@@ -81,13 +81,13 @@ export const originBaseTheme = EditorView.theme({
   },
   '.cm-content': {
     padding: '8px 0',
-    caretColor: 'var(--origin-accent-blue)',
+    caretColor: 'var(--excode-accent-blue)',
   },
   '.cm-gutters': {
     backgroundColor: 'transparent',
     border: 'none',
-    borderRight: '1px solid var(--origin-border-default)',
-    color: 'var(--origin-fg-subtle)',
+    borderRight: '1px solid var(--excode-border-default)',
+    color: 'var(--excode-fg-subtle)',
     paddingRight: '0',
     userSelect: 'none',
   },
@@ -97,94 +97,94 @@ export const originBaseTheme = EditorView.theme({
     textAlign: 'right',
   },
   '.cm-foldGutter .cm-gutterElement': { padding: '0 4px' },
-  '.cm-activeLine': { backgroundColor: 'var(--origin-bg-hover)' },
+  '.cm-activeLine': { backgroundColor: 'var(--excode-bg-hover)' },
   '.cm-activeLineGutter': {
-    backgroundColor: 'var(--origin-bg-hover)',
-    color: 'var(--origin-fg-muted)',
+    backgroundColor: 'var(--excode-bg-hover)',
+    color: 'var(--excode-fg-muted)',
   },
   '.cm-cursor, .cm-dropCursor': {
-    borderLeftColor: 'var(--origin-accent-blue)',
+    borderLeftColor: 'var(--excode-accent-blue)',
     borderLeftWidth: '2px',
   },
   '&.cm-focused .cm-matchingBracket': {
-    backgroundColor: 'color-mix(in srgb, var(--origin-accent-blue) 15%, transparent)',
-    outline: '1px solid color-mix(in srgb, var(--origin-accent-blue) 40%, transparent)',
+    backgroundColor: 'color-mix(in srgb, var(--excode-accent-blue) 15%, transparent)',
+    outline: '1px solid color-mix(in srgb, var(--excode-accent-blue) 40%, transparent)',
     borderRadius: '2px',
   },
   '.cm-tooltip': {
-    backgroundColor: 'var(--origin-bg-base)',
-    border: '1px solid var(--origin-border-default)',
+    backgroundColor: 'var(--excode-bg-base)',
+    border: '1px solid var(--excode-border-default)',
     borderRadius: '6px',
-    color: 'var(--origin-fg-default)',
+    color: 'var(--excode-fg-default)',
   },
   '.cm-tooltip-autocomplete ul li[aria-selected]': {
-    backgroundColor: 'var(--origin-bg-hover)',
+    backgroundColor: 'var(--excode-bg-hover)',
   },
-  '.cm-panels': { backgroundColor: 'var(--origin-bg-base)', color: 'var(--origin-fg-default)' },
-  '.cm-panels.cm-panels-top': { borderBottom: '1px solid var(--origin-border-default)' },
-  '.cm-panels.cm-panels-bottom': { borderTop: '1px solid var(--origin-border-default)' },
+  '.cm-panels': { backgroundColor: 'var(--excode-bg-base)', color: 'var(--excode-fg-default)' },
+  '.cm-panels.cm-panels-top': { borderBottom: '1px solid var(--excode-border-default)' },
+  '.cm-panels.cm-panels-bottom': { borderTop: '1px solid var(--excode-border-default)' },
   '.cm-search': {
     display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '6px',
     padding: '6px 10px',
-    backgroundColor: 'var(--origin-bg-base)',
+    backgroundColor: 'var(--excode-bg-base)',
   },
-  '.cm-search label': { fontSize: '12px', color: 'var(--origin-fg-muted)', display: 'flex', alignItems: 'center', gap: '4px' },
+  '.cm-search label': { fontSize: '12px', color: 'var(--excode-fg-muted)', display: 'flex', alignItems: 'center', gap: '4px' },
   '.cm-textfield': {
-    background: 'var(--origin-bg-input)',
-    border: '1px solid var(--origin-border-default)',
+    background: 'var(--excode-bg-input)',
+    border: '1px solid var(--excode-border-default)',
     borderRadius: '5px',
-    color: 'var(--origin-fg-default)',
+    color: 'var(--excode-fg-default)',
     padding: '3px 7px',
     fontSize: '12px',
     fontFamily: 'var(--font-mono)',
     outline: 'none',
     minWidth: '120px',
   },
-  '.cm-textfield:focus': { borderColor: 'var(--origin-accent-blue)' },
+  '.cm-textfield:focus': { borderColor: 'var(--excode-accent-blue)' },
   '.cm-button': {
-    background: 'var(--origin-bg-hover)',
-    border: '1px solid var(--origin-border-default)',
+    background: 'var(--excode-bg-hover)',
+    border: '1px solid var(--excode-border-default)',
     borderRadius: '5px',
-    color: 'var(--origin-fg-default)',
+    color: 'var(--excode-fg-default)',
     padding: '3px 10px',
     fontSize: '12px',
     cursor: 'pointer',
     fontFamily: 'var(--font-sans)',
   },
-  '.cm-button:hover': { background: 'var(--origin-bg-active)' },
+  '.cm-button:hover': { background: 'var(--excode-bg-active)' },
   // ── Unified merge view (diff) ─────────────────────────────────────────────
   '.cm-deletedChunk': {
-    backgroundColor: 'color-mix(in srgb, var(--origin-semantic-error) 14%, transparent)',
+    backgroundColor: 'color-mix(in srgb, var(--excode-semantic-error) 14%, transparent)',
   },
   '.cm-deletedChunk-gutter': {
-    backgroundColor: 'color-mix(in srgb, var(--origin-semantic-error) 28%, transparent)',
-    borderRight: '3px solid color-mix(in srgb, var(--origin-semantic-error) 65%, transparent)',
+    backgroundColor: 'color-mix(in srgb, var(--excode-semantic-error) 28%, transparent)',
+    borderRight: '3px solid color-mix(in srgb, var(--excode-semantic-error) 65%, transparent)',
   },
   '.cm-changedChunk': {
-    backgroundColor: 'color-mix(in srgb, var(--origin-semantic-success) 13%, transparent)',
+    backgroundColor: 'color-mix(in srgb, var(--excode-semantic-success) 13%, transparent)',
   },
   '.cm-changedChunk-gutter': {
-    backgroundColor: 'color-mix(in srgb, var(--origin-semantic-success) 25%, transparent)',
-    borderRight: '3px solid color-mix(in srgb, var(--origin-semantic-success) 65%, transparent)',
+    backgroundColor: 'color-mix(in srgb, var(--excode-semantic-success) 25%, transparent)',
+    borderRight: '3px solid color-mix(in srgb, var(--excode-semantic-success) 65%, transparent)',
   },
   '.cm-insertedChunk': {
-    backgroundColor: 'color-mix(in srgb, var(--origin-semantic-success) 13%, transparent)',
+    backgroundColor: 'color-mix(in srgb, var(--excode-semantic-success) 13%, transparent)',
   },
   '.cm-insertedChunk-gutter': {
-    backgroundColor: 'color-mix(in srgb, var(--origin-semantic-success) 25%, transparent)',
-    borderRight: '3px solid color-mix(in srgb, var(--origin-semantic-success) 65%, transparent)',
+    backgroundColor: 'color-mix(in srgb, var(--excode-semantic-success) 25%, transparent)',
+    borderRight: '3px solid color-mix(in srgb, var(--excode-semantic-success) 65%, transparent)',
   },
   '.cm-deletedChunkField': {
-    backgroundColor: 'color-mix(in srgb, var(--origin-semantic-error) 35%, transparent)',
+    backgroundColor: 'color-mix(in srgb, var(--excode-semantic-error) 35%, transparent)',
     borderRadius: '2px',
   },
   '.cm-changedChunkField': {
-    backgroundColor: 'color-mix(in srgb, var(--origin-semantic-success) 35%, transparent)',
+    backgroundColor: 'color-mix(in srgb, var(--excode-semantic-success) 35%, transparent)',
     borderRadius: '2px',
   },
   '.cm-collapsedLines': {
-    backgroundColor: 'var(--origin-bg-hover)',
-    color: 'var(--origin-fg-subtle)',
+    backgroundColor: 'var(--excode-bg-hover)',
+    color: 'var(--excode-fg-subtle)',
     cursor: 'pointer',
     fontSize: '12px',
     padding: '2px 0',
@@ -235,6 +235,8 @@ interface Props {
   onAddToAiContext?: (ctx: EditorContext) => void;
   onAcceptDiff?: () => void;
   onReady?: () => void;
+  onFocus?: () => void;
+  autoFocus?: boolean;
   // LSP props
   rootPath?: string | null;
   onDefinitionJump?: (filePath: string, line: number, col: number) => void;
@@ -248,12 +250,24 @@ interface Props {
 // ── Component ──────────────────────────────────────────────────────────────────
 
 const Editor = forwardRef<EditorHandle, Props>(function Editor(
-  { path, content, onChange, onCursorChange, initialCursor, jumpTo, onAddToAiContext, onAcceptDiff, onReady, rootPath, onDefinitionJump, onMissingServer, getAiCompletion, onToggleBreakpoint }, ref
+  { path, content, onChange, onCursorChange, initialCursor, jumpTo, onAddToAiContext, onAcceptDiff, onReady, onFocus, autoFocus = true, rootPath, onDefinitionJump, onMissingServer, getAiCompletion, onToggleBreakpoint }, ref
 ) {
   const containerRef   = useRef<HTMLDivElement>(null);
   const viewRef        = useRef<EditorView | null>(null);
   const onChangeRef    = useRef(onChange);
   onChangeRef.current  = onChange;
+  const syncingRef     = useRef(false);
+
+  useEffect(() => {
+    const view = viewRef.current;
+    if (!view || view.state.doc.toString() === content) return;
+    syncingRef.current = true;
+    try {
+      view.dispatch({ changes: { from: 0, to: view.state.doc.length, insert: content } });
+    } finally {
+      syncingRef.current = false;
+    }
+  }, [content]);
   const onCursorRef    = useRef(onCursorChange);
   onCursorRef.current  = onCursorChange;
 
@@ -451,16 +465,16 @@ const Editor = forwardRef<EditorHandle, Props>(function Editor(
         indentOnInput(),
         bracketMatching(),
         history(),
-        syntaxHighlighting(originHighlight),
+        syntaxHighlighting(excodeHighlight),
         search({ top: false }),
         keymap.of([...defaultKeymap, ...historyKeymap, indentWithTab, ...searchKeymap]),
         getLanguageExtension(path),
         mergeCompartment.current.of([]),
         lspCompartment.current.of([]),
         dapCompartment.current.of([]),
-        originBaseTheme,
+        excodeBaseTheme,
         EditorView.updateListener.of(update => {
-          if (update.docChanged) {
+          if (update.docChanged && !syncingRef.current) {
             onChangeRef.current?.(update.state.doc.toString());
           }
           if (update.docChanged || update.selectionSet) {
@@ -487,7 +501,7 @@ const Editor = forwardRef<EditorHandle, Props>(function Editor(
       view.dispatch({ selection: { anchor: line.from + ch }, scrollIntoView: true });
     }
 
-    view.focus();
+    if (autoFocus) view.focus();
 
     return () => {
       view.destroy();
@@ -587,6 +601,7 @@ const Editor = forwardRef<EditorHandle, Props>(function Editor(
       <div
         ref={containerRef}
         onContextMenu={handleContextMenu}
+      onFocusCapture={onFocus}
         style={{ flex: 1, overflow: 'hidden', height: '100%', display: 'flex', flexDirection: 'column', position: 'relative' }}
       >
         {/* Accept / Reject overlay — shown while a diff is pending */}
@@ -600,8 +615,8 @@ const Editor = forwardRef<EditorHandle, Props>(function Editor(
               alignItems: 'center',
               gap: 6,
               zIndex: 50,
-              backgroundColor: 'var(--origin-bg-base)',
-              border: '1px solid var(--origin-border-default)',
+              backgroundColor: 'var(--excode-bg-base)',
+              border: '1px solid var(--excode-border-default)',
               borderRadius: 7,
               padding: '4px 6px',
               boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
@@ -612,8 +627,8 @@ const Editor = forwardRef<EditorHandle, Props>(function Editor(
             <span style={{
               padding: '2px 8px',
               borderRadius: 4,
-              backgroundColor: 'var(--origin-fg-default)',
-              color: 'var(--origin-bg-base)',
+              backgroundColor: 'var(--excode-fg-default)',
+              color: 'var(--excode-bg-base)',
               fontWeight: 600,
               letterSpacing: '0.01em',
               userSelect: 'none',
@@ -626,15 +641,15 @@ const Editor = forwardRef<EditorHandle, Props>(function Editor(
                 padding: '3px 11px',
                 borderRadius: 5,
                 border: 'none',
-                backgroundColor: 'var(--origin-semantic-success)',
+                backgroundColor: 'var(--excode-semantic-success)',
                 color: '#fff',
                 cursor: 'pointer',
                 fontSize: '11px',
                 fontFamily: 'var(--font-sans)',
                 fontWeight: 500,
               }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'color-mix(in srgb, var(--origin-semantic-success) 80%, white)'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--origin-semantic-success)'; }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'color-mix(in srgb, var(--excode-semantic-success) 80%, white)'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--excode-semantic-success)'; }}
             >
               Accept All
             </button>
@@ -644,15 +659,15 @@ const Editor = forwardRef<EditorHandle, Props>(function Editor(
                 padding: '3px 11px',
                 borderRadius: 5,
                 border: 'none',
-                backgroundColor: 'var(--origin-semantic-error)',
+                backgroundColor: 'var(--excode-semantic-error)',
                 color: '#fff',
                 cursor: 'pointer',
                 fontSize: '11px',
                 fontFamily: 'var(--font-sans)',
                 fontWeight: 500,
               }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'color-mix(in srgb, var(--origin-semantic-error) 80%, white)'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--origin-semantic-error)'; }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'color-mix(in srgb, var(--excode-semantic-error) 80%, white)'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--excode-semantic-error)'; }}
             >
               Reject All
             </button>
@@ -668,10 +683,10 @@ const Editor = forwardRef<EditorHandle, Props>(function Editor(
             top: contextMenu.y,
             left: contextMenu.x,
             minWidth: '200px',
-            background: 'color-mix(in srgb, var(--origin-bg-base) 85%, transparent)',
+            background: 'color-mix(in srgb, var(--excode-bg-base) 85%, transparent)',
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
-            border: '1px solid var(--origin-border-default)',
+            border: '1px solid var(--excode-border-default)',
             borderRadius: '8px',
             boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
             padding: '4px',
@@ -696,13 +711,13 @@ const Editor = forwardRef<EditorHandle, Props>(function Editor(
               textAlign: 'left',
               gap: '2px',
             }}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--origin-bg-hover)'; }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--excode-bg-hover)'; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
           >
-            <span style={{ fontSize: '13px', color: 'var(--origin-fg-default)' }}>
+            <span style={{ fontSize: '13px', color: 'var(--excode-fg-default)' }}>
               Ask AI about this
             </span>
-            <span style={{ fontSize: '11px', color: 'var(--origin-fg-subtle)' }}>
+            <span style={{ fontSize: '11px', color: 'var(--excode-fg-subtle)' }}>
               L{contextMenu.ctx.startLine}–{contextMenu.ctx.endLine} · {contextMenu.ctx.filename}
             </span>
           </button>

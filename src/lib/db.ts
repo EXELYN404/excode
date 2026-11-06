@@ -4,7 +4,7 @@ let _db: Database | null = null;
 
 async function getDb(): Promise<Database> {
   if (_db) return _db;
-  const db = await Database.load("sqlite:origin-chat.db");
+  const db = await Database.load("sqlite:excode-chat.db");
   await _initSchema(db);
   // Only cache the singleton after schema init succeeds — otherwise a failed
   // init would leave an unusable instance cached and every later call would

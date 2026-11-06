@@ -1,5 +1,4 @@
-import { Sun, Moon, GitBranch, Settings } from 'lucide-react';
-import { useTheme } from '../themes/ThemeContext';
+import { GitBranch, Settings } from 'lucide-react';
 
 interface Props {
   language: string;
@@ -24,7 +23,7 @@ function StatusItem({ children, onClick, title }: { children: React.ReactNode; o
         whiteSpace: 'nowrap',
       }}
       onMouseEnter={e => {
-        if (onClick) (e.currentTarget as HTMLElement).style.background = 'var(--origin-bg-hover)';
+        if (onClick) (e.currentTarget as HTMLElement).style.background = 'var(--excode-bg-hover)';
       }}
       onMouseLeave={e => {
         (e.currentTarget as HTMLElement).style.background = 'transparent';
@@ -36,15 +35,6 @@ function StatusItem({ children, onClick, title }: { children: React.ReactNode; o
 }
 
 export default function StatusBar({ language, line, col, branch, onOpenSettings, debugStatus }: Props) {
-  const { theme, themes, setTheme } = useTheme();
-  const isDark = theme.type === 'dark';
-
-  function toggleTheme() {
-    const target = isDark
-      ? themes.find(t => t.type === 'light')
-      : themes.find(t => t.type === 'dark');
-    if (target) setTheme(target);
-  }
 
   return (
     <div
@@ -54,11 +44,11 @@ export default function StatusBar({ language, line, col, branch, onOpenSettings,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        backgroundColor: 'var(--origin-bg-base)',
-        borderTop: '1px solid var(--origin-border-default)',
+        backgroundColor: 'var(--excode-bg-base)',
+        borderTop: '1px solid var(--excode-border-default)',
         fontFamily: 'var(--font-mono)',
         fontSize: '11px',
-        color: 'var(--origin-fg-subtle)',
+        color: 'var(--excode-fg-subtle)',
         userSelect: 'none',
         paddingLeft: '4px',
         paddingRight: '4px',
@@ -77,8 +67,8 @@ export default function StatusBar({ language, line, col, branch, onOpenSettings,
             <span style={{
               width: 7, height: 7, borderRadius: '50%', flexShrink: 0,
               backgroundColor: debugStatus === 'paused'
-                ? 'var(--origin-accent-yellow)'
-                : 'var(--origin-semantic-success)',
+                ? 'var(--excode-accent-yellow)'
+                : 'var(--excode-semantic-success)',
             }} />
             <span>{debugStatus === 'paused' ? 'Paused' : 'Running'}</span>
           </StatusItem>
@@ -101,15 +91,6 @@ export default function StatusBar({ language, line, col, branch, onOpenSettings,
           title="Settings (Ctrl+,)"
         >
           <Settings size={11} />
-        </StatusItem>
-        <StatusItem
-          onClick={toggleTheme}
-          title={isDark ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
-        >
-          {isDark
-            ? <Sun size={11} />
-            : <Moon size={11} />
-          }
         </StatusItem>
       </div>
     </div>

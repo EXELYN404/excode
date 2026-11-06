@@ -36,8 +36,8 @@ export default function ContextMenu({ x, y, items, onClose }: {
       ref={ref}
       style={{
         position: 'fixed', left, top, zIndex: 9999, width: 200,
-        backgroundColor: 'var(--origin-bg-panel)',
-        border: '1px solid var(--origin-border-default)',
+        backgroundColor: 'var(--excode-bg-panel)',
+        border: '1px solid var(--excode-border-default)',
         borderRadius: 6,
         boxShadow: '0 6px 24px rgba(0,0,0,0.55)',
         padding: '4px 0',
@@ -47,18 +47,18 @@ export default function ContextMenu({ x, y, items, onClose }: {
     >
       {items.map((item, i) =>
         'separator' in item ? (
-          <div key={i} style={{ height: 1, margin: '3px 0', backgroundColor: 'var(--origin-border-default)' }} />
+          <div key={i} style={{ height: 1, margin: '3px 0', backgroundColor: 'var(--excode-border-default)' }} />
         ) : (
           <button
             key={i}
             onClick={() => { onClose(); item.action(); }}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--origin-bg-active)'; }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--excode-bg-active)'; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'; }}
             style={{
               display: 'flex', alignItems: 'center', gap: 8,
               width: '100%', padding: '5px 12px',
               border: 'none', background: 'transparent', cursor: 'pointer',
-              color: item.danger ? 'var(--origin-semantic-error)' : 'var(--origin-fg-default)',
+              color: item.danger ? 'var(--excode-semantic-error)' : 'var(--excode-fg-default)',
               textAlign: 'left', fontFamily: 'inherit', fontSize: 'inherit',
             }}
           >

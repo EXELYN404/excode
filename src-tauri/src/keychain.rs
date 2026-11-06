@@ -1,6 +1,6 @@
 use keyring::Entry;
 
-const SERVICE: &str = "origin-ide";
+const SERVICE: &str = "excode-ide";
 
 #[tauri::command]
 pub fn set_secret(account: String, secret: String) -> Result<(), String> {

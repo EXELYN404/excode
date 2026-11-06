@@ -1,15 +1,22 @@
+import { EXCODE_LINKS } from '../lib/links';
 import { useRef, useState } from "react";
 import { openUrl } from "@tauri-apps/plugin-opener";
+import { isTauri } from "@tauri-apps/api/core";
 import { Minus, Square, X, PanelLeft, PanelBottom, PanelRight } from "lucide-react";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { Tooltip } from "./ui/Tooltip";
 import DropdownMenu, { type MenuEntry } from "./ui/DropdownMenu";
 import StatusIsland from "./StatusIsland";
-import { useTheme } from "../themes/ThemeContext";
 import { useCommands } from "../context/CommandContext";
-import logoSrc from "../assets/origin-logo.svg";
+import logoSrc from "../assets/excode/app-icon.png";
 
-const win = getCurrentWindow();
+const isDesktop = isTauri();
+const win = isDesktop ? getCurrentWindow() : null;
+
+function safeOpenUrl(url: string) {
+  if (isDesktop) return openUrl(url);
+  window.open(url, "_blank", "noopener,noreferrer");
+}
 
 function IconBtn({
   onClick,
@@ -29,13 +36,13 @@ function IconBtn({
       onClick={onClick}
       aria-label={label}
       className="p-2 rounded transition-colors"
-      style={{ color: active ? "var(--origin-fg-default)" : "var(--origin-fg-muted)" }}
+      style={{ color: active ? "var(--excode-fg-default)" : "var(--excode-fg-muted)" }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.color = "var(--origin-fg-default)";
-        e.currentTarget.style.backgroundColor = "var(--origin-bg-hover)";
+        e.currentTarget.style.color = "var(--excode-fg-default)";
+        e.currentTarget.style.backgroundColor = "var(--excode-bg-hover)";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.color = active ? "var(--origin-fg-default)" : "var(--origin-fg-muted)";
+        e.currentTarget.style.color = active ? "var(--excode-fg-default)" : "var(--excode-fg-muted)";
         e.currentTarget.style.backgroundColor = "transparent";
       }}
     >
@@ -64,19 +71,19 @@ function MenuButton({
       ref={anchorRef}
       onClick={onClick}
       onMouseEnter={(e) => {
-        e.currentTarget.style.color = "var(--origin-fg-default)";
-        e.currentTarget.style.backgroundColor = "var(--origin-bg-hover)";
+        e.currentTarget.style.color = "var(--excode-fg-default)";
+        e.currentTarget.style.backgroundColor = "var(--excode-bg-hover)";
       }}
       onMouseLeave={(e) => {
         if (!isOpen) {
-          e.currentTarget.style.color = "var(--origin-fg-muted)";
+          e.currentTarget.style.color = "var(--excode-fg-muted)";
           e.currentTarget.style.backgroundColor = "transparent";
         }
       }}
       className="text-xs px-2 py-1 rounded transition-colors"
       style={{
-        color: isOpen ? "var(--origin-fg-default)" : "var(--origin-fg-muted)",
-        backgroundColor: isOpen ? "var(--origin-bg-hover)" : "transparent",
+        color: isOpen ? "var(--excode-fg-default)" : "var(--excode-fg-muted)",
+        backgroundColor: isOpen ? "var(--excode-bg-hover)" : "transparent",
       }}
     >
       {label}
@@ -86,7 +93,6 @@ function MenuButton({
 
 
 export default function TitleBar() {
-  const { theme } = useTheme();
   const {
     sidebarOpen, terminalOpen, aiPanelOpen,
     onToggleSidebar, onToggleTerminal, onToggleAiPanel,
@@ -125,7 +131,7 @@ export default function TitleBar() {
     { type: 'item', label: 'Close Editor', shortcut: 'Ctrl+W',        disabled: !hasActiveTab, onClick: () => { close(); onCloseEditor?.(); } },
     { type: 'item', label: 'Close Folder',                             disabled: !hasFolderOpen, onClick: () => { close(); onCloseFolder?.(); } },
     { type: 'separator' },
-    { type: 'item', label: 'Exit',         shortcut: 'Alt+F4',        onClick: () => win.close() },
+    { type: 'item', label: 'Exit',         shortcut: 'Alt+F4',        onClick: () => win?.close() },
   ];
 
   const editEntries: MenuEntry[] = [
@@ -167,18 +173,18 @@ export default function TitleBar() {
     { type: 'item', label: 'Kill Terminal',    disabled: !terminalOpen, onClick: () => { close(); onKillTerminal?.(); } },
   ];
 
-  const repo = 'https://github.com/Origin-AI-IDE/origin';
+  const repo = EXCODE_LINKS.repository;
   const helpEntries: MenuEntry[] = [
     { type: 'item', label: 'Keyboard Shortcuts', shortcut: 'Ctrl+P', onClick: () => { close(); onOpenPalette(); } },
     { type: 'separator' },
-    { type: 'item', label: 'Documentation',    onClick: () => { close(); openUrl(`${repo}#readme`); } },
-    { type: 'item', label: 'Report an Issue',  onClick: () => { close(); openUrl(`${repo}/issues/new`); } },
-    { type: 'item', label: 'View on GitHub',   onClick: () => { close(); openUrl(repo); } },
+    { type: 'item', label: 'Documentation',    onClick: () => { close(); safeOpenUrl(EXCODE_LINKS.documentation); } },
+    { type: 'item', label: 'Report an Issue',  onClick: () => { close(); safeOpenUrl(EXCODE_LINKS.issues); } },
+    { type: 'item', label: 'View on GitHub',   onClick: () => { close(); safeOpenUrl(repo); } },
     { type: 'separator' },
-    { type: 'item', label: 'View License',     onClick: () => { close(); openUrl(`${repo}/blob/main/LICENSE`); } },
-    { type: 'item', label: 'Release Notes',    onClick: () => { close(); openUrl(`${repo}/releases`); } },
+    { type: 'item', label: 'View License',     onClick: () => { close(); safeOpenUrl(`${repo}/blob/main/LICENSE`); } },
+    { type: 'item', label: 'Release Notes',    onClick: () => { close(); safeOpenUrl(EXCODE_LINKS.releases); } },
     { type: 'separator' },
-    { type: 'item', label: 'About Origin',     onClick: () => { close(); onAbout?.(); } },
+    { type: 'item', label: 'About ExCode',     onClick: () => { close(); onAbout?.(); } },
   ];
 
   const menus: Array<{ id: string; label: string; ref: React.RefObject<HTMLButtonElement | null>; entries: MenuEntry[] }> = [
@@ -194,20 +200,20 @@ export default function TitleBar() {
     <div
       className="relative z-10 flex items-center h-9 shrink-0 select-none border-b"
       style={{
-        backgroundColor: "var(--origin-bg-titlebar)",
-        borderColor: "var(--origin-border-default)",
+        backgroundColor: "var(--excode-bg-titlebar)",
+        borderColor: "var(--excode-border-default)",
       }}
     >
       {/* Left — menus */}
       <div className="flex items-center gap-1 px-3 z-10 shrink-0">
         <img
           src={logoSrc}
-          alt="Origin"
+          alt="ExCode"
           style={{
             height: "16px",
             width: "auto",
             marginRight: "10px",
-            filter: theme.type === "light" ? "invert(1)" : "none",
+            filter: "none",
           }}
         />
 
@@ -271,31 +277,33 @@ export default function TitleBar() {
 
         <div
           className="w-px h-4 mx-1"
-          style={{ backgroundColor: "var(--origin-border-default)" }}
+          style={{ backgroundColor: "var(--excode-border-default)" }}
         />
 
-        <IconBtn label="Minimize" onClick={() => win.minimize()}>
+        {isDesktop && <>
+        <IconBtn label="Minimize" onClick={() => win?.minimize()}>
           <Minus size={13} />
         </IconBtn>
-        <IconBtn label="Maximize" onClick={() => win.toggleMaximize()}>
+        <IconBtn label="Maximize" onClick={() => win?.toggleMaximize()}>
           <Square size={11} />
         </IconBtn>
         <button
-          onClick={() => win.close()}
+          onClick={() => win?.close()}
           aria-label="Close"
           className="p-2 rounded transition-colors"
-          style={{ color: "var(--origin-fg-muted)" }}
+          style={{ color: "var(--excode-fg-muted)" }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.color = "var(--origin-accent-red)";
-            e.currentTarget.style.backgroundColor = "var(--origin-accent-red)1a";
+            e.currentTarget.style.color = "var(--excode-accent-red)";
+            e.currentTarget.style.backgroundColor = "var(--excode-accent-red)1a";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.color = "var(--origin-fg-muted)";
+            e.currentTarget.style.color = "var(--excode-fg-muted)";
             e.currentTarget.style.backgroundColor = "transparent";
           }}
         >
           <X size={13} />
         </button>
+        </>}
       </div>
     </div>
   );

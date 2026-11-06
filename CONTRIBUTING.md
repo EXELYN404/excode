@@ -1,6 +1,6 @@
-# Contributing to Origin
+# Contributing to EXCODE
 
-Thanks for your interest in contributing. Origin is a desktop IDE built with Tauri 2.x, React, and TypeScript. This guide covers everything you need to get started.
+Thanks for your interest in contributing. EXCODE is a desktop IDE built with Tauri 2.x, React, and TypeScript. This guide covers everything you need to get started.
 
 ## Table of Contents
 
@@ -37,8 +37,8 @@ Install Rust via [rustup.rs](https://rustup.rs). Install Node via [nodejs.org](h
 
 ```bash
 # Clone the repository
-git clone https://github.com/Origin-AI-IDE/origin.git
-cd origin
+git clone https://github.com/EXELYN404/excode.git
+cd excode
 
 # Install frontend dependencies
 npm install
@@ -62,7 +62,7 @@ npm run build
 ## Project Structure
 
 ```
-origin/
+excode/
 ├── src/                              # React + TypeScript frontend
 │   ├── App.tsx                       # Root component and app layout
 │   ├── main.tsx                      # Entry point, context providers
@@ -159,9 +159,9 @@ origin/
 │       ├── ThemeContext.tsx
 │       ├── applyTheme.ts
 │       ├── types.ts
-│       ├── origin-dark/
+│       ├── excode-dark/
 │       │   └── theme.json
-│       └── origin-light/
+│       └── excode-light/
 │           └── theme.json
 ├── src-tauri/                        # Rust backend
 │   ├── src/
@@ -203,14 +203,14 @@ Always use theme CSS variables:
 
 ```tsx
 // Correct
-style={{ color: "var(--origin-fg-muted)" }}
-className="text-[var(--origin-fg-muted)]"
+style={{ color: "var(--excode-fg-muted)" }}
+className="text-[var(--excode-fg-muted)]"
 
 // Wrong
 className="text-zinc-400"
 ```
 
-All color tokens are defined in `src/themes/{theme-name}/theme.json`. Adding a new token requires updating both `origin-dark/theme.json` and `origin-light/theme.json`.
+All color tokens are defined in `src/themes/{theme-name}/theme.json`. Adding a new token requires updating both `excode-dark/theme.json` and `excode-light/theme.json`.
 
 ### TypeScript
 
@@ -248,7 +248,7 @@ Branch naming:
 
 ## Reporting Bugs
 
-Open an issue at [github.com/Origin-AI-IDE/origin/issues](https://github.com/Origin-AI-IDE/origin/issues/new) and include:
+Open an issue at [github.com/EXELYN404/excode/issues](https://github.com/EXELYN404/excode/issues/new) and include:
 
 - OS version and WebView2 version
 - Steps to reproduce
@@ -261,7 +261,7 @@ Open an issue at [github.com/Origin-AI-IDE/origin/issues](https://github.com/Ori
 
 Open an issue with the `enhancement` label. Describe the problem you are trying to solve, not just the solution. Feature requests with clear use cases are much easier to evaluate.
 
-If a requested feature is outside the planned roadmap or diverges from the intended direction of Origin, it will be brought to the **Origin Discord** for a community vote before any decision is made. This ensures the project evolves in a direction that reflects what the community actually wants. Join the discussion and cast your vote there.
+If a requested feature is outside the planned roadmap or diverges from the intended direction of EXCODE, it will be brought to the **EXCODE Discord** for a community vote before any decision is made. This ensures the project evolves in a direction that reflects what the community actually wants. Join the discussion and cast your vote there.
 
 ---
 

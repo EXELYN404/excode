@@ -76,15 +76,15 @@ function ImportEditorRow({ detected, onImported }: ImportEditorRowProps) {
               display: "flex", alignItems: "center", gap: "6px",
               padding: "5px 12px",
               borderRadius: "6px",
-              border: "1px solid var(--origin-border-default)",
+              border: "1px solid var(--excode-border-default)",
               background: isDone
-                ? "color-mix(in srgb, var(--origin-semantic-success) 12%, transparent)"
+                ? "color-mix(in srgb, var(--excode-semantic-success) 12%, transparent)"
                 : "transparent",
               color: isDone
-                ? "var(--origin-semantic-success)"
+                ? "var(--excode-semantic-success)"
                 : available
-                ? "var(--origin-fg-default)"
-                : "var(--origin-fg-subtle)",
+                ? "var(--excode-fg-default)"
+                : "var(--excode-fg-subtle)",
               fontSize: "12px",
               cursor: available ? "pointer" : "not-allowed",
               opacity: available ? 1 : 0.45,
@@ -161,14 +161,14 @@ function KeybindingRow({ commandId, label, defaultKey, onChange }: RowProps) {
         gridTemplateColumns: "1fr auto",
         alignItems: "center",
         padding: "6px 0",
-        borderBottom: "1px solid var(--origin-border-default)",
+        borderBottom: "1px solid var(--excode-border-default)",
         gap: "8px",
       }}
     >
-      <span style={{ fontSize: "13px", color: "var(--origin-fg-default)" }}>{label}</span>
+      <span style={{ fontSize: "13px", color: "var(--excode-fg-default)" }}>{label}</span>
       <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
         {conflict && (
-          <span title={`Conflicts with: ${conflict}`} style={{ color: "var(--origin-semantic-warning, #f59e0b)", display: "flex" }}>
+          <span title={`Conflicts with: ${conflict}`} style={{ color: "var(--excode-semantic-warning, #f59e0b)", display: "flex" }}>
             <AlertCircle size={12} />
           </span>
         )}
@@ -179,11 +179,11 @@ function KeybindingRow({ commandId, label, defaultKey, onChange }: RowProps) {
           style={{
             padding: "3px 10px",
             borderRadius: "5px",
-            border: `1px solid ${recording ? "var(--origin-accent-blue)" : "var(--origin-border-default)"}`,
+            border: `1px solid ${recording ? "var(--excode-accent-blue)" : "var(--excode-border-default)"}`,
             background: recording
-              ? "color-mix(in srgb, var(--origin-accent-blue) 10%, transparent)"
-              : "var(--origin-bg-base)",
-            color: recording ? "var(--origin-accent-blue)" : "var(--origin-fg-default)",
+              ? "color-mix(in srgb, var(--excode-accent-blue) 10%, transparent)"
+              : "var(--excode-bg-base)",
+            color: recording ? "var(--excode-accent-blue)" : "var(--excode-fg-default)",
             fontSize: "11px",
             fontFamily: "var(--font-mono)",
             cursor: "pointer",
@@ -201,10 +201,10 @@ function KeybindingRow({ commandId, label, defaultKey, onChange }: RowProps) {
             title="Reset to default"
             style={{
               background: "none", border: "none", cursor: "pointer", padding: "2px",
-              color: "var(--origin-fg-subtle)", display: "flex", alignItems: "center",
+              color: "var(--excode-fg-subtle)", display: "flex", alignItems: "center",
             }}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "var(--origin-fg-muted)"; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "var(--origin-fg-subtle)"; }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "var(--excode-fg-muted)"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "var(--excode-fg-subtle)"; }}
           >
             <RotateCcw size={12} />
           </button>
@@ -255,11 +255,11 @@ export default function KeybindingsSection() {
 
       {/* Import row */}
       <div>
-        <div style={{ fontSize: "11px", fontWeight: 600, color: "var(--origin-fg-muted)", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: "8px" }}>
+        <div style={{ fontSize: "11px", fontWeight: 600, color: "var(--excode-fg-muted)", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: "8px" }}>
           Import from
         </div>
         {detected.length === 0 ? (
-          <p style={{ fontSize: "12px", color: "var(--origin-fg-subtle)", margin: 0 }}>
+          <p style={{ fontSize: "12px", color: "var(--excode-fg-subtle)", margin: 0 }}>
             No VS Code, Cursor, or Windsurf installation detected on this machine.
           </p>
         ) : (
@@ -268,12 +268,12 @@ export default function KeybindingsSection() {
       </div>
 
       {/* Divider */}
-      <div style={{ borderTop: "1px solid var(--origin-border-default)" }} />
+      <div style={{ borderTop: "1px solid var(--excode-border-default)" }} />
 
       {/* Search + reset */}
       <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
         <div style={{ position: "relative", flex: 1 }}>
-          <Search size={12} style={{ position: "absolute", left: "9px", top: "50%", transform: "translateY(-50%)", color: "var(--origin-fg-subtle)", pointerEvents: "none" }} />
+          <Search size={12} style={{ position: "absolute", left: "9px", top: "50%", transform: "translateY(-50%)", color: "var(--excode-fg-subtle)", pointerEvents: "none" }} />
           <input
             value={query}
             onChange={e => setQuery(e.target.value)}
@@ -282,9 +282,9 @@ export default function KeybindingsSection() {
               width: "100%", boxSizing: "border-box",
               padding: "6px 10px 6px 28px",
               borderRadius: "6px",
-              border: "1px solid var(--origin-border-default)",
-              background: "var(--origin-bg-base)",
-              color: "var(--origin-fg-default)",
+              border: "1px solid var(--excode-border-default)",
+              background: "var(--excode-bg-base)",
+              color: "var(--excode-fg-default)",
               fontSize: "12px",
               fontFamily: "inherit",
               outline: "none",
@@ -298,9 +298,9 @@ export default function KeybindingsSection() {
             style={{
               display: "flex", alignItems: "center", gap: "5px",
               padding: "5px 10px", borderRadius: "6px", fontSize: "12px",
-              border: "1px solid var(--origin-border-default)",
+              border: "1px solid var(--excode-border-default)",
               background: "transparent",
-              color: "var(--origin-fg-muted)",
+              color: "var(--excode-fg-muted)",
               cursor: "pointer", fontFamily: "inherit", whiteSpace: "nowrap",
             }}
           >
@@ -310,18 +310,18 @@ export default function KeybindingsSection() {
       </div>
 
       {/* Column headers */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr auto", padding: "0 0 4px", borderBottom: "1px solid var(--origin-border-default)" }}>
-        <span style={{ fontSize: "11px", fontWeight: 600, color: "var(--origin-fg-subtle)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Command</span>
-        <span style={{ fontSize: "11px", fontWeight: 600, color: "var(--origin-fg-subtle)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Keybinding</span>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr auto", padding: "0 0 4px", borderBottom: "1px solid var(--excode-border-default)" }}>
+        <span style={{ fontSize: "11px", fontWeight: 600, color: "var(--excode-fg-subtle)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Command</span>
+        <span style={{ fontSize: "11px", fontWeight: 600, color: "var(--excode-fg-subtle)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Keybinding</span>
       </div>
 
       {/* Command list grouped by category */}
       {categories.length === 0 ? (
-        <p style={{ fontSize: "13px", color: "var(--origin-fg-subtle)", margin: 0 }}>No commands match "{query}".</p>
+        <p style={{ fontSize: "13px", color: "var(--excode-fg-subtle)", margin: 0 }}>No commands match "{query}".</p>
       ) : (
         categories.map(cat => (
           <div key={cat}>
-            <div style={{ fontSize: "11px", fontWeight: 600, color: "var(--origin-fg-subtle)", textTransform: "uppercase", letterSpacing: "0.07em", padding: "4px 0 2px" }}>
+            <div style={{ fontSize: "11px", fontWeight: 600, color: "var(--excode-fg-subtle)", textTransform: "uppercase", letterSpacing: "0.07em", padding: "4px 0 2px" }}>
               {cat}
             </div>
             {filtered.filter(c => c.category === cat).map(cmd => (
@@ -338,7 +338,7 @@ export default function KeybindingsSection() {
         ))
       )}
 
-      <div style={{ fontSize: "11px", color: "var(--origin-fg-subtle)", marginTop: "4px" }}>
+      <div style={{ fontSize: "11px", color: "var(--excode-fg-subtle)", marginTop: "4px" }}>
         {userCount > 0 ? `${userCount} custom binding${userCount !== 1 ? "s" : ""}` : "Using all defaults"}
         {" · "}Click a keybinding to rebind · Esc to cancel
       </div>

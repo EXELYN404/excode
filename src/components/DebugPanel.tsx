@@ -17,10 +17,10 @@ function SectionHeader({ label, open, onToggle }: { label: string; open: boolean
         width: '100%', padding: '4px 8px',
         background: 'none', border: 'none', cursor: 'pointer',
         fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em',
-        color: 'var(--origin-fg-subtle)',
+        color: 'var(--excode-fg-subtle)',
         textTransform: 'uppercase',
         userSelect: 'none',
-        borderTop: '1px solid var(--origin-border-default)',
+        borderTop: '1px solid var(--excode-border-default)',
       }}
     >
       {open
@@ -74,17 +74,17 @@ function VariableTree({ variables, sessionId, depth = 0 }: VariableTreeProps) {
                 cursor: expandable ? 'pointer' : 'default',
                 fontSize: '11px', lineHeight: '1.5',
               }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--origin-bg-hover)'; }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--excode-bg-hover)'; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
             >
-              <span style={{ flexShrink: 0, width: 12, color: 'var(--origin-fg-subtle)' }}>
+              <span style={{ flexShrink: 0, width: 12, color: 'var(--excode-fg-subtle)' }}>
                 {expandable && (isLoading ? '…' : isOpen ? '▾' : '▸')}
               </span>
-              <span style={{ color: 'var(--origin-syntax-variable)', flexShrink: 0 }}>{v.name}</span>
-              <span style={{ color: 'var(--origin-fg-subtle)', flexShrink: 0 }}>:</span>
-              <span style={{ color: 'var(--origin-syntax-string)', wordBreak: 'break-all' }}>{v.value}</span>
+              <span style={{ color: 'var(--excode-syntax-variable)', flexShrink: 0 }}>{v.name}</span>
+              <span style={{ color: 'var(--excode-fg-subtle)', flexShrink: 0 }}>:</span>
+              <span style={{ color: 'var(--excode-syntax-string)', wordBreak: 'break-all' }}>{v.value}</span>
               {v.type && (
-                <span style={{ color: 'var(--origin-fg-subtle)', fontSize: '10px', marginLeft: 'auto', flexShrink: 0 }}>
+                <span style={{ color: 'var(--excode-fg-subtle)', fontSize: '10px', marginLeft: 'auto', flexShrink: 0 }}>
                   {v.type}
                 </span>
               )}
@@ -122,7 +122,7 @@ export default function DebugPanel({ onFileOpenAtLine }: Props) {
   if (!folderPath) {
     return (
       <div className="flex-1 flex items-center justify-center p-4">
-        <p style={{ fontSize: '11px', color: 'var(--origin-fg-subtle)', textAlign: 'center' }}>
+        <p style={{ fontSize: '11px', color: 'var(--excode-fg-subtle)', textAlign: 'center' }}>
           Open a folder to use the debugger.
         </p>
       </div>
@@ -133,7 +133,7 @@ export default function DebugPanel({ onFileOpenAtLine }: Props) {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
         {status === 'terminated' && (
-          <div style={{ padding: '6px 10px', fontSize: '11px', color: 'var(--origin-fg-subtle)', borderBottom: '1px solid var(--origin-border-default)' }}>
+          <div style={{ padding: '6px 10px', fontSize: '11px', color: 'var(--excode-fg-subtle)', borderBottom: '1px solid var(--excode-border-default)' }}>
             Session ended.
           </div>
         )}
@@ -158,13 +158,13 @@ export default function DebugPanel({ onFileOpenAtLine }: Props) {
         {callStackOpen && (
           <div>
             {threads.length === 0 && status !== 'paused' && (
-              <p style={{ fontSize: '11px', color: 'var(--origin-fg-subtle)', padding: '6px 12px' }}>Running…</p>
+              <p style={{ fontSize: '11px', color: 'var(--excode-fg-subtle)', padding: '6px 12px' }}>Running…</p>
             )}
             {threads.map(thread => (
               <div key={thread.id}>
                 <div style={{
                   padding: '3px 8px', fontSize: '11px',
-                  color: 'var(--origin-fg-muted)', fontStyle: 'italic',
+                  color: 'var(--excode-fg-muted)', fontStyle: 'italic',
                 }}>
                   Thread #{thread.id} — {thread.name}
                 </div>
@@ -177,14 +177,14 @@ export default function DebugPanel({ onFileOpenAtLine }: Props) {
                       padding: '2px 8px 2px 20px',
                       cursor: frame.source?.path ? 'pointer' : 'default',
                       fontSize: '11px',
-                      backgroundColor: idx === 0 ? 'var(--origin-bg-active)' : 'transparent',
+                      backgroundColor: idx === 0 ? 'var(--excode-bg-active)' : 'transparent',
                     }}
-                    onMouseEnter={e => { if (idx !== 0) (e.currentTarget as HTMLElement).style.background = 'var(--origin-bg-hover)'; }}
+                    onMouseEnter={e => { if (idx !== 0) (e.currentTarget as HTMLElement).style.background = 'var(--excode-bg-hover)'; }}
                     onMouseLeave={e => { if (idx !== 0) (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
                   >
-                    <span style={{ color: 'var(--origin-fg-default)', flexShrink: 0 }}>{frame.name}</span>
+                    <span style={{ color: 'var(--excode-fg-default)', flexShrink: 0 }}>{frame.name}</span>
                     {frame.source?.path && (
-                      <span style={{ color: 'var(--origin-fg-subtle)', fontSize: '10px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      <span style={{ color: 'var(--excode-fg-subtle)', fontSize: '10px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {frame.source.path.split(/[\\/]/).pop()}:{frame.line}
                       </span>
                     )}
@@ -200,7 +200,7 @@ export default function DebugPanel({ onFileOpenAtLine }: Props) {
         {variablesOpen && sessionId && (
           <div>
             {scopes.length === 0 && (
-              <p style={{ fontSize: '11px', color: 'var(--origin-fg-subtle)', padding: '6px 12px' }}>
+              <p style={{ fontSize: '11px', color: 'var(--excode-fg-subtle)', padding: '6px 12px' }}>
                 {status === 'paused' ? 'No scopes.' : 'Paused to inspect variables.'}
               </p>
             )}
@@ -215,7 +215,7 @@ export default function DebugPanel({ onFileOpenAtLine }: Props) {
         {breakpointsOpen && (
           <div>
             {fileGroups.size === 0 && (
-              <p style={{ fontSize: '11px', color: 'var(--origin-fg-subtle)', padding: '6px 12px' }}>
+              <p style={{ fontSize: '11px', color: 'var(--excode-fg-subtle)', padding: '6px 12px' }}>
                 No breakpoints set. Click the gutter to add one.
               </p>
             )}
@@ -223,7 +223,7 @@ export default function DebugPanel({ onFileOpenAtLine }: Props) {
               <div key={fp}>
                 <div style={{
                   padding: '3px 8px', fontSize: '10px', fontWeight: 600,
-                  color: 'var(--origin-fg-subtle)', letterSpacing: '0.04em',
+                  color: 'var(--excode-fg-subtle)', letterSpacing: '0.04em',
                   overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
                 }} title={fp}>
                   {fp.split(/[\\/]/).pop()}
@@ -235,16 +235,16 @@ export default function DebugPanel({ onFileOpenAtLine }: Props) {
                       display: 'flex', alignItems: 'center', gap: 6,
                       padding: '2px 8px 2px 16px', fontSize: '11px',
                     }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--origin-bg-hover)'; }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--excode-bg-hover)'; }}
                     onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
                   >
                     <span style={{
                       width: 7, height: 7, borderRadius: '50%', flexShrink: 0,
-                      border: entry.verified ? 'none' : '1.5px solid var(--origin-semantic-error)',
-                      backgroundColor: entry.verified ? 'var(--origin-semantic-error)' : 'transparent',
+                      border: entry.verified ? 'none' : '1.5px solid var(--excode-semantic-error)',
+                      backgroundColor: entry.verified ? 'var(--excode-semantic-error)' : 'transparent',
                     }} />
                     <span
-                      style={{ flex: 1, cursor: 'pointer', color: 'var(--origin-fg-default)' }}
+                      style={{ flex: 1, cursor: 'pointer', color: 'var(--excode-fg-default)' }}
                       onClick={() => onFileOpenAtLine(fp, entry.line, 1)}
                     >
                       Ln {entry.line}
@@ -253,7 +253,7 @@ export default function DebugPanel({ onFileOpenAtLine }: Props) {
                       onClick={() => toggleBreakpoint(fp, entry.line)}
                       style={{
                         background: 'none', border: 'none', padding: 2,
-                        cursor: 'pointer', color: 'var(--origin-fg-subtle)',
+                        cursor: 'pointer', color: 'var(--excode-fg-subtle)',
                         display: 'flex', alignItems: 'center',
                       }}
                       title="Remove breakpoint"
@@ -276,12 +276,12 @@ export default function DebugPanel({ onFileOpenAtLine }: Props) {
             whiteSpace: 'pre-wrap', wordBreak: 'break-all',
           }}>
             {outputLines.length === 0
-              ? <span style={{ color: 'var(--origin-fg-subtle)' }}>No output.</span>
+              ? <span style={{ color: 'var(--excode-fg-subtle)' }}>No output.</span>
               : outputLines.map((l, i) => (
                 <div key={i} style={{
-                  color: l.category === 'stderr' ? 'var(--origin-semantic-error)'
-                    : l.category === 'important' ? 'var(--origin-accent-yellow)'
-                    : 'var(--origin-fg-muted)',
+                  color: l.category === 'stderr' ? 'var(--excode-semantic-error)'
+                    : l.category === 'important' ? 'var(--excode-accent-yellow)'
+                    : 'var(--excode-fg-muted)',
                 }}>
                   {l.text}
                 </div>
@@ -323,14 +323,14 @@ function ScopeSection({ scope, sessionId }: { scope: { name: string; variablesRe
         style={{
           display: 'flex', alignItems: 'center', gap: 4,
           padding: '3px 8px 3px 12px', cursor: 'pointer', fontSize: '11px',
-          color: 'var(--origin-fg-muted)',
+          color: 'var(--excode-fg-muted)',
         }}
-        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--origin-bg-hover)'; }}
+        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--excode-bg-hover)'; }}
         onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
       >
         {open ? <ChevronDown size={11} /> : <ChevronRight size={11} />}
         <span style={{ fontWeight: 600 }}>{scope.name}</span>
-        {loading && <span style={{ color: 'var(--origin-fg-subtle)', marginLeft: 4 }}>…</span>}
+        {loading && <span style={{ color: 'var(--excode-fg-subtle)', marginLeft: 4 }}>…</span>}
       </div>
       {open && vars !== null && (
         <VariableTree variables={vars} sessionId={sessionId} depth={0} />

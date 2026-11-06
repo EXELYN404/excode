@@ -56,10 +56,10 @@ export default function DropdownMenu({ entries, anchorEl, onClose }: Props) {
         top: pos.top,
         left: pos.left,
         minWidth: '280px',
-        background: 'color-mix(in srgb, var(--origin-bg-base) 50%, transparent)',
+        background: 'color-mix(in srgb, var(--excode-bg-base) 50%, transparent)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
-        border: '1px solid var(--origin-border-default)',
+        border: '1px solid var(--excode-border-default)',
         borderRadius: '8px',
         boxShadow: '0 8px 32px rgba(0,0,0,0.45)',
         padding: '4px',
@@ -73,7 +73,7 @@ export default function DropdownMenu({ entries, anchorEl, onClose }: Props) {
               key={i}
               style={{
                 height: '1px',
-                background: 'var(--origin-border-default)',
+                background: 'var(--excode-border-default)',
                 margin: '3px 4px',
               }}
             />
@@ -102,8 +102,8 @@ export default function DropdownMenu({ entries, anchorEl, onClose }: Props) {
               borderRadius: '5px',
               border: 'none',
               cursor: isDisabled ? 'default' : 'pointer',
-              background: hovered === i ? 'var(--origin-bg-hover)' : 'transparent',
-              color: isDisabled ? 'var(--origin-fg-subtle)' : 'var(--origin-fg-default)',
+              background: hovered === i ? 'var(--excode-bg-hover)' : 'transparent',
+              color: isDisabled ? 'var(--excode-fg-subtle)' : 'var(--excode-fg-default)',
               fontFamily: 'inherit',
               fontSize: '13px',
               textAlign: 'left',
@@ -117,13 +117,13 @@ export default function DropdownMenu({ entries, anchorEl, onClose }: Props) {
                 <span style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: '11px',
-                  color: isDisabled ? 'var(--origin-fg-subtle)' : 'var(--origin-fg-muted)',
+                  color: isDisabled ? 'var(--excode-fg-subtle)' : 'var(--excode-fg-muted)',
                 }}>
                   {entry.shortcut}
                 </span>
               )}
               {entry.submenu && (
-                <ChevronRight size={12} style={{ color: 'var(--origin-fg-muted)' }} />
+                <ChevronRight size={12} style={{ color: 'var(--excode-fg-muted)' }} />
               )}
             </span>
           </button>

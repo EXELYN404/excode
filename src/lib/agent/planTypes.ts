@@ -11,7 +11,7 @@ export interface ParsedPlan {
 }
 
 export function parsePlan(content: string): ParsedPlan | null {
-  const match = content.match(/<origin-plan>([\s\S]*?)<\/origin-plan>/);
+  const match = content.match(/<excode-plan>([\s\S]*?)<\/excode-plan>/);
   if (!match) return null;
   const inner = match[1];
   const titleMatch = inner.match(/<title>([\s\S]*?)<\/title>/);

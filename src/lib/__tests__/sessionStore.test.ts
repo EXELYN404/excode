@@ -152,13 +152,13 @@ describe("dbMsgsToDisplay", () => {
   });
 
   describe("plan card extraction", () => {
-    const validPlanXml = `<origin-plan><title>My Plan</title><step file="src/foo.ts" action="edit">Update foo</step></origin-plan>`;
+    const validPlanXml = `<excode-plan><title>My Plan</title><step file="src/foo.ts" action="edit">Update foo</step></excode-plan>`;
 
     it("strips plan XML from content and adds plan-card part", () => {
       const result = dbMsgsToDisplay([
         msg({ content: `Here is my plan:\n${validPlanXml}`, status: "complete" }),
       ]);
-      expect(result[0].content).not.toContain("<origin-plan>");
+      expect(result[0].content).not.toContain("<excode-plan>");
       const planPart = result[0].parts?.find(p => p.type === "plan-card");
       expect(planPart).toBeDefined();
       expect(planPart?.type).toBe("plan-card");

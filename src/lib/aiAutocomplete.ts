@@ -145,7 +145,7 @@ function createTriggerPlugin(ref: { current: AiCompletionFn | undefined }) {
       this.abortCtrl?.abort();
       this.abortCtrl = null;
       // suggestionField already clears on docChanged — no extra dispatch needed.
-      const delay = parseInt(localStorage.getItem('origin-editor-autocomplete-delay') ?? '350', 10);
+      const delay = parseInt(localStorage.getItem('excode-editor-autocomplete-delay') ?? '350', 10);
       this.timer = setTimeout(() => { this.timer = null; void this.trigger(); }, delay);
     }
 
@@ -220,7 +220,7 @@ function createTriggerPlugin(ref: { current: AiCompletionFn | undefined }) {
 
 const ghostTheme = EditorView.baseTheme({
   '.cm-ai-ghost': {
-    color: 'var(--origin-fg-subtle)',
+    color: 'var(--excode-fg-subtle)',
     opacity: '0.5',
     pointerEvents: 'none',
     userSelect: 'none',

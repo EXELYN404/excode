@@ -17,7 +17,7 @@ const CODE_EXTS = new Set([
 
 function FileIcon({ ext }: { ext: string }) {
   const Icon = CODE_EXTS.has(ext.toLowerCase()) ? FileCode : File;
-  return <Icon size={12} style={{ flexShrink: 0, color: "var(--origin-fg-muted)" }} />;
+  return <Icon size={12} style={{ flexShrink: 0, color: "var(--excode-fg-muted)" }} />;
 }
 
 interface Props {
@@ -110,10 +110,10 @@ export default function MentionDropdown({ anchorEl, query, onSelect, onClose, ke
         bottom: window.innerHeight - pos.top,
         left: pos.left,
         width: Math.max(pos.width, 260),
-        background: "color-mix(in srgb, var(--origin-bg-base) 85%, transparent)",
+        background: "color-mix(in srgb, var(--excode-bg-base) 85%, transparent)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
-        border: "1px solid var(--origin-border-default)",
+        border: "1px solid var(--excode-border-default)",
         borderRadius: "10px",
         boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
         zIndex: 9999,
@@ -121,7 +121,7 @@ export default function MentionDropdown({ anchorEl, query, onSelect, onClose, ke
       }}
     >
       {/* Search */}
-      <div style={{ padding: "8px 8px 4px", borderBottom: "1px solid var(--origin-border-default)" }}>
+      <div style={{ padding: "8px 8px 4px", borderBottom: "1px solid var(--excode-border-default)" }}>
         <input
           ref={searchRef}
           value={search}
@@ -134,7 +134,7 @@ export default function MentionDropdown({ anchorEl, query, onSelect, onClose, ke
             border: "none",
             outline: "none",
             fontSize: "12px",
-            color: "var(--origin-fg-default)",
+            color: "var(--excode-fg-default)",
             padding: "2px 4px",
           }}
         />
@@ -143,7 +143,7 @@ export default function MentionDropdown({ anchorEl, query, onSelect, onClose, ke
       {/* File list */}
       <div style={{ maxHeight: "220px", overflowY: "auto", padding: "4px" }}>
         {visible.length === 0 ? (
-          <div style={{ fontSize: "12px", color: "var(--origin-fg-subtle)", padding: "8px 8px" }}>
+          <div style={{ fontSize: "12px", color: "var(--excode-fg-subtle)", padding: "8px 8px" }}>
             No files found
           </div>
         ) : (
@@ -166,7 +166,7 @@ export default function MentionDropdown({ anchorEl, query, onSelect, onClose, ke
                   borderRadius: "6px",
                   border: "none",
                   cursor: isAttached ? "default" : "pointer",
-                  background: i === activeIdx && !isAttached ? "var(--origin-bg-hover)" : "transparent",
+                  background: i === activeIdx && !isAttached ? "var(--excode-bg-hover)" : "transparent",
                   textAlign: "left",
                   opacity: isAttached ? 0.5 : 1,
                 }}
@@ -174,7 +174,7 @@ export default function MentionDropdown({ anchorEl, query, onSelect, onClose, ke
                 <FileIcon ext={f.ext} />
                 <span style={{
                   fontSize: "12px",
-                  color: "var(--origin-fg-default)",
+                  color: "var(--excode-fg-default)",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
@@ -183,11 +183,11 @@ export default function MentionDropdown({ anchorEl, query, onSelect, onClose, ke
                   {f.name}
                 </span>
                 {isAttached ? (
-                  <Check size={11} style={{ color: "var(--origin-fg-muted)", flexShrink: 0 }} />
+                  <Check size={11} style={{ color: "var(--excode-fg-muted)", flexShrink: 0 }} />
                 ) : (
                   <span style={{
                     fontSize: "10px",
-                    color: "var(--origin-fg-subtle)",
+                    color: "var(--excode-fg-subtle)",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap",

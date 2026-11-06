@@ -18,7 +18,7 @@ interface Props {
 function PanelPlaceholder({ label }: { label: string }) {
   return (
     <div className="flex-1 flex items-center justify-center">
-      <p className="text-xs" style={{ color: "var(--origin-fg-subtle)" }}>{label}</p>
+      <p className="text-xs" style={{ color: "var(--excode-fg-subtle)" }}>{label}</p>
     </div>
   );
 }
@@ -68,8 +68,8 @@ export default function Sidebar({ onFileOpen, onFileOpenAtLine, fileTreeKey }: P
       className="relative flex flex-col shrink-0 border-r"
       style={{
         width,
-        backgroundColor: "var(--origin-bg-sidebar)",
-        borderColor: "var(--origin-border-default)",
+        backgroundColor: "var(--excode-bg-sidebar)",
+        borderColor: "var(--excode-border-default)",
       }}
     >
       <ActivityBar active={active} onSelect={setActive} />
@@ -85,7 +85,7 @@ export default function Sidebar({ onFileOpen, onFileOpenAtLine, fileTreeKey }: P
         onMouseDown={startResize}
         className="absolute top-0 right-0 h-full w-1 cursor-col-resize z-10"
         style={{ backgroundColor: "transparent" }}
-        onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--origin-border-default)"; }}
+        onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--excode-border-default)"; }}
         onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; }}
       />
     </div>

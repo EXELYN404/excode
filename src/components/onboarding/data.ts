@@ -34,37 +34,6 @@ export const PROVIDERS: Provider[] = [
   { id: 'vllm',       label: 'vLLM',       icon: null,                   invert: false, group: 'local', keyLabel: 'Base URL', keyPlaceholder: 'http://localhost:8000',  models: [], customModels: true },
 ];
 
-export interface ThemeOption {
-  id: 'dark' | 'light';
-  label: string;
-  previewBg: string;
-  lines: Array<{ color: string; width: string }>;
-}
-
-export const THEMES: ThemeOption[] = [
-  {
-    id: 'dark',
-    label: 'Origin Dark',
-    previewBg: '#0a0a0a',
-    lines: [
-      { color: '#62a6ff', width: '85%' },
-      { color: '#333',    width: '60%' },
-      { color: '#f05b8d', width: '45%' },
-      { color: '#2a2a2a', width: '75%' },
-    ],
-  },
-  {
-    id: 'light',
-    label: 'Origin Light',
-    previewBg: '#f5f5f5',
-    lines: [
-      { color: '#005ee9', width: '85%' },
-      { color: '#ccc',    width: '60%' },
-      { color: '#b32c62', width: '45%' },
-      { color: '#ddd',    width: '75%' },
-    ],
-  },
-];
 
 export interface KeymapOption {
   id: string;

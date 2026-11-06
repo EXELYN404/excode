@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@keyframes origin-ellipsis {
+@keyframes excode-ellipsis {
   0%   { content: ""; }
   25%  { content: "."; }
   50%  { content: ".."; }
@@ -92,20 +92,955 @@ html, body, #root {
   --plan-badge-delete-bg: #ef4444;
   --plan-badge-delete-fg: #fff;
 }
-[data-theme="light"] {
-  --plan-badge-edit-bg:   #1d4ed8;
-  --plan-badge-edit-fg:   #fff;
-  --plan-badge-create-bg: #15803d;
-  --plan-badge-create-fg: #fff;
-  --plan-badge-delete-bg: #b91c1c;
-  --plan-badge-delete-fg: #fff;
-}
-
 /* CodeMirror selection — global override so it wins regardless of CM6's
    internal stylesheet ordering and without needing an EditorView remount. */
 .cm-selectionBackground {
-  background-color: var(--origin-bg-selection) !important;
+  background-color: var(--excode-bg-selection) !important;
 }
 .cm-editor.cm-focused .cm-selectionBackground {
-  background-color: var(--origin-bg-selection-focused) !important;
+  background-color: var(--excode-bg-selection-focused) !important;
+}
+
+
+
+/* =========================================================
+   EXCODE ONBOARDING — PROVIDER PICKER MASTER / DETAIL
+   UI only. Existing application behavior remains in React.
+   ========================================================= */
+
+.excode-provider-page {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--excode-fg-default, #f2f2f2);
+  background: #090909;
+}
+
+.excode-provider-main {
+  width: 100%;
+  max-width: 1120px;
+  min-height: 0;
+  flex: 1;
+  margin: 0 auto;
+  padding: 54px 34px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+}
+
+.excode-provider-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.excode-provider-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #777;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 1.4px;
+  font-weight: 600;
+  margin-bottom: 11px;
+}
+
+.excode-provider-eyebrow-dot,
+.excode-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ddd;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.excode-provider-heading h1 {
+  margin: 0;
+  color: #f2f2f2;
+  font-size: clamp(22px, 3vw, 29px);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.excode-provider-heading p {
+  margin: 8px 0 0;
+  color: #777;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.excode-provider-step {
+  color: #eee;
+  font-family: var(--font-mono);
+  font-size: 19px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.excode-provider-step span {
+  color: #555;
+  font-size: 12px;
+}
+
+.excode-provider-layout {
+  display: grid;
+  grid-template-columns: minmax(245px, 0.88fr) minmax(0, 1.5fr);
+  flex: 1;
+  min-height: 0;
+  gap: 13px;
+}
+
+.excode-provider-sidebar,
+.excode-provider-config {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: #0e0e0e;
+  border: 1px solid #252525;
+  border-radius: 11px;
+  overflow: hidden;
+}
+
+.excode-panel-heading {
+  min-height: 49px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid #252525;
+  flex-shrink: 0;
+}
+
+.excode-panel-heading > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.excode-panel-index {
+  color: #666;
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+.excode-panel-title {
+  color: #ccc;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.excode-provider-count,
+.excode-config-state {
+  color: #666;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: .5px;
+  white-space: nowrap;
+}
+
+.excode-provider-search {
+  height: 37px;
+  margin: 12px 12px 9px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #090909;
+  border: 1px solid #292929;
+  border-radius: 7px;
+  color: #777;
+  flex-shrink: 0;
+}
+
+.excode-provider-search:focus-within {
+  border-color: #777;
+}
+
+.excode-provider-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #eee;
+  font: inherit;
+  font-size: 11px;
+}
+
+.excode-provider-search input::placeholder {
+  color: #555;
+}
+
+.excode-provider-search kbd {
+  padding: 2px 5px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: #666;
+  font-family: var(--font-mono);
+  font-size: 9px;
+}
+
+.excode-provider-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 3px 10px 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
+  gap: 7px;
+}
+
+.excode-provider-empty-search {
+  grid-column: 1 / -1;
+  padding: 18px 8px;
+  color: #777;
+  font-size: 12px;
+}
+
+.excode-provider-sidebar-foot {
+  min-height: 37px;
+  padding: 0 13px;
+  border-top: 1px solid #222;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.excode-provider-sidebar-foot .excode-status-dot {
+  width: 5px;
+  height: 5px;
+  background: #888;
+}
+
+.excode-config-empty {
+  flex: 1;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  text-align: center;
+}
+
+.excode-config-empty-icon {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #303030;
+  border-radius: 14px;
+  background: #151515;
+  color: #aaa;
+  margin-bottom: 17px;
+}
+
+.excode-config-empty h2 {
+  margin: 0;
+  color: #ddd;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.excode-config-empty p {
+  max-width: 270px;
+  margin: 8px 0 18px;
+  color: #666;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.excode-config-empty-line {
+  width: 35px;
+  height: 1px;
+  background: #444;
+  margin-bottom: 12px;
+}
+
+.excode-config-empty > span {
+  color: #555;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.excode-config-content {
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.excode-selected-provider {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.excode-selected-provider-logo {
+  width: 49px;
+  height: 49px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: #151515;
+  border: 1px solid #303030;
+  border-radius: 10px;
+  color: #ddd;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.excode-selected-label {
+  color: #666;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.excode-selected-provider h2 {
+  margin: 4px 0 0;
+  color: #f0f0f0;
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.excode-selected-check {
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #555;
+  border-radius: 50%;
+  color: #eee;
+  margin-left: auto;
+}
+
+.excode-config-divider {
+  width: 100%;
+  height: 1px;
+  background: #252525;
+}
+
+.excode-config-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.excode-config-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.excode-field-optional {
+  color: #555;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: .6px;
+}
+
+.excode-key-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 11px;
+  border: 1px solid #292929;
+  border-radius: 8px;
+  background: #101010;
+  color: #777;
+}
+
+.excode-key-input-wrap:focus-within {
+  border-color: #777;
+}
+
+.excode-key-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 11px;
+  background: transparent;
+  border: 0;
+  color: #777;
+  cursor: pointer;
+}
+
+.excode-key-toggle:hover {
+  color: #fff;
+}
+
+.excode-provider-docs {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  color: #999;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.excode-provider-docs:hover {
+  color: #fff;
+}
+
+.excode-config-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid #222;
+  color: #666;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.excode-config-note .excode-status-dot {
+  width: 5px;
+  height: 5px;
+  background: #777;
+}
+
+.excode-provider-footer {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 12px 34px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-shrink: 0;
+}
+
+.excode-provider-skip {
+  padding: 8px 0;
+  background: transparent;
+  border: 0;
+  color: #777;
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.excode-provider-skip:hover {
+  color: #eee;
+}
+
+.excode-provider-footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+@media (max-width: 700px) {
+  .excode-provider-main {
+    padding: 48px 16px 12px;
+    gap: 16px;
+  }
+
+  .excode-provider-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(150px, .85fr) minmax(190px, 1fr);
+    gap: 9px;
+  }
+
+  .excode-provider-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .excode-provider-footer {
+    padding: 10px 16px 18px;
+  }
+
+  .excode-config-content {
+    padding: 15px;
+    gap: 14px;
+  }
+
+  .excode-provider-heading p {
+    max-width: 330px;
+  }
+}
+
+@media (max-height: 650px) {
+  .excode-provider-main {
+    padding-top: 43px;
+    gap: 13px;
+  }
+
+  .excode-provider-heading h1 {
+    font-size: 21px;
+  }
+
+  .excode-provider-footer {
+    padding-bottom: 12px;
+  }
+
+  .excode-config-content {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    gap: 12px;
+  }
+}
+
+
+
+/* =========================================================
+   EXCODE WELCOME — MONOCHROME ONBOARDING REDESIGN
+   Presentation only. Existing carousel and navigation logic
+   remains in WelcomePage.tsx.
+   ========================================================= */
+
+.excode-welcome-page {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: clamp(22px, 5vh, 48px) clamp(22px, 4vw, 68px);
+}
+
+.excode-welcome-ambient {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.excode-welcome-glow {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse, rgba(180,180,180,.075), transparent 68%);
+  filter: blur(45px);
+}
+
+.excode-welcome-orbit {
+  position: absolute;
+  width: 125%;
+  height: 48%;
+  left: -12%;
+  border: 1px solid rgba(210,210,210,.13);
+  border-radius: 50%;
+  transform: rotate(-8deg);
+  box-shadow:
+    0 0 14px rgba(220,220,220,.035),
+    inset 0 0 18px rgba(220,220,220,.025);
+}
+
+.excode-welcome-orbit-top {
+  top: -31%;
+  background: linear-gradient(180deg, rgba(255,255,255,.035), transparent 72%);
+}
+
+.excode-welcome-orbit-bottom {
+  bottom: -34%;
+  left: -15%;
+  transform: rotate(8deg);
+  box-shadow:
+    0 -8px 22px rgba(220,220,220,.07),
+    0 0 2px rgba(255,255,255,.2);
+}
+
+.excode-welcome-header {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 9px;
+  position: relative;
+  z-index: 1;
+}
+
+.excode-welcome-logo {
+  display: block;
+  height: clamp(29px, 5vh, 44px);
+  max-width: 190px;
+  object-fit: contain;
+  margin-bottom: 5px;
+}
+
+.excode-welcome-header h1 {
+  margin: 0;
+  font-size: clamp(27px, 3.2vw, 40px);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -1.4px;
+}
+
+.excode-welcome-header h1 span {
+  background: linear-gradient(100deg, #eeeeee, #a9a9a9, #f5f5f5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.excode-welcome-header p {
+  margin: 0;
+  color: #999;
+  font-size: clamp(12px, 1.1vw, 15px);
+  line-height: 1.55;
+}
+
+.excode-welcome-main {
+  width: 100%;
+  max-width: 1530px;
+  min-height: 0;
+  flex: 1;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(20px, 4vh, 48px);
+  padding: clamp(18px, 4vh, 38px) 0;
+}
+
+.excode-welcome-carousel {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  align-items: center;
+}
+
+.excode-welcome-cards {
+  display: grid;
+  grid-template-columns: minmax(0, .78fr) minmax(0, 1fr) minmax(0, .78fr);
+  align-items: center;
+  gap: clamp(12px, 2.4vw, 40px);
+  min-width: 0;
+}
+
+.excode-welcome-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  width: 100%;
+  height: clamp(280px, 43vh, 425px);
+  padding: clamp(17px, 2.5vw, 32px);
+  overflow: hidden;
+  text-align: left;
+  border: 1px solid;
+  border-radius: 22px;
+  cursor: pointer;
+  position: relative;
+  transition:
+    transform 450ms cubic-bezier(.2,.8,.2,1),
+    opacity 450ms ease,
+    box-shadow 450ms ease,
+    border-color 450ms ease;
+}
+
+.excode-welcome-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 100% 100%, rgba(255,255,255,.11), transparent 55%),
+    linear-gradient(145deg, rgba(255,255,255,.035), transparent 45%);
+}
+
+.excode-welcome-card.is-active {
+  height: clamp(310px, 47vh, 450px);
+  transform: scale(1);
+  opacity: 1;
+  z-index: 2;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.12),
+    0 18px 60px rgba(0,0,0,.35),
+    0 0 25px rgba(255,255,255,.07);
+}
+
+.excode-welcome-card.is-side {
+  transform: scale(.94);
+  opacity: .76;
+  z-index: 1;
+}
+
+.excode-welcome-card-copy {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.excode-welcome-card-number {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(190,190,190,.48);
+  border-radius: 30px;
+  color: #ddd;
+  background: rgba(255,255,255,.07);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .5px;
+}
+
+.excode-welcome-card.is-active .excode-welcome-card-number {
+  font-size: 12px;
+  padding: 6px 14px;
+  border-color: rgba(255,255,255,.75);
+}
+
+.excode-welcome-card h2 {
+  margin: 0 0 7px;
+  color: inherit;
+  font-size: clamp(15px, 1.6vw, 23px);
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -.45px;
+}
+
+.excode-welcome-card p {
+  max-width: 390px;
+  margin: 0;
+  color: #aaa;
+  font-size: clamp(11px, 1.15vw, 15px);
+  line-height: 1.55;
+}
+
+.excode-welcome-card-image {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-height: 0;
+  margin-top: 16px;
+  overflow: hidden;
+  border-radius: 13px;
+  background: rgba(0,0,0,.22);
+}
+
+.excode-welcome-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(1);
+  opacity: .9;
+}
+
+.excode-welcome-card.is-side .excode-welcome-card-image img {
+  opacity: .72;
+}
+
+.excode-welcome-arrow {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 50%;
+  background: rgba(48,48,48,.88);
+  cursor: pointer;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.excode-welcome-arrow:hover {
+  background: #555;
+  transform: translateY(-50%) scale(1.06);
+}
+
+.excode-welcome-arrow-left {
+  left: -22px;
+}
+
+.excode-welcome-arrow-right {
+  right: -22px;
+}
+
+.excode-welcome-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.excode-welcome-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 20px;
+  background: #555;
+  cursor: pointer;
+  transition: width 250ms ease, background 250ms ease;
+}
+
+.excode-welcome-dot.is-active {
+  width: 28px;
+  background: linear-gradient(90deg, #aaa, #f1f1f1);
+}
+
+.excode-welcome-footer {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 8px;
+}
+
+.excode-welcome-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+  background: transparent;
+  border: 0;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.excode-welcome-checkbox-box {
+  width: 19px;
+  height: 19px;
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid;
+  border-radius: 4px;
+  color: white;
+}
+
+.excode-welcome-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.excode-welcome-skip,
+.excode-welcome-start {
+  min-height: 43px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 25px;
+  border: 1px solid;
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.excode-welcome-skip {
+  background: rgba(255,255,255,.025);
+}
+
+.excode-welcome-skip:hover {
+  background: rgba(255,255,255,.09);
+}
+
+.excode-welcome-start {
+  color: #111;
+  border-color: #d0d0d0;
+  background: linear-gradient(100deg, #f2f2f2, #bdbdbd);
+}
+
+.excode-welcome-start:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 760px) {
+  .excode-welcome-page {
+    padding: 22px 17px;
+  }
+
+  .excode-welcome-main {
+    gap: 22px;
+  }
+
+  .excode-welcome-cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .excode-welcome-card.is-side {
+    display: none;
+  }
+
+  .excode-welcome-card,
+  .excode-welcome-card.is-active {
+    height: clamp(300px, 48vh, 410px);
+  }
+
+  .excode-welcome-arrow-left {
+    left: -12px;
+  }
+
+  .excode-welcome-arrow-right {
+    right: -12px;
+  }
+
+  .excode-welcome-footer {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-height: 650px) and (min-width: 761px) {
+  .excode-welcome-page {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .excode-welcome-header {
+    gap: 5px;
+  }
+
+  .excode-welcome-logo {
+    height: 27px;
+  }
+
+  .excode-welcome-main {
+    padding: 12px 0;
+    gap: 15px;
+  }
+
+  .excode-welcome-card {
+    height: 270px;
+  }
+
+  .excode-welcome-card.is-active {
+    height: 300px;
+  }
 }

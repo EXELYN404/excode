@@ -49,8 +49,8 @@ function CodeBlock({
         margin: "10px 0",
         borderRadius: "6px",
         overflow: "hidden",
-        border: "1px solid var(--origin-border-default)",
-        backgroundColor: "var(--origin-bg-editor)",
+        border: "1px solid var(--excode-border-default)",
+        backgroundColor: "var(--excode-bg-editor)",
       }}
     >
       <div
@@ -58,8 +58,8 @@ function CodeBlock({
           display: "flex",
           alignItems: "center",
           padding: "4px 8px 4px 12px",
-          backgroundColor: "var(--origin-bg-hover)",
-          borderBottom: "1px solid var(--origin-border-default)",
+          backgroundColor: "var(--excode-bg-hover)",
+          borderBottom: "1px solid var(--excode-border-default)",
           gap: 4,
         }}
       >
@@ -67,7 +67,7 @@ function CodeBlock({
           style={{
             flex: 1,
             fontSize: "11px",
-            color: "var(--origin-fg-muted)",
+            color: "var(--excode-fg-muted)",
             fontFamily: "var(--font-mono)",
           }}
         >
@@ -78,11 +78,11 @@ function CodeBlock({
           onClick={handleCopy}
           style={iconBtnStyle}
           onMouseEnter={e => {
-            (e.currentTarget as HTMLElement).style.color = "var(--origin-fg-default)";
-            (e.currentTarget as HTMLElement).style.backgroundColor = "var(--origin-bg-active)";
+            (e.currentTarget as HTMLElement).style.color = "var(--excode-fg-default)";
+            (e.currentTarget as HTMLElement).style.backgroundColor = "var(--excode-bg-active)";
           }}
           onMouseLeave={e => {
-            (e.currentTarget as HTMLElement).style.color = "var(--origin-fg-muted)";
+            (e.currentTarget as HTMLElement).style.color = "var(--excode-fg-muted)";
             (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
           }}
         >
@@ -95,14 +95,14 @@ function CodeBlock({
             onClick={() => onApply(code, language, filePath)}
             style={applyBtnStyle}
             onMouseEnter={e => {
-              (e.currentTarget as HTMLElement).style.backgroundColor = "var(--origin-accent-blue)";
-              (e.currentTarget as HTMLElement).style.borderColor = "var(--origin-accent-blue)";
+              (e.currentTarget as HTMLElement).style.backgroundColor = "var(--excode-accent-blue)";
+              (e.currentTarget as HTMLElement).style.borderColor = "var(--excode-accent-blue)";
               (e.currentTarget as HTMLElement).style.color = "#fff";
             }}
             onMouseLeave={e => {
               (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(98,166,255,0.12)";
               (e.currentTarget as HTMLElement).style.borderColor = "rgba(98,166,255,0.35)";
-              (e.currentTarget as HTMLElement).style.color = "var(--origin-accent-blue)";
+              (e.currentTarget as HTMLElement).style.color = "var(--excode-accent-blue)";
             }}
           >
             <Wand2 size={11} />
@@ -119,7 +119,7 @@ function CodeBlock({
           fontSize: "12px",
           lineHeight: "1.6",
           fontFamily: "var(--font-mono)",
-          color: "var(--origin-fg-default)",
+          color: "var(--excode-fg-default)",
         }}
       >
         <code>{code}</code>
@@ -133,7 +133,7 @@ const iconBtnStyle: React.CSSProperties = {
   alignItems: "center",
   gap: 4,
   fontSize: "11px",
-  color: "var(--origin-fg-muted)",
+  color: "var(--excode-fg-muted)",
   background: "transparent",
   border: "none",
   cursor: "pointer",
@@ -147,7 +147,7 @@ const applyBtnStyle: React.CSSProperties = {
   alignItems: "center",
   gap: 4,
   fontSize: "11px",
-  color: "var(--origin-accent-blue)",
+  color: "var(--excode-accent-blue)",
   backgroundColor: "rgba(98,166,255,0.12)",
   border: "1px solid rgba(98,166,255,0.35)",
   cursor: "pointer",
@@ -183,11 +183,11 @@ export default function MarkdownMessage({ content, isStreaming, onApplyCode }: P
           style={{
             fontFamily: "var(--font-mono)",
             fontSize: "12px",
-            backgroundColor: "var(--origin-bg-hover)",
-            border: "1px solid var(--origin-border-default)",
+            backgroundColor: "var(--excode-bg-hover)",
+            border: "1px solid var(--excode-border-default)",
             borderRadius: "3px",
             padding: "1px 5px",
-            color: "var(--origin-fg-default)",
+            color: "var(--excode-fg-default)",
           }}
         >
           {children}
@@ -212,19 +212,19 @@ export default function MarkdownMessage({ content, isStreaming, onApplyCode }: P
     li: ({ children }) => <li style={{ margin: "2px 0" }}>{children}</li>,
 
     strong: ({ children }) => (
-      <strong style={{ fontWeight: 600, color: "var(--origin-fg-default)" }}>{children}</strong>
+      <strong style={{ fontWeight: 600, color: "var(--excode-fg-default)" }}>{children}</strong>
     ),
     em: ({ children }) => (
-      <em style={{ fontStyle: "italic", color: "var(--origin-fg-muted)" }}>{children}</em>
+      <em style={{ fontStyle: "italic", color: "var(--excode-fg-muted)" }}>{children}</em>
     ),
 
     blockquote: ({ children }) => (
       <blockquote
         style={{
-          borderLeft: "2px solid var(--origin-border-default)",
+          borderLeft: "2px solid var(--excode-border-default)",
           paddingLeft: 12,
           margin: "8px 0",
-          color: "var(--origin-fg-muted)",
+          color: "var(--excode-fg-muted)",
         }}
       >
         {children}
@@ -235,14 +235,14 @@ export default function MarkdownMessage({ content, isStreaming, onApplyCode }: P
       <hr
         style={{
           border: "none",
-          borderTop: "1px solid var(--origin-border-default)",
+          borderTop: "1px solid var(--excode-border-default)",
           margin: "12px 0",
         }}
       />
     ),
 
     a: ({ href, children }) => (
-      <a href={href} style={{ color: "var(--origin-accent-blue)", textDecoration: "underline" }}>
+      <a href={href} style={{ color: "var(--excode-accent-blue)", textDecoration: "underline" }}>
         {children}
       </a>
     ),
@@ -257,9 +257,9 @@ export default function MarkdownMessage({ content, isStreaming, onApplyCode }: P
     th: ({ children }) => (
       <th
         style={{
-          border: "1px solid var(--origin-border-default)",
+          border: "1px solid var(--excode-border-default)",
           padding: "4px 10px",
-          backgroundColor: "var(--origin-bg-hover)",
+          backgroundColor: "var(--excode-bg-hover)",
           fontWeight: 600,
           textAlign: "left",
         }}
@@ -268,14 +268,14 @@ export default function MarkdownMessage({ content, isStreaming, onApplyCode }: P
       </th>
     ),
     td: ({ children }) => (
-      <td style={{ border: "1px solid var(--origin-border-default)", padding: "4px 10px" }}>
+      <td style={{ border: "1px solid var(--excode-border-default)", padding: "4px 10px" }}>
         {children}
       </td>
     ),
   };
 
   return (
-    <div style={{ fontSize: "13px", color: "var(--origin-fg-default)", lineHeight: 1.65 }}>
+    <div style={{ fontSize: "13px", color: "var(--excode-fg-default)", lineHeight: 1.65 }}>
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
         {content}
       </ReactMarkdown>
@@ -287,7 +287,7 @@ function headingStyle(size: number, weight: number): React.CSSProperties {
   return {
     fontSize: `${size}px`,
     fontWeight: weight,
-    color: "var(--origin-fg-default)",
+    color: "var(--excode-fg-default)",
     margin: "12px 0 4px",
     lineHeight: 1.4,
   };

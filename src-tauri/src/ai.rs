@@ -134,7 +134,7 @@ pub async fn fetch_text(url: String) -> Result<String, String> {
         .map_err(|e| e.to_string())?;
     let resp = client
         .get(&url)
-        .header("User-Agent", "origin-ide/1.0")
+        .header("User-Agent", "excode-ide/1.0")
         .send()
         .await
         .map_err(|e| e.to_string())?;

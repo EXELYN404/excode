@@ -6,7 +6,7 @@ import { invoke } from '@tauri-apps/api/core';
 import { Tooltip } from '../ui/Tooltip';
 
 // Stable label for the single embedded preview webview.
-const PREVIEW_PANEL_ID = 'origin-web-preview';
+const PREVIEW_PANEL_ID = 'excode-web-preview';
 
 const COMMON_PORTS = [
   { port: 5173, label: 'Vite' },
@@ -50,13 +50,13 @@ function UrlPicker({ onNavigate }: { onNavigate: (url: string) => void }) {
       flex: 1, display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center', gap: '20px',
     }}>
-      <Globe size={36} style={{ color: 'var(--origin-fg-muted)', opacity: 0.35 }} />
+      <Globe size={36} style={{ color: 'var(--excode-fg-muted)', opacity: 0.35 }} />
 
       <div style={{ textAlign: 'center' }}>
-        <p style={{ fontSize: '14px', fontWeight: 500, color: 'var(--origin-fg-default)', marginBottom: '4px' }}>
+        <p style={{ fontSize: '14px', fontWeight: 500, color: 'var(--excode-fg-default)', marginBottom: '4px' }}>
           Live Preview
         </p>
-        <p style={{ fontSize: '12px', color: 'var(--origin-fg-muted)' }}>
+        <p style={{ fontSize: '12px', color: 'var(--excode-fg-muted)' }}>
           Enter a URL or port to preview your dev server
         </p>
       </div>
@@ -65,12 +65,12 @@ function UrlPicker({ onNavigate }: { onNavigate: (url: string) => void }) {
       <div style={{ display: 'flex', gap: '6px', alignItems: 'stretch' }}>
         <div style={{
           display: 'flex', alignItems: 'center', gap: '6px',
-          backgroundColor: 'var(--origin-bg-hover)',
-          border: '1px solid var(--origin-border-default)',
+          backgroundColor: 'var(--excode-bg-hover)',
+          border: '1px solid var(--excode-border-default)',
           borderRadius: '6px', padding: '6px 10px',
           width: '260px',
         }}>
-          <Globe size={12} style={{ color: 'var(--origin-fg-subtle)', flexShrink: 0 }} />
+          <Globe size={12} style={{ color: 'var(--excode-fg-subtle)', flexShrink: 0 }} />
           <input
             autoFocus
             placeholder="localhost:3000 or https://..."
@@ -80,7 +80,7 @@ function UrlPicker({ onNavigate }: { onNavigate: (url: string) => void }) {
             spellCheck={false}
             style={{
               flex: 1, background: 'transparent', border: 'none', outline: 'none',
-              fontSize: '12px', color: 'var(--origin-fg-default)',
+              fontSize: '12px', color: 'var(--excode-fg-default)',
               fontFamily: 'var(--font-mono, monospace)',
             }}
           />
@@ -89,7 +89,7 @@ function UrlPicker({ onNavigate }: { onNavigate: (url: string) => void }) {
           onClick={() => go(input)}
           style={{
             padding: '0 16px',
-            background: 'var(--origin-accent-blue)',
+            background: 'var(--excode-accent-blue)',
             color: '#fff',
             border: 'none', borderRadius: '6px',
             fontSize: '12px', cursor: 'pointer', fontWeight: 500,
@@ -108,18 +108,18 @@ function UrlPicker({ onNavigate }: { onNavigate: (url: string) => void }) {
             style={{
               padding: '4px 10px',
               background: 'transparent',
-              border: '1px solid var(--origin-border-default)',
+              border: '1px solid var(--excode-border-default)',
               borderRadius: '5px', cursor: 'pointer',
-              fontSize: '11px', color: 'var(--origin-fg-muted)',
+              fontSize: '11px', color: 'var(--excode-fg-muted)',
               transition: 'background 0.1s, color 0.1s',
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.background = 'var(--origin-bg-hover)';
-              e.currentTarget.style.color = 'var(--origin-fg-default)';
+              e.currentTarget.style.background = 'var(--excode-bg-hover)';
+              e.currentTarget.style.color = 'var(--excode-fg-default)';
             }}
             onMouseLeave={e => {
               e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.color = 'var(--origin-fg-muted)';
+              e.currentTarget.style.color = 'var(--excode-fg-muted)';
             }}
           >
             :{port}{' '}
@@ -138,7 +138,7 @@ const navBtnBaseStyle: React.CSSProperties = {
   width: '28px', height: '28px', flexShrink: 0,
   border: 'none', borderRadius: '4px', padding: 0,
   background: 'transparent', cursor: 'pointer',
-  color: 'var(--origin-fg-muted)',
+  color: 'var(--excode-fg-muted)',
   transition: 'background 0.1s, color 0.1s',
 };
 
@@ -163,13 +163,13 @@ function NavBtn({
         style={style}
         onMouseEnter={e => {
           if (disabled) return;
-          e.currentTarget.style.background = 'var(--origin-bg-hover)';
-          e.currentTarget.style.color = 'var(--origin-fg-default)';
+          e.currentTarget.style.background = 'var(--excode-bg-hover)';
+          e.currentTarget.style.color = 'var(--excode-fg-default)';
         }}
         onMouseLeave={e => {
           if (disabled) return;
           e.currentTarget.style.background = 'transparent';
-          e.currentTarget.style.color = 'var(--origin-fg-muted)';
+          e.currentTarget.style.color = 'var(--excode-fg-muted)';
         }}
       >
         {children}
@@ -178,7 +178,7 @@ function NavBtn({
   );
 }
 
-const LS_PREVIEW_URL = 'origin-preview-url';
+const LS_PREVIEW_URL = 'excode-preview-url';
 
 type PresetKey = 'mobile' | 'tablet' | 'desktop';
 
@@ -222,10 +222,10 @@ function DimInput({ value, onChange }: { value: number | null; onChange: (v: num
         onBlur={commit}
         style={{
           width: `${Math.max(3, draft.length)}ch`,
-          background: 'var(--origin-bg-active)',
-          border: '1px solid var(--origin-accent-blue)',
+          background: 'var(--excode-bg-active)',
+          border: '1px solid var(--excode-accent-blue)',
           borderRadius: '3px',
-          color: 'var(--origin-fg-default)',
+          color: 'var(--excode-fg-default)',
           fontSize: '11px',
           fontFamily: 'var(--font-mono, monospace)',
           outline: 'none',
@@ -242,7 +242,7 @@ function DimInput({ value, onChange }: { value: number | null; onChange: (v: num
       style={{
         fontSize: '11px',
         fontFamily: 'var(--font-mono, monospace)',
-        color: 'var(--origin-fg-muted)',
+        color: 'var(--excode-fg-muted)',
         cursor: 'text',
         minWidth: '28px',
         display: 'inline-block',
@@ -252,11 +252,11 @@ function DimInput({ value, onChange }: { value: number | null; onChange: (v: num
         transition: 'color 0.1s, background 0.1s',
       }}
       onMouseEnter={e => {
-        e.currentTarget.style.color = 'var(--origin-fg-default)';
-        e.currentTarget.style.background = 'var(--origin-bg-hover)';
+        e.currentTarget.style.color = 'var(--excode-fg-default)';
+        e.currentTarget.style.background = 'var(--excode-bg-hover)';
       }}
       onMouseLeave={e => {
-        e.currentTarget.style.color = 'var(--origin-fg-muted)';
+        e.currentTarget.style.color = 'var(--excode-fg-muted)';
         e.currentTarget.style.background = 'transparent';
       }}
     >
@@ -484,7 +484,7 @@ export default function WebPreviewPane() {
   if (url === null) {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden',
-        backgroundColor: 'var(--origin-bg-editor)' }}>
+        backgroundColor: 'var(--excode-bg-editor)' }}>
         <UrlPicker onNavigate={navigateFresh} />
       </div>
     );
@@ -497,14 +497,14 @@ export default function WebPreviewPane() {
       <div style={{
         display: 'flex', alignItems: 'center', gap: '4px',
         padding: '5px 8px',
-        borderBottom: '1px solid var(--origin-border-default)',
-        backgroundColor: 'var(--origin-bg-base)',
+        borderBottom: '1px solid var(--excode-border-default)',
+        backgroundColor: 'var(--excode-bg-base)',
         flexShrink: 0,
       }}>
         <NavBtn onClick={handleReset} title="Back to URL picker">
           <X size={14} />
         </NavBtn>
-        <div style={{ width: 1, height: 16, background: 'var(--origin-border-default)', flexShrink: 0 }} />
+        <div style={{ width: 1, height: 16, background: 'var(--excode-border-default)', flexShrink: 0 }} />
         <NavBtn onClick={handleBack} title="Back" disabled={!canGoBack}><ArrowLeft size={14} /></NavBtn>
         <NavBtn onClick={handleForward} title="Forward" disabled={!canGoForward}><ArrowRight size={14} /></NavBtn>
         <NavBtn onClick={() => { setIframeLoading(true); setReloadKey(k => k + 1); }} title="Refresh">
@@ -513,11 +513,11 @@ export default function WebPreviewPane() {
 
         <div style={{
           display: 'flex', alignItems: 'center', gap: '6px', flex: 1,
-          backgroundColor: 'var(--origin-bg-hover)',
-          border: '1px solid var(--origin-border-default)',
+          backgroundColor: 'var(--excode-bg-hover)',
+          border: '1px solid var(--excode-border-default)',
           borderRadius: '6px', padding: '3px 8px',
         }}>
-          <Globe size={12} style={{ color: 'var(--origin-fg-subtle)', flexShrink: 0 }} />
+          <Globe size={12} style={{ color: 'var(--excode-fg-subtle)', flexShrink: 0 }} />
           <input
             value={inputUrl}
             onChange={e => setInputUrl(e.target.value)}
@@ -536,13 +536,13 @@ export default function WebPreviewPane() {
             spellCheck={false}
             style={{
               flex: 1, background: 'transparent', border: 'none', outline: 'none',
-              fontSize: '12px', color: 'var(--origin-fg-default)',
+              fontSize: '12px', color: 'var(--excode-fg-default)',
               fontFamily: 'var(--font-mono, monospace)',
             }}
           />
         </div>
 
-        <div style={{ width: 1, height: 16, background: 'var(--origin-border-default)', flexShrink: 0, margin: '0 2px' }} />
+        <div style={{ width: 1, height: 16, background: 'var(--excode-border-default)', flexShrink: 0, margin: '0 2px' }} />
 
         {/* Viewport preset toggles */}
         {([
@@ -559,21 +559,21 @@ export default function WebPreviewPane() {
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   width: '28px', height: '28px', flexShrink: 0,
                   border: 'none', borderRadius: '4px', padding: 0,
-                  background: active ? 'var(--origin-bg-active)' : 'transparent',
+                  background: active ? 'var(--excode-bg-active)' : 'transparent',
                   cursor: 'pointer',
-                  color: active ? 'var(--origin-fg-default)' : 'var(--origin-fg-muted)',
+                  color: active ? 'var(--excode-fg-default)' : 'var(--excode-fg-muted)',
                   transition: 'background 0.1s, color 0.1s',
                 }}
                 onMouseEnter={e => {
                   if (!active) {
-                    e.currentTarget.style.background = 'var(--origin-bg-hover)';
-                    e.currentTarget.style.color = 'var(--origin-fg-default)';
+                    e.currentTarget.style.background = 'var(--excode-bg-hover)';
+                    e.currentTarget.style.color = 'var(--excode-fg-default)';
                   }
                 }}
                 onMouseLeave={e => {
                   if (!active) {
                     e.currentTarget.style.background = 'transparent';
-                    e.currentTarget.style.color = 'var(--origin-fg-muted)';
+                    e.currentTarget.style.color = 'var(--excode-fg-muted)';
                   }
                 }}
               >
@@ -586,11 +586,11 @@ export default function WebPreviewPane() {
         {/* Editable W × H */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '2px', paddingLeft: '4px' }}>
           <DimInput value={viewW} onChange={setViewW} />
-          <span style={{ fontSize: '11px', color: 'var(--origin-fg-subtle)', userSelect: 'none' }}>×</span>
+          <span style={{ fontSize: '11px', color: 'var(--excode-fg-subtle)', userSelect: 'none' }}>×</span>
           <DimInput value={viewH} onChange={setViewH} />
         </div>
 
-        <div style={{ width: 1, height: 16, background: 'var(--origin-border-default)', flexShrink: 0, margin: '0 2px' }} />
+        <div style={{ width: 1, height: 16, background: 'var(--excode-border-default)', flexShrink: 0, margin: '0 2px' }} />
 
         <NavBtn onClick={handlePopout} title="Pop out to new window">
           <PictureInPicture2 size={14} />
@@ -609,7 +609,7 @@ export default function WebPreviewPane() {
         flex: 1, overflow: 'hidden',
         display: 'flex', justifyContent: 'center',
         alignItems: viewH !== null ? 'flex-start' : 'stretch',
-        backgroundColor: viewW !== null ? 'var(--origin-bg-base)' : 'transparent',
+        backgroundColor: viewW !== null ? 'var(--excode-bg-base)' : 'transparent',
         padding: viewH !== null ? '16px' : 0,
       }}>
         <div style={{
@@ -617,7 +617,7 @@ export default function WebPreviewPane() {
           width: viewW !== null ? `${viewW}px` : '100%',
           height: viewH !== null ? `${viewH}px` : '100%',
           flexShrink: 0,
-          border: viewW !== null ? '1px solid var(--origin-border-default)' : 'none',
+          border: viewW !== null ? '1px solid var(--excode-border-default)' : 'none',
           borderRadius: viewW !== null ? '4px' : 0,
           overflow: 'hidden',
         }}>
@@ -628,9 +628,9 @@ export default function WebPreviewPane() {
             <div style={{
               position: 'absolute', inset: 0, zIndex: 1,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              backgroundColor: 'var(--origin-bg-editor)',
+              backgroundColor: 'var(--excode-bg-editor)',
             }}>
-              <Loader2 size={28} className="animate-spin" style={{ color: 'var(--origin-fg-muted)' }} />
+              <Loader2 size={28} className="animate-spin" style={{ color: 'var(--excode-fg-muted)' }} />
             </div>
           )}
         </div>

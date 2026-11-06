@@ -8,10 +8,10 @@ import {
 import type { DisplayMessage, MessagePart, SessionMeta, ToolCallDisplay } from "./aiTypes";
 import type { EditorContext } from "../components/editor/Editor";
 
-export const LS_SESSIONS_KEY = "origin-sessions-v1";
+export const LS_SESSIONS_KEY = "excode-sessions-v1";
 
 export function activeSessionKey(folderPath: string): string {
-  return `origin-active-session:${folderPath}`;
+  return `excode-active-session:${folderPath}`;
 }
 
 export function lsRead(): SessionMeta[] {

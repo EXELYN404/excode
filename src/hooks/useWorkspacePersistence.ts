@@ -10,11 +10,11 @@ const ls = {
 export function useWorkspacePersistence() {
   const { setFolderPath } = useWorkspace();
 
-  const [sidebarOpen,    setSidebarOpen]    = useState(() => ls.get('origin-sidebar-open') !== 'false');
-  const [aiPanelOpen,    setAiPanelOpen]    = useState(() => ls.get('origin-ai-panel-open') === 'true');
-  const [terminalOpen,   setTerminalOpen]   = useState(() => ls.get('origin-terminal-open') === 'true');
+  const [sidebarOpen,    setSidebarOpen]    = useState(() => ls.get('excode-sidebar-open') !== 'false');
+  const [aiPanelOpen,    setAiPanelOpen]    = useState(() => ls.get('excode-ai-panel-open') === 'true');
+  const [terminalOpen,   setTerminalOpen]   = useState(() => ls.get('excode-terminal-open') === 'true');
   const [terminalHeight, setTerminalHeight] = useState(() => {
-    const n = parseInt(ls.get('origin-terminal-height') ?? '', 10);
+    const n = parseInt(ls.get('excode-terminal-height') ?? '', 10);
     return isNaN(n) ? 240 : n;
   });
 
@@ -29,36 +29,36 @@ export function useWorkspacePersistence() {
       setFolderPath(folder || null);
 
       setSidebarOpen(sidebar);
-      ls.set('origin-sidebar-open', String(sidebar));
+      ls.set('excode-sidebar-open', String(sidebar));
 
       setTerminalOpen(termOpen);
-      ls.set('origin-terminal-open', String(termOpen));
+      ls.set('excode-terminal-open', String(termOpen));
 
       if (termHeight > 0) {
         setTerminalHeight(termHeight);
-        ls.set('origin-terminal-height', String(termHeight));
+        ls.set('excode-terminal-height', String(termHeight));
       }
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    ls.set('origin-sidebar-open', String(sidebarOpen));
+    ls.set('excode-sidebar-open', String(sidebarOpen));
     setSetting('sidebar.open', sidebarOpen);
   }, [sidebarOpen]);
 
   useEffect(() => {
-    ls.set('origin-terminal-open', String(terminalOpen));
+    ls.set('excode-terminal-open', String(terminalOpen));
     setSetting('terminal.open', terminalOpen);
   }, [terminalOpen]);
 
   useEffect(() => {
-    ls.set('origin-terminal-height', String(terminalHeight));
+    ls.set('excode-terminal-height', String(terminalHeight));
     setSetting('terminal.height', terminalHeight);
   }, [terminalHeight]);
 
   useEffect(() => {
-    ls.set('origin-ai-panel-open', String(aiPanelOpen));
+    ls.set('excode-ai-panel-open', String(aiPanelOpen));
   }, [aiPanelOpen]);
 
   return {

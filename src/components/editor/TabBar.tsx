@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X, File, GitCompare, Globe, Plus, FolderOpen } from 'lucide-react';
-import { fileColor } from '../../lib/fileColors';
+import FileIcon from '../FileIcon';
 
 export interface Tab {
   path: string;   // for ai-diff tabs: "__diff__<approvalId>"
@@ -56,9 +56,9 @@ function TabItem({ tab, active, onSelect, onClose }: { tab: Tab; active: boolean
         cursor: 'pointer',
         userSelect: 'none',
         position: 'relative',
-        background: active ? 'var(--origin-bg-editor)' : 'transparent',
-        borderRight: '1px solid var(--origin-border-default)',
-        borderTop: active ? '2px solid var(--origin-accent-blue)' : '2px solid transparent',
+        background: active ? 'var(--excode-bg-editor)' : 'transparent',
+        borderRight: '1px solid var(--excode-border-default)',
+        borderTop: active ? '2px solid var(--excode-accent-blue)' : '2px solid transparent',
         transition: 'background 0.1s',
       }}
     >
@@ -66,17 +66,17 @@ function TabItem({ tab, active, onSelect, onClose }: { tab: Tab; active: boolean
       {tab.kind === 'ai-diff'
         ? <GitCompare size={13} style={{ flexShrink: 0, color: 'rgba(46,160,67,0.9)' }} />
         : tab.kind === 'preview'
-        ? <Globe size={13} style={{ flexShrink: 0, color: 'var(--origin-accent-blue)' }} />
+        ? <Globe size={13} style={{ flexShrink: 0, color: 'var(--excode-accent-blue)' }} />
         : tab.isDirty
-          ? <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--origin-fg-muted)', flexShrink: 0 }} />
-          : <File size={13} style={{ flexShrink: 0, color: fileColor(tab.name) }} />
+          ? <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--excode-fg-muted)', flexShrink: 0 }} />
+          : <FileIcon name={tab.name} size={13} />
       }
 
       {/* File name */}
       <span style={{
         fontSize: '12px', flex: 1,
         overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
-        color: active ? 'var(--origin-fg-default)' : 'var(--origin-fg-muted)',
+        color: active ? 'var(--excode-fg-default)' : 'var(--excode-fg-muted)',
         fontWeight: active ? 500 : 400,
         fontStyle: tab.isUntitled ? 'italic' : 'normal',
       }}>
@@ -91,12 +91,12 @@ function TabItem({ tab, active, onSelect, onClose }: { tab: Tab; active: boolean
           width: '16px', height: '16px', flexShrink: 0,
           border: 'none', borderRadius: '4px', padding: 0,
           background: 'transparent', cursor: 'pointer',
-          color: 'var(--origin-fg-muted)',
+          color: 'var(--excode-fg-muted)',
           opacity: showClose ? 1 : 0,
           transition: 'opacity 0.1s, background 0.1s',
         }}
-        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--origin-bg-hover)'; (e.currentTarget as HTMLElement).style.color = 'var(--origin-fg-default)'; }}
-        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; (e.currentTarget as HTMLElement).style.color = 'var(--origin-fg-muted)'; }}
+        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--excode-bg-hover)'; (e.currentTarget as HTMLElement).style.color = 'var(--excode-fg-default)'; }}
+        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; (e.currentTarget as HTMLElement).style.color = 'var(--excode-fg-muted)'; }}
       >
         <X size={11} />
       </button>
@@ -150,8 +150,8 @@ function PlusDropdown({ anchorRef, onNewFile, onOpenFile, onOpenPreview, onClose
         top: rect.bottom + 2,
         right: window.innerWidth - rect.right,
         width: '164px',
-        backgroundColor: 'var(--origin-bg-panel)',
-        border: '1px solid var(--origin-border-default)',
+        backgroundColor: 'var(--excode-bg-panel)',
+        border: '1px solid var(--excode-border-default)',
         borderRadius: '6px',
         boxShadow: '0 4px 16px rgba(0,0,0,0.35)',
         backdropFilter: 'blur(8px)',
@@ -168,13 +168,13 @@ function PlusDropdown({ anchorRef, onNewFile, onOpenFile, onOpenPreview, onClose
             width: '100%', padding: '7px 12px',
             background: 'transparent', border: 'none',
             cursor: 'pointer', fontSize: '12px',
-            color: 'var(--origin-fg-default)',
+            color: 'var(--excode-fg-default)',
             textAlign: 'left',
           }}
-          onMouseEnter={e => { e.currentTarget.style.background = 'var(--origin-bg-hover)'; }}
+          onMouseEnter={e => { e.currentTarget.style.background = 'var(--excode-bg-hover)'; }}
           onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
         >
-          <span style={{ color: 'var(--origin-fg-muted)', display: 'flex' }}>{item.icon}</span>
+          <span style={{ color: 'var(--excode-fg-muted)', display: 'flex' }}>{item.icon}</span>
           {item.label}
         </button>
       ))}
@@ -200,8 +200,8 @@ export default function TabBar({ tabs, activeTab, onSelect, onClose, onNewFile, 
       style={{
         height: '36px', flexShrink: 0,
         display: 'flex', alignItems: 'stretch',
-        backgroundColor: 'var(--origin-bg-base)',
-        borderBottom: '1px solid var(--origin-border-default)',
+        backgroundColor: 'var(--excode-bg-base)',
+        borderBottom: '1px solid var(--excode-border-default)',
       }}
     >
       <div
@@ -233,22 +233,22 @@ export default function TabBar({ tabs, activeTab, onSelect, onClose, onNewFile, 
         style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           width: '36px', height: '36px', flexShrink: 0,
-          border: 'none', borderLeft: '1px solid var(--origin-border-default)',
-          background: plusOpen ? 'var(--origin-bg-hover)' : 'transparent',
+          border: 'none', borderLeft: '1px solid var(--excode-border-default)',
+          background: plusOpen ? 'var(--excode-bg-hover)' : 'transparent',
           cursor: 'pointer',
-          color: plusOpen ? 'var(--origin-fg-default)' : 'var(--origin-fg-muted)',
+          color: plusOpen ? 'var(--excode-fg-default)' : 'var(--excode-fg-muted)',
           transition: 'background 0.1s, color 0.1s',
         }}
         onMouseEnter={e => {
           if (!plusOpen) {
-            e.currentTarget.style.background = 'var(--origin-bg-hover)';
-            e.currentTarget.style.color = 'var(--origin-fg-default)';
+            e.currentTarget.style.background = 'var(--excode-bg-hover)';
+            e.currentTarget.style.color = 'var(--excode-fg-default)';
           }
         }}
         onMouseLeave={e => {
           if (!plusOpen) {
             e.currentTarget.style.background = 'transparent';
-            e.currentTarget.style.color = 'var(--origin-fg-muted)';
+            e.currentTarget.style.color = 'var(--excode-fg-muted)';
           }
         }}
       >

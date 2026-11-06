@@ -11,12 +11,12 @@ import {
 
 function statusColor(raw: string): string {
   const s = raw.replace(/\s/g, '');
-  if (s === '??' || s === 'U') return 'var(--origin-git-untracked)';
-  if (s[0] === 'A') return 'var(--origin-git-added)';
-  if (s[0] === 'M' || s[1] === 'M') return 'var(--origin-git-modified)';
-  if (s[0] === 'D' || s[1] === 'D') return 'var(--origin-git-deleted)';
-  if (s[0] === 'R') return 'var(--origin-accent-blue)';
-  return 'var(--origin-fg-muted)';
+  if (s === '??' || s === 'U') return 'var(--excode-git-untracked)';
+  if (s[0] === 'A') return 'var(--excode-git-added)';
+  if (s[0] === 'M' || s[1] === 'M') return 'var(--excode-git-modified)';
+  if (s[0] === 'D' || s[1] === 'D') return 'var(--excode-git-deleted)';
+  if (s[0] === 'R') return 'var(--excode-accent-blue)';
+  return 'var(--excode-fg-muted)';
 }
 
 function statusLabel(raw: string): string {
@@ -121,7 +121,7 @@ export default function SourceTreePanel() {
   if (!folderPath) {
     return (
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
-        <p style={{ fontSize: 12, color: 'var(--origin-fg-subtle)', textAlign: 'center', lineHeight: 1.5 }}>
+        <p style={{ fontSize: 12, color: 'var(--excode-fg-subtle)', textAlign: 'center', lineHeight: 1.5 }}>
           Open a folder to use source control
         </p>
       </div>
@@ -145,10 +145,10 @@ export default function SourceTreePanel() {
           placeholder="Commit message"
           style={{
             width: '100%', boxSizing: 'border-box',
-            background: 'var(--origin-bg-base)',
-            border: '1px solid var(--origin-border-default)',
+            background: 'var(--excode-bg-base)',
+            border: '1px solid var(--excode-border-default)',
             borderRadius: 5, padding: '5px 8px', marginBottom: 5,
-            fontSize: 12, color: 'var(--origin-fg-default)',
+            fontSize: 12, color: 'var(--excode-fg-default)',
             fontFamily: 'var(--font-sans)', outline: 'none',
           }}
         />
@@ -159,10 +159,10 @@ export default function SourceTreePanel() {
           rows={2}
           style={{
             width: '100%', boxSizing: 'border-box', resize: 'none',
-            background: 'var(--origin-bg-base)',
-            border: '1px solid var(--origin-border-default)',
+            background: 'var(--excode-bg-base)',
+            border: '1px solid var(--excode-border-default)',
             borderRadius: 5, padding: '5px 8px', marginBottom: 7,
-            fontSize: 12, color: 'var(--origin-fg-default)',
+            fontSize: 12, color: 'var(--excode-fg-default)',
             fontFamily: 'var(--font-sans)', outline: 'none',
           }}
         />
@@ -173,8 +173,8 @@ export default function SourceTreePanel() {
             style={{
               flex: 1, padding: '5px 0', borderRadius: 5, border: 'none',
               cursor: canCommit ? 'pointer' : 'not-allowed',
-              background: canCommit ? 'var(--origin-bg-active)' : 'var(--origin-bg-hover)',
-              color: canCommit ? 'var(--origin-fg-default)' : 'var(--origin-fg-subtle)',
+              background: canCommit ? 'var(--excode-bg-active)' : 'var(--excode-bg-hover)',
+              color: canCommit ? 'var(--excode-fg-default)' : 'var(--excode-fg-subtle)',
               fontSize: 12, fontFamily: 'var(--font-sans)',
               transition: 'opacity 0.15s',
             }}
@@ -187,8 +187,8 @@ export default function SourceTreePanel() {
             style={{
               flex: 1.5, padding: '5px 0', borderRadius: 5, border: 'none',
               cursor: canCommit ? 'pointer' : 'not-allowed',
-              background: canCommit ? 'var(--origin-semantic-success)' : 'var(--origin-bg-hover)',
-              color: canCommit ? '#ffffff' : 'var(--origin-fg-subtle)',
+              background: canCommit ? 'var(--excode-semantic-success)' : 'var(--excode-bg-hover)',
+              color: canCommit ? '#ffffff' : 'var(--excode-fg-subtle)',
               fontSize: 12, fontWeight: 600, fontFamily: 'var(--font-sans)',
               transition: 'opacity 0.15s',
             }}
@@ -200,33 +200,33 @@ export default function SourceTreePanel() {
 
       {/* ── Changed files ────────────────────────────────────────────────────── */}
       <div style={{
-        borderTop: '1px solid var(--origin-border-default)',
+        borderTop: '1px solid var(--excode-border-default)',
         flex: 1, overflowY: 'auto', minHeight: 0,
         display: 'flex', flexDirection: 'column',
       }}>
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           padding: '5px 8px 4px', position: 'sticky', top: 0, zIndex: 2,
-          background: 'var(--origin-bg-sidebar)',
-          borderBottom: '1px solid var(--origin-border-default)',
+          background: 'var(--excode-bg-sidebar)',
+          borderBottom: '1px solid var(--excode-border-default)',
         }}>
           <span style={{
             fontSize: 10, fontWeight: 600, letterSpacing: '0.06em',
-            textTransform: 'uppercase', color: 'var(--origin-fg-subtle)',
+            textTransform: 'uppercase', color: 'var(--excode-fg-subtle)',
           }}>
             Changes{files.length > 0 ? ` (${files.length})` : ''}
           </span>
           <button
             onClick={refresh}
             title="Refresh"
-            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 2, color: 'var(--origin-fg-subtle)', display: 'flex' }}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 2, color: 'var(--excode-fg-subtle)', display: 'flex' }}
           >
             <RefreshCw size={10} style={{ animation: refreshing ? 'spin 0.7s linear infinite' : 'none' }} />
           </button>
         </div>
         {files.length === 0 ? (
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <p style={{ margin: 0, fontSize: 13, color: 'var(--origin-fg-subtle)' }}>
+            <p style={{ margin: 0, fontSize: 13, color: 'var(--excode-fg-subtle)' }}>
               No local changes
             </p>
           </div>
@@ -240,7 +240,7 @@ export default function SourceTreePanel() {
                 {statusLabel(f.status)}
               </span>
               <span style={{
-                fontSize: 11, color: 'var(--origin-fg-default)',
+                fontSize: 11, color: 'var(--excode-fg-default)',
                 overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
               }}>
                 {shortPath(f.path)}
@@ -252,17 +252,17 @@ export default function SourceTreePanel() {
       </div>{/* end top-half */}
 
       {/* ── Git history timeline ─────────────────────────────────────────────── */}
-      <div style={{ borderTop: '1px solid var(--origin-border-default)', flex: '0 0 50%', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+      <div style={{ borderTop: '1px solid var(--excode-border-default)', flex: '0 0 50%', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
 
         {/* Title bar — static, never scrolls */}
         <div style={{
           flexShrink: 0, padding: '5px 8px 4px',
-          background: 'var(--origin-bg-sidebar)',
-          borderBottom: '1px solid var(--origin-border-default)',
+          background: 'var(--excode-bg-sidebar)',
+          borderBottom: '1px solid var(--excode-border-default)',
         }}>
           <span style={{
             fontSize: 10, fontWeight: 600, letterSpacing: '0.06em',
-            textTransform: 'uppercase', color: 'var(--origin-fg-subtle)',
+            textTransform: 'uppercase', color: 'var(--excode-fg-subtle)',
           }}>
             History{history.length > 0 ? ` (${history.length})` : ''}
           </span>
@@ -274,7 +274,7 @@ export default function SourceTreePanel() {
           {fadeTop && (
             <div style={{
               position: 'absolute', top: 0, left: 0, right: 0, height: 24,
-              background: 'linear-gradient(to bottom, var(--origin-bg-sidebar), transparent)',
+              background: 'linear-gradient(to bottom, var(--excode-bg-sidebar), transparent)',
               pointerEvents: 'none', zIndex: 2,
             }} />
           )}
@@ -282,7 +282,7 @@ export default function SourceTreePanel() {
           {fadeBot && (
             <div style={{
               position: 'absolute', bottom: 0, left: 0, right: 0, height: 24,
-              background: 'linear-gradient(to top, var(--origin-bg-sidebar), transparent)',
+              background: 'linear-gradient(to top, var(--excode-bg-sidebar), transparent)',
               pointerEvents: 'none', zIndex: 2,
             }} />
           )}
@@ -290,7 +290,7 @@ export default function SourceTreePanel() {
           {/* Scroll container */}
           <div ref={historyScrollRef} onScroll={updateFades} style={{ height: '100%', overflowY: 'auto' }}>
             {history.length === 0 ? (
-              <p style={{ margin: 0, padding: '5px 10px 8px', fontSize: 11, color: 'var(--origin-fg-subtle)' }}>
+              <p style={{ margin: 0, padding: '5px 10px 8px', fontSize: 11, color: 'var(--excode-fg-subtle)' }}>
                 No commits yet
               </p>
             ) : (
@@ -298,7 +298,7 @@ export default function SourceTreePanel() {
                 {/* Vertical timeline rail — left = ROW_PL + DOT_W/2 = 14px */}
                 <div style={{
                   position: 'absolute', left: RAIL_L, top: 10, bottom: 10, width: 1,
-                  background: 'var(--origin-border-default)', pointerEvents: 'none',
+                  background: 'var(--excode-border-default)', pointerEvents: 'none',
                 }} />
                 {history.map((c, i) => (
                   <div key={i} style={{
@@ -309,18 +309,18 @@ export default function SourceTreePanel() {
                     <div style={{
                       flexShrink: 0, width: DOT_W, height: DOT_W,
                       borderRadius: '50%', marginTop: 3,
-                      background: 'var(--origin-accent-blue)',
-                      outline: '2px solid var(--origin-bg-sidebar)',
+                      background: 'var(--excode-accent-blue)',
+                      outline: '2px solid var(--excode-bg-sidebar)',
                       position: 'relative', zIndex: 1,
                     }} />
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{
-                        fontSize: 11, color: 'var(--origin-fg-default)', lineHeight: 1.4,
+                        fontSize: 11, color: 'var(--excode-fg-default)', lineHeight: 1.4,
                         overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
                       }}>
                         {c.subject}
                       </div>
-                      <div style={{ fontSize: 10, color: 'var(--origin-fg-subtle)', lineHeight: 1.5, marginTop: 1 }}>
+                      <div style={{ fontSize: 10, color: 'var(--excode-fg-subtle)', lineHeight: 1.5, marginTop: 1 }}>
                         <span style={{ fontFamily: 'var(--font-mono)' }}>{c.hash}</span>
                         {' · '}{c.author}{' · '}{c.date}
                       </div>
